@@ -6,7 +6,8 @@
   "module": "dist/",
   "scripts": {
     "build": "tsc",
-    "build:esm": "tsc --module esnext --outdir dist",
+    "build-module": "tsc --module esnext --outdir dist",
+    "build-all": "npm run build && npm run build-module",
     "test": "tsc && ava src/test.ts"
   },
   "repository": "git@github.com:very-amused/CS-crypto.git",

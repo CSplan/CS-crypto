@@ -5,7 +5,8 @@
     "declaration": true,                   /* Generates corresponding '.d.ts' file. */
     "outDir": "lib",                        /* Redirect output structure to the directory. */
     "strict": true,                          /* Enable all strict type-checking options. */
-    "moduleResolution": "node"
+    "moduleResolution": "node", // Explicitly use node's module resolution algorithm
+    "skipLibCheck": true // Skip library typechecking, KEEP THIS ON TO MASSIVELY SPEED UP BUILDS
   },
   "include": [
     "src"

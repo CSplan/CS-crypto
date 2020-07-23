@@ -12,6 +12,9 @@ function showDevelopmentWarning(): void {
   }
 }
 
+/**
+ * Load a polyfill for all browser globals
+ */
 export async function loadPolyfill(): Promise<void> {
   showDevelopmentWarning();
   // @ts-ignore
@@ -20,6 +23,9 @@ export async function loadPolyfill(): Promise<void> {
   crypto = new Crypto()
 }
 
+// These exports pass value by reference.
+// This means that when their value is updates from this module,
+// their value is updated everywhere they're imported and used.
 export {
   crypto,
   atob,
