@@ -60,7 +60,9 @@ export function generateKeypair(keySize: number): PromiseLike<CryptoKeyPair> {
   )
 }
 
-// Encrypt an RSA private key using an AES private key generated using a passphrase and salt
+/**
+ * Encrypt an RSA private key using an AES private key generated using a passphrase and salt
+ */
 export async function wrapPrivateKey(
   privateKey: CryptoKey,
   passphrase: string,
@@ -88,6 +90,9 @@ export async function wrapPrivateKey(
   return `${algorithm}:${ABencode(concatenated)}`
 }
 
+/**
+ * Decrypt an RSA private key using the same passphrase and salt that were passed to wrapPrivateKey
+ */
 export async function unwrapPrivateKey(
   encodedPrivateKey: string,
   passphrase: string,

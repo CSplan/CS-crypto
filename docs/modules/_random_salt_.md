@@ -14,8 +14,6 @@
 
 ▸ **makeSalt**(`byteLength`: number): *Uint8Array*
 
-*Defined in [random/salt.ts:6](https://github.com/very-amused/CS-crypto/blob/9a6363e/src/random/salt.ts#L6)*
-
 Make a salt of a specified byte length
 
 **Parameters:**

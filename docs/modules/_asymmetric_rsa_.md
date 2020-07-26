@@ -18,8 +18,6 @@
 
 ▸ **deriveKey**(`type`: "AES-GCM" | "AES-CBC", `passphrase`: string, `salt`: Uint8Array): *Promise‹CryptoKey›*
 
-*Defined in [asymmetric/rsa.ts:23](https://github.com/very-amused/CS-crypto/blob/9a6363e/src/asymmetric/rsa.ts#L23)*
-
 Derive a temporary key of a specified type from a salt and passphrase  using PBKDF2
 
 **Parameters:**
@@ -38,8 +36,6 @@ ___
 
 ▸ **generateKeypair**(`keySize`: number): *PromiseLike‹CryptoKeyPair›*
 
-*Defined in [asymmetric/rsa.ts:49](https://github.com/very-amused/CS-crypto/blob/9a6363e/src/asymmetric/rsa.ts#L49)*
-
 Generate an RSA keypair of a specified keysize
 
 **Parameters:**
@@ -55,8 +51,6 @@ ___
 ###  passphraseToKey
 
 ▸ **passphraseToKey**(`passphrase`: string): *PromiseLike‹CryptoKey›*
-
-*Defined in [asymmetric/rsa.ts:9](https://github.com/very-amused/CS-crypto/blob/9a6363e/src/asymmetric/rsa.ts#L9)*
 
 Get key material from a passphrase to be used in PBKDF2
 
@@ -74,7 +68,7 @@ ___
 
 ▸ **unwrapPrivateKey**(`encodedPrivateKey`: string, `passphrase`: string, `PBKDF2salt`: Uint8Array): *Promise‹CryptoKey›*
 
-*Defined in [asymmetric/rsa.ts:91](https://github.com/very-amused/CS-crypto/blob/9a6363e/src/asymmetric/rsa.ts#L91)*
+Decrypt an RSA private key using the same passphrase and salt that were passed to wrapPrivateKey
 
 **Parameters:**
 
@@ -92,7 +86,7 @@ ___
 
 ▸ **wrapPrivateKey**(`privateKey`: CryptoKey, `passphrase`: string, `PBKDF2salt`: Uint8Array, `algorithm`: "AES-GCM" | "AES-CBC"): *Promise‹string›*
 
-*Defined in [asymmetric/rsa.ts:64](https://github.com/very-amused/CS-crypto/blob/9a6363e/src/asymmetric/rsa.ts#L64)*
+Encrypt an RSA private key using an AES private key generated using a passphrase and salt
 
 **Parameters:**
 

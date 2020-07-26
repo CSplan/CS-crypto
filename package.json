@@ -8,7 +8,7 @@
     "build": "tsc",
     "build-module": "tsc --module esnext --outdir dist",
     "build-all": "npm run build && npm run build-module",
-    "build-docs": "typedoc --out docs",
+    "build-docs": "typedoc --out docs --hideSources",
     "build-docs-html": "typedoc --out docs_html --plugin none",
     "view-docs": "find docs_html/index || npm run build-docs-html; xdg-open docs_html/index.html",
     "test": "ava src/test.ts"
@@ -30,7 +30,7 @@
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-standard": "^4.0.1",
     "node-webcrypto-ossl": "^2.1.0",
-    "pre-commit": "^1.2.2",
+    "precommit": "^1.2.2",
     "typedoc": "^0.17.8",
     "typedoc-plugin-markdown": "^2.3.1"
   },

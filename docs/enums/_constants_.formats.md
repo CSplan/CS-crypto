@@ -13,5 +13,3 @@
 ###  Raw
 
 • **Raw**: = "raw"
-
-*Defined in [constants.ts:12](https://github.com/very-amused/CS-crypto/blob/9a6363e/src/constants.ts#L12)*

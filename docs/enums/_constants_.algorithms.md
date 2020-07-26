@@ -17,15 +17,11 @@
 
 • **AES_CBC**: = "AES-CBC"
 
-*Defined in [constants.ts:4](https://github.com/very-amused/CS-crypto/blob/9a6363e/src/constants.ts#L4)*
-
 ___
 
 ###  AES_GCM
 
 • **AES_GCM**: = "AES-GCM"
-
-*Defined in [constants.ts:3](https://github.com/very-amused/CS-crypto/blob/9a6363e/src/constants.ts#L3)*
 
 ___
 
@@ -33,12 +29,8 @@ ___
 
 • **PBKDF2**: = "PBKDF2"
 
-*Defined in [constants.ts:5](https://github.com/very-amused/CS-crypto/blob/9a6363e/src/constants.ts#L5)*
-
 ___
 
 ###  RSA
 
 • **RSA**: = "RSA-OAEP"
-
-*Defined in [constants.ts:2](https://github.com/very-amused/CS-crypto/blob/9a6363e/src/constants.ts#L2)*
