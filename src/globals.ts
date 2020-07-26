@@ -1,6 +1,6 @@
 let crypto: Crypto
-let atob = function(data: string): string { return '' }
-let btoa = function(data: string): string { return '' }
+let atob = function(data: string): string { return data }
+let btoa = function(data: string): string { return data }
 if (typeof window === 'object') {
   ({ crypto, atob, btoa } = window)
 }
@@ -24,7 +24,7 @@ export async function loadPolyfill(): Promise<void> {
 }
 
 // These exports pass value by reference.
-// This means that when their value is updates from this module,
+// This means that when their value is updated from this module,
 // their value is updated everywhere they're imported and used.
 export {
   crypto,

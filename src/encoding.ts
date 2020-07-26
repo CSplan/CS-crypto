@@ -29,3 +29,22 @@ export function ABdecode(encoded: string): Uint8Array {
   }
   return bytes
 }
+
+export function ABconcat(
+  buf1: Uint8Array|ArrayBuffer,
+  buf2: Uint8Array|ArrayBuffer
+): Uint8Array {
+  // Coerce buf1 and buf2 into uint8 arrays
+  const bytes1 = new Uint8Array(buf1)
+  const bytes2 = new Uint8Array(buf2)
+
+  // Concatenate the bytes
+  const both = new Uint8Array(buf1.byteLength + buf2.byteLength)
+  for (let i = 0; i < bytes1.byteLength; i++) {
+    both[i] = bytes1[i]
+  }
+  for (let i = 0; i < bytes2.byteLength; i++) {
+    both[bytes1.byteLength + i] = bytes2[i]
+  }
+  return both
+}

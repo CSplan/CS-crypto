@@ -20,6 +20,9 @@ module.exports = {
       anonymous: 'never',
       asyncArrow: 'always'
     }],
-    '@typescript-eslint/explicit-function-return-type': 'warn'
+    '@typescript-eslint/explicit-function-return-type': 'warn',
+    // Override eslint no-unused-vars behavior with correct typescript detection
+    'no-unused-vars': 'off',
+    '@typescript-eslint/no-unused-vars': 'error'
   }
 }
