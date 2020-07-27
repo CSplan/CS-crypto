@@ -12,4 +12,5 @@
 * ["globals"](modules/_globals_.md)
 * ["index"](modules/_index_.md)
 * ["random/salt"](modules/_random_salt_.md)
+* ["symmetric/aes"](modules/_symmetric_aes_.md)
 * ["test"](modules/_test_.md)

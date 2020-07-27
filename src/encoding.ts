@@ -6,11 +6,7 @@ import { atob, btoa } from './globals'
 export function ABencode(buf: Uint8Array|ArrayBuffer): string {
   // Coerce buf to a valid byte array
   const bytes = new Uint8Array(buf)
-  const nums: number[] = []
-  for (let i = 0; i < buf.byteLength; i++) {
-    nums[i] = bytes[i]
-  }
-  return btoa(String.fromCharCode.apply(null, nums))
+  return btoa(String.fromCharCode.apply(null, Array.from(bytes)))
 }
 
 /**
@@ -30,6 +26,9 @@ export function ABdecode(encoded: string): Uint8Array {
   return bytes
 }
 
+/**
+ * Concatenate two ArrayBuffers or Uint8Arrays
+ */
 export function ABconcat(
   buf1: Uint8Array|ArrayBuffer,
   buf2: Uint8Array|ArrayBuffer

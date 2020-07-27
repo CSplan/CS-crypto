@@ -1,11 +1,15 @@
 import { loadPolyfill, crypto } from './globals'
 import { ABencode, ABdecode } from './encoding'
-import test from 'ava'
 import { makeSalt } from './random/salt'
-import { generateKeypair, wrapPrivateKey, unwrapPrivateKey } from './asymmetric/rsa'
+import { generateKeypair, wrapPrivateKey, unwrapPrivateKey, wrapKey, unwrapKey } from './asymmetric/rsa'
 import { Algorithms } from './constants'
+import { generateKey, encrypt, decrypt } from './symmetric/aes'
+import t from 'ava'
+const test = t.serial // Tests are serial by default
+const passphrase = 'Sample Passphrase'
+const sampleText = 'klasdmlkasdaslkdalkdasl'
 
-test.serial('Load polyfill', async (t) => {
+test('Load polyfill', async (t) => {
   await t.notThrowsAsync(async () => {
     await loadPolyfill()
   })
@@ -19,28 +23,73 @@ test('Encode and decode a random array buffer', (t) => {
 })
 
 let salt: Uint8Array
-test.serial('Generate a random salt', (t) => {
+test('Generate a random salt', (t) => {
   salt = makeSalt(16)
   const emptySalt = new Uint8Array(16)
   t.notDeepEqual(salt, emptySalt)
 })
 
+let publicKey: CryptoKey
 let privateKey: CryptoKey
 let wrappedPrivateKey: string
-test.serial('Generate a random RSA keypair', async (t) => {
+test('Generate a random RSA keypair', async (t) => {
   await t.notThrowsAsync(async () => {
-    ({ privateKey } = await generateKeypair(2048))
+    ({ publicKey, privateKey } = await generateKeypair(2048))
   })
 })
 
-test.serial('Wrap (encrypt) the RSA keypair\'s private key using AES-GCM encryption', async (t) => {
+test('Wrap (encrypt) the RSA keypair\'s private key using AES-GCM encryption', async (t) => {
   await t.notThrowsAsync(async () => {
-    wrappedPrivateKey = await wrapPrivateKey(privateKey, 'Sample Passphrase', salt, Algorithms.AES_GCM)
+    wrappedPrivateKey = await wrapPrivateKey(privateKey, passphrase, salt, Algorithms.AES_GCM)
   })
 })
 
-test('Unwrap (decrypt) the RSA private key that was previously wrapped (encrypted)', async (t) => {
+test('Unwrap (decrypt) the previously wrapped RSA private key', async (t) => {
   await t.notThrowsAsync(async () => {
-    await unwrapPrivateKey(wrappedPrivateKey, 'Sample Passphrase', salt)
+    const decrypted = await unwrapPrivateKey(wrappedPrivateKey, passphrase, salt)
+
+    // Override properties that are intentionally changed or of an unpredictable order when comparing
+    t.deepEqual({ ...decrypted, usages: [] }, {
+      ...privateKey,
+      extractable: false,
+      usages: []
+    })
+  })
+})
+
+let key: CryptoKey
+let encryptedKey: string
+test('Generate a random AES-GCM key', async (t) => {
+  await t.notThrowsAsync(async () => {
+    key = await generateKey('AES-GCM')
+    t.is(key.algorithm.name, 'AES-GCM')
+  })
+})
+
+test('Wrap (encrypt) the AES-GCM key with the RSA keypair\'s public key', async (t) => {
+  await t.notThrowsAsync(async () => {
+    encryptedKey = await wrapKey(key, publicKey)
+    t.is(encryptedKey.split(':')[0], 'AES-GCM')
+  })
+})
+
+test('Unwrap (decrypt) the previously wrapped AES-GCM key', async (t) => {
+  await t.notThrowsAsync(async () => {
+    const decrypted = await unwrapKey(encryptedKey, privateKey)
+    t.deepEqual(decrypted, key)
+  })
+})
+
+let encrypted: string
+test('Encrypt some text using AES-GCM', async (t) => {
+  await t.notThrowsAsync(async () => {
+    encrypted = await encrypt(sampleText, key)
+  })
+})
+
+test('Decrypt the previously encrypted text using AES-GCM', async (t) => {
+  await t.notThrowsAsync(async () => {
+    const decrypted = await decrypt(encrypted, key)
+    t.is(decrypted, sampleText)
   })
 })

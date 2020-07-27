@@ -75,7 +75,7 @@ export async function wrapPrivateKey(
 
   // Encrypt the private key using the derived key
   const encrypted = await crypto.subtle.wrapKey(
-    'pkcs8',
+    Formats.PKCS8,
     privateKey,
     tempKey,
     {
@@ -113,7 +113,7 @@ export async function unwrapPrivateKey(
   const encrypted = decoded.slice(12)
 
   return crypto.subtle.unwrapKey(
-    'pkcs8',
+    Formats.PKCS8,
     encrypted,
     tempKey,
     {
@@ -126,5 +126,45 @@ export async function unwrapPrivateKey(
     },
     false,
     ['wrapKey', 'unwrapKey']
+  )
+}
+
+/**
+ * Wrap (encrypt) a CryptoKey using an RSA public key
+ */
+export async function wrapKey(
+  key: CryptoKey,
+  wrappingKey: CryptoKey
+): Promise<string> {
+  const buf = await crypto.subtle.wrapKey(
+    Formats.Raw,
+    key,
+    wrappingKey,
+    {
+      name: Algorithms.RSA
+    }
+  )
+
+  return `${key.algorithm.name}:${ABencode(buf)}`
+}
+
+export function unwrapKey(
+  encodedKey: string,
+  unwrappingKey: CryptoKey
+): PromiseLike<CryptoKey> {
+  const [algorithm, encoded] = encodedKey.split(':')
+
+  return crypto.subtle.unwrapKey(
+    Formats.Raw,
+    ABdecode(encoded),
+    unwrappingKey,
+    {
+      name: Algorithms.RSA // Algorithm used to unwrap the key
+    },
+    {
+      name: algorithm // Algorithm of the key itself
+    },
+    true,
+    ['encrypt', 'decrypt']
   )
 }
