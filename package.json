@@ -10,7 +10,7 @@
     "build-all": "npm run build && npm run build-module",
     "build-docs": "typedoc --out docs",
     "build-docs-html": "typedoc --out docs_html --plugin none",
-    "view-docs": "find docs_html/index || npm run build-docs-html; xdg-open docs_html/index.html",
+    "view-docs": "find docs_html/index.html || npm run build-docs-html; xdg-open docs_html/index.html &>/dev/null",
     "test": "ava src/test.ts"
   },
   "repository": "git@github.com:very-amused/CS-crypto.git",

@@ -3,6 +3,9 @@ import { AES_KEY_LENGTH } from '../constants'
 import { ABconcat, ABencode, ABdecode } from '../encoding'
 import { makeSalt } from '../random/salt'
 
+/**
+ * Generate a new 256 bit AES-GCM or AES-CBC key
+ */
 export function generateKey(type: 'AES-GCM'|'AES-CBC'): PromiseLike<CryptoKey> {
   return crypto.subtle.generateKey(
     {
@@ -14,6 +17,9 @@ export function generateKey(type: 'AES-GCM'|'AES-CBC'): PromiseLike<CryptoKey> {
   )
 }
 
+/**
+ * Encrypt text using AES-GCM or AES-CBC
+ */
 export async function encrypt(text: string, key: CryptoKey): Promise<string> {
   let iv: Uint8Array
   // Different forms of AES encryption require different iv lengths
@@ -46,6 +52,9 @@ export async function encrypt(text: string, key: CryptoKey): Promise<string> {
   // The key type is already prepended to itself when it is wrapped for storage
 }
 
+/**
+ * Decrypt text that was previously encrypted using the same AES key
+ */
 export async function decrypt(ciphertext: string, key: CryptoKey): Promise<string> {
   let ivLength: number
   // Different forms of AES encryption require different iv lengths

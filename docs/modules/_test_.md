@@ -23,7 +23,7 @@
 
 • **encrypted**: *string*
 
-*Defined in [test.ts:83](https://github.com/very-amused/CS-crypto/blob/0a61d74/src/test.ts#L83)*
+*Defined in [test.ts:83](https://github.com/very-amused/CS-crypto/blob/bc149ec/src/test.ts#L83)*
 
 ___
 
@@ -31,7 +31,7 @@ ___
 
 • **encryptedKey**: *string*
 
-*Defined in [test.ts:61](https://github.com/very-amused/CS-crypto/blob/0a61d74/src/test.ts#L61)*
+*Defined in [test.ts:61](https://github.com/very-amused/CS-crypto/blob/bc149ec/src/test.ts#L61)*
 
 ___
 
@@ -39,7 +39,7 @@ ___
 
 • **key**: *CryptoKey*
 
-*Defined in [test.ts:60](https://github.com/very-amused/CS-crypto/blob/0a61d74/src/test.ts#L60)*
+*Defined in [test.ts:60](https://github.com/very-amused/CS-crypto/blob/bc149ec/src/test.ts#L60)*
 
 ___
 
@@ -47,7 +47,7 @@ ___
 
 • **passphrase**: *"Sample Passphrase"* = "Sample Passphrase"
 
-*Defined in [test.ts:9](https://github.com/very-amused/CS-crypto/blob/0a61d74/src/test.ts#L9)*
+*Defined in [test.ts:9](https://github.com/very-amused/CS-crypto/blob/bc149ec/src/test.ts#L9)*
 
 ___
 
@@ -55,7 +55,7 @@ ___
 
 • **privateKey**: *CryptoKey*
 
-*Defined in [test.ts:33](https://github.com/very-amused/CS-crypto/blob/0a61d74/src/test.ts#L33)*
+*Defined in [test.ts:33](https://github.com/very-amused/CS-crypto/blob/bc149ec/src/test.ts#L33)*
 
 ___
 
@@ -63,7 +63,7 @@ ___
 
 • **publicKey**: *CryptoKey*
 
-*Defined in [test.ts:32](https://github.com/very-amused/CS-crypto/blob/0a61d74/src/test.ts#L32)*
+*Defined in [test.ts:32](https://github.com/very-amused/CS-crypto/blob/bc149ec/src/test.ts#L32)*
 
 ___
 
@@ -71,7 +71,7 @@ ___
 
 • **salt**: *Uint8Array*
 
-*Defined in [test.ts:25](https://github.com/very-amused/CS-crypto/blob/0a61d74/src/test.ts#L25)*
+*Defined in [test.ts:25](https://github.com/very-amused/CS-crypto/blob/bc149ec/src/test.ts#L25)*
 
 ___
 
@@ -79,7 +79,7 @@ ___
 
 • **sampleText**: *"klasdmlkasdaslkdalkdasl"* = "klasdmlkasdaslkdalkdasl"
 
-*Defined in [test.ts:10](https://github.com/very-amused/CS-crypto/blob/0a61d74/src/test.ts#L10)*
+*Defined in [test.ts:10](https://github.com/very-amused/CS-crypto/blob/bc149ec/src/test.ts#L10)*
 
 ___
 
@@ -87,7 +87,7 @@ ___
 
 • **test**: *SerialInterface‹unknown›* = t.serial
 
-*Defined in [test.ts:8](https://github.com/very-amused/CS-crypto/blob/0a61d74/src/test.ts#L8)*
+*Defined in [test.ts:8](https://github.com/very-amused/CS-crypto/blob/bc149ec/src/test.ts#L8)*
 
 ___
 
@@ -95,4 +95,4 @@ ___
 
 • **wrappedPrivateKey**: *string*
 
-*Defined in [test.ts:34](https://github.com/very-amused/CS-crypto/blob/0a61d74/src/test.ts#L34)*
+*Defined in [test.ts:34](https://github.com/very-amused/CS-crypto/blob/bc149ec/src/test.ts#L34)*

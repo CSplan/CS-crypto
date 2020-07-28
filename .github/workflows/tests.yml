@@ -1,0 +1,25 @@
+name: Tests
+
+on: 
+  push:
+    branches:
+      - master
+    paths-ignore:
+      - 'docs/**'
+  pull_request:
+    branches:
+      - master
+    paths-ignore:
+      - 'docs/**'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install
+        run: yarn install
+      - name: Build
+        run: yarn run build
+      - name: Run Tests
+        run: yarn run test

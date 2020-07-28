@@ -16,7 +16,9 @@
 
 ▸ **decrypt**(`ciphertext`: string, `key`: CryptoKey): *Promise‹string›*
 
-Defined in symmetric/aes.ts:49
+*Defined in [symmetric/aes.ts:58](https://github.com/very-amused/CS-crypto/blob/bc149ec/src/symmetric/aes.ts#L58)*
+
+Decrypt text that was previously encrypted using the same AES key
 
 **Parameters:**
 
@@ -33,7 +35,9 @@ ___
 
 ▸ **encrypt**(`text`: string, `key`: CryptoKey): *Promise‹string›*
 
-Defined in symmetric/aes.ts:17
+*Defined in [symmetric/aes.ts:23](https://github.com/very-amused/CS-crypto/blob/bc149ec/src/symmetric/aes.ts#L23)*
+
+Encrypt text using AES-GCM or AES-CBC
 
 **Parameters:**
 
@@ -50,7 +54,9 @@ ___
 
 ▸ **generateKey**(`type`: "AES-GCM" | "AES-CBC"): *PromiseLike‹CryptoKey›*
 
-Defined in symmetric/aes.ts:6
+*Defined in [symmetric/aes.ts:9](https://github.com/very-amused/CS-crypto/blob/bc149ec/src/symmetric/aes.ts#L9)*
+
+Generate a new 256 bit AES-GCM or AES-CBC key
 
 **Parameters:**
 

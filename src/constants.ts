@@ -1,4 +1,6 @@
-export const enum Algorithms {
+// Algorithms is the only enum that should be compiled to js and made public,
+// so it is not declared as const
+export enum Algorithms {
   RSA = 'RSA-OAEP',
   AES_GCM = 'AES-GCM',
   AES_CBC = 'AES-CBC',
