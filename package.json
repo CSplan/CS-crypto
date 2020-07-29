@@ -2,8 +2,9 @@
   "name": "cs-crypto",
   "version": "0.5.0",
   "description": "A comprehensive, simple, and secure wrapper around the native WebCrypto API.",
-  "main": "lib/",
-  "module": "dist/",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "module": "dist/index.js",
   "scripts": {
     "build": "tsc",
     "build-module": "tsc --module esnext --outdir dist",
@@ -11,7 +12,8 @@
     "build-docs": "typedoc --exclude src/test.ts --excludeNotExported --out docs",
     "build-docs-html": "typedoc --exclude src/test.ts --excludeNotExported --out docs_html --plugin none",
     "view-docs": "find docs_html/index.html || npm run build-docs-html; xdg-open docs_html/index.html &>/dev/null",
-    "test": "ava src/test.ts"
+    "test": "ava src/test.ts",
+    "prepublishOnly": "npm run build-all"
   },
   "repository": "git@github.com:very-amused/CS-crypto.git",
   "author": "very-amused <very-amused@pm.me>",
@@ -31,11 +33,10 @@
     "eslint-plugin-standard": "^4.0.1",
     "node-webcrypto-ossl": "^2.1.0",
     "typedoc": "^0.17.8",
-    "typedoc-plugin-markdown": "^2.3.1"
-  },
-  "dependencies": {
+    "typedoc-plugin-markdown": "^2.3.1",
     "typescript": "^3.9.7"
   },
+  "dependencies": {},
   "ava": {
     "typescript": {
       "rewritePaths": {
