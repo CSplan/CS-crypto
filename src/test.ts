@@ -3,7 +3,7 @@ import { ABencode, ABdecode } from './encoding'
 import { makeSalt } from './random/salt'
 import { generateKeypair, wrapPrivateKey, unwrapPrivateKey, wrapKey, unwrapKey } from './asymmetric/rsa'
 import { Algorithms } from './constants'
-import { generateKey, encrypt, decrypt } from './symmetric/aes'
+import { generateKey, encrypt, decrypt, DeepEncryptable, DeepEncrypted, deepEncrypt, deepDecrypt } from './symmetric/aes'
 import t from 'ava'
 const test = t.serial // Tests are serial by default
 const passphrase = 'Sample Passphrase'
@@ -57,39 +57,82 @@ test('Unwrap (decrypt) the previously wrapped RSA private key', async (t) => {
   })
 })
 
-let key: CryptoKey
-let encryptedKey: string
-test('Generate a random AES-GCM key', async (t) => {
-  await t.notThrowsAsync(async () => {
-    key = await generateKey('AES-GCM')
-    t.is(key.algorithm.name, 'AES-GCM')
+function testSymmetric(keyType: 'AES-GCM'|'AES-CBC'): void {
+  let key: CryptoKey
+  let encryptedKey: string
+  test(`Generate a random ${keyType} key`, async (t) => {
+    await t.notThrowsAsync(async () => {
+      key = await generateKey(keyType)
+      t.is(key.algorithm.name, keyType)
+    })
   })
-})
 
-test('Wrap (encrypt) the AES-GCM key with the RSA keypair\'s public key', async (t) => {
-  await t.notThrowsAsync(async () => {
-    encryptedKey = await wrapKey(key, publicKey)
-    t.is(encryptedKey.split(':')[0], 'AES-GCM')
+  test(`Wrap (encrypt) the ${keyType} key with the RSA keypair's public key`, async (t) => {
+    await t.notThrowsAsync(async () => {
+      encryptedKey = await wrapKey(key, publicKey)
+      t.is(encryptedKey.split(':')[0], keyType)
+    })
   })
-})
 
-test('Unwrap (decrypt) the previously wrapped AES-GCM key', async (t) => {
-  await t.notThrowsAsync(async () => {
-    const decrypted = await unwrapKey(encryptedKey, privateKey)
-    t.deepEqual(decrypted, key)
+  test(`Unwrap (decrypt) the previously wrapped ${keyType} key`, async (t) => {
+    await t.notThrowsAsync(async () => {
+      const decrypted = await unwrapKey(encryptedKey, privateKey)
+      t.deepEqual(decrypted, key)
+    })
   })
-})
 
-let encrypted: string
-test('Encrypt some text using AES-GCM', async (t) => {
-  await t.notThrowsAsync(async () => {
-    encrypted = await encrypt(sampleText, key)
+  let encrypted: string
+  test(`Encrypt some text using ${keyType}`, async (t) => {
+    await t.notThrowsAsync(async () => {
+      encrypted = await encrypt(sampleText, key)
+    })
   })
-})
 
-test('Decrypt the previously encrypted text using AES-GCM', async (t) => {
-  await t.notThrowsAsync(async () => {
-    const decrypted = await decrypt(encrypted, key)
-    t.is(decrypted, sampleText)
+  test(`Decrypt the previously encrypted text using ${keyType}`, async (t) => {
+    await t.notThrowsAsync(async () => {
+      const decrypted = await decrypt(encrypted, key)
+      t.is(decrypted, sampleText)
+    })
   })
-})
+
+  let encryptable: DeepEncryptable = {
+    someKey: ['some', 'cool', {
+      val: 'ues'
+    }]
+  }
+  let deepEncrypted: DeepEncrypted
+  test(`Recursively encrypt an object using ${keyType}`, async (t) => {
+    await t.notThrowsAsync(async () => {
+      deepEncrypted = await deepEncrypt(encryptable, key)
+    })
+  })
+
+  test(`Recursively decrypt the previously encrypted object using ${keyType}`, async (t) => {
+    await t.notThrowsAsync(async () => {
+      const decrypted = await deepDecrypt(deepEncrypted, key)
+      t.deepEqual(decrypted, encryptable)
+    })
+  })
+
+  encryptable = ['some', 'more', {
+    cool: 'values',
+    thisIs: true,
+    butThisIs: false
+  }]
+
+  test(`Recursively encrypt an array using ${keyType}`, async (t) => {
+    await t.notThrowsAsync(async () => {
+      deepEncrypted = await deepEncrypt(encryptable, key)
+    })
+  })
+
+  test(`Recursively decrypt the previously decrypted array using ${keyType}`, async (t) => {
+    await t.notThrowsAsync(async () => {
+      const decrypted = await deepDecrypt(deepEncrypted, key)
+      t.deepEqual(decrypted, encryptable)
+    })
+  })
+}
+
+testSymmetric('AES-GCM')
+testSymmetric('AES-CBC')
