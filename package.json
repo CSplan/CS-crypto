@@ -8,8 +8,8 @@
     "build": "tsc",
     "build-module": "tsc --module esnext --outdir dist",
     "build-all": "npm run build && npm run build-module",
-    "build-docs": "typedoc --out docs",
-    "build-docs-html": "typedoc --out docs_html --plugin none",
+    "build-docs": "typedoc --exclude src/test.ts --excludeNotExported --out docs",
+    "build-docs-html": "typedoc --exclude src/test.ts --excludeNotExported --out docs_html --plugin none",
     "view-docs": "find docs_html/index.html || npm run build-docs-html; xdg-open docs_html/index.html &>/dev/null",
     "test": "ava src/test.ts"
   },
