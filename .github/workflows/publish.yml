@@ -13,6 +13,8 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v1
+        with:
+          node-version: '12'
       - name: Compare Versions
         run: oldver=$(npm info cs-crypto version) newver=$(node -p "require('./package.json').version"); [ $oldver != $newver ] && echo '::set-env name=version_changed::true'; exit 0
       - name: Install
