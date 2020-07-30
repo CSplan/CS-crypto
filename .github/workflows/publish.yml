@@ -15,10 +15,9 @@ jobs:
       - uses: actions/setup-node@v1
       - name: Compare Versions
         run: oldver=$(npm info cs-crypto version) newver=$(node -p "require('./package.json').version"); [ $oldver != $newver ] && echo '::set-env name=version_changed::true'; exit 0
-        id: version_check
       - name: Install
         if: env.version_changed == 'true'
-        run: yarn install --ignore-scripts
+        run: yarn install
       - name: Build All
         if: env.version_changed == 'true'
         run: yarn run build-all
