@@ -23,17 +23,3 @@ jobs:
         run: yarn run build
       - name: Run Tests
         run: yarn run test
-  publish:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - name: Compare Versions
-        run: oldver=$(npm info cs-crypto version) newver=$(node -p "require('./package.json').version"); [ $oldver != $newver ] && echo '::set-output name=version_changed::true'; exit 0
-        id: version_check
-      - name: Build All
-        if: steps.version_check.outputs.version_changed == 'true'
-        run: yarn run build-all
-      - name: Publish to NPM
-        if: steps.version_check.outputs.version_changed == 'true'
-        run: echo 'Publishing to NPM...'
