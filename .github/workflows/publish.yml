@@ -28,6 +28,6 @@ jobs:
         run: yarn run test
       - name: Publish to NPM
         if: env.version_changed == 'true'
+        run: yarn publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
-        run: yarn publish
