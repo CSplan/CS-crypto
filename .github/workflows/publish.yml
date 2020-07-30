@@ -16,14 +16,14 @@ jobs:
         run: oldver=$(npm info cs-crypto version) newver=$(node -p "require('./package.json').version"); [ $oldver != $newver ] && echo '::set-env name=version_changed::true'; exit 0
         id: version_check
       - name: Install
-        if: env.version_changed == true
+        if: env.version_changed == 'true'
         run: yarn install
       - name: Build All
-        if: env.version_changed == true
+        if: env.version_changed == 'true'
         run: yarn run build-all
       - name: Run Tests
-        if: env.version_changed == true
+        if: env.version_changed == 'true'
         run: yarn run test
       - name: Publish to NPM
-        if: env.version_changed == true
+        if: env.version_changed == 'true'
         run: echo 'Publishing to NPM...'
