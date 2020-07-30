@@ -1,6 +1,7 @@
+# Don't pack anything but project files, npm lib, and dist files
 *
 !README.md
 !CHANGELOG.md
 !LICENSE
-!lib
-!dist
+!lib/**
+!dist/**

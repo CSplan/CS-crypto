@@ -26,4 +26,6 @@ jobs:
         run: yarn run test
       - name: Publish to NPM
         if: env.version_changed == 'true'
-        run: echo 'Publishing to NPM...'
+        env:
+          NPM_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
+        run: npm publish
