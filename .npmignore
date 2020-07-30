@@ -1,4 +1,6 @@
-.github
-docs
-docs_html
-src
+*
+!README.md
+!CHANGELOG.md
+!LICENSE
+!lib
+!dist
