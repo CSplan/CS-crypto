@@ -10,11 +10,12 @@ on:
 jobs:
   publish:
     runs-on: ubuntu-latest
+    env:
+      NPM_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
     steps:
       - uses: actions/checkout@v2
-      - uses: actions/setup-node@v1
-        with:
-          node-version: '12'
+      - name: Use Authentication Token
+        run: echo '//registry.npmjs.org/:_authToken=${NPM_AUTH_TOKEN}' > .npmrc
       - name: Compare Versions
         run: oldver=$(npm info cs-crypto version) newver=$(node -p "require('./package.json').version"); [ $oldver != $newver ] && echo '::set-env name=version_changed::true'; exit 0
       - name: Install
@@ -29,5 +30,3 @@ jobs:
       - name: Publish to NPM
         if: env.version_changed == 'true'
         run: yarn publish
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
