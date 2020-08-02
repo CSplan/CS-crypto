@@ -24,7 +24,7 @@
 
 Ƭ **DeepDecrypted**: *[DeepEncryptable](_symmetric_aes_.md#deepencryptable)*
 
-*Defined in [symmetric/aes.ts:109](https://github.com/very-amused/CS-crypto/blob/a6f8797/src/symmetric/aes.ts#L109)*
+*Defined in [symmetric/aes.ts:107](https://github.com/very-amused/CS-crypto/blob/70df232/src/symmetric/aes.ts#L107)*
 
 Alias for encryptable data, used as a return type for deepDecrypt
 
@@ -34,7 +34,7 @@ ___
 
 Ƭ **DeepEncryptable**: *[DeepEncryptable](_symmetric_aes_.md#deepencryptable)[] | object | string | boolean*
 
-*Defined in [symmetric/aes.ts:101](https://github.com/very-amused/CS-crypto/blob/a6f8797/src/symmetric/aes.ts#L101)*
+*Defined in [symmetric/aes.ts:99](https://github.com/very-amused/CS-crypto/blob/70df232/src/symmetric/aes.ts#L99)*
 
 Any data that is valid for encryption
 
@@ -44,7 +44,7 @@ ___
 
 Ƭ **DeepEncrypted**: *[DeepEncrypted](_symmetric_aes_.md#deepencrypted)[] | object | string*
 
-*Defined in [symmetric/aes.ts:105](https://github.com/very-amused/CS-crypto/blob/a6f8797/src/symmetric/aes.ts#L105)*
+*Defined in [symmetric/aes.ts:103](https://github.com/very-amused/CS-crypto/blob/70df232/src/symmetric/aes.ts#L103)*
 
 A data structure of encrypted information
 
@@ -54,7 +54,7 @@ A data structure of encrypted information
 
 ▸ **decrypt**(`ciphertext`: string, `key`: CryptoKey): *Promise‹string | boolean›*
 
-*Defined in [symmetric/aes.ts:58](https://github.com/very-amused/CS-crypto/blob/a6f8797/src/symmetric/aes.ts#L58)*
+*Defined in [symmetric/aes.ts:57](https://github.com/very-amused/CS-crypto/blob/70df232/src/symmetric/aes.ts#L57)*
 
 Decrypt text that was previously encrypted using the same AES key
 
@@ -73,7 +73,7 @@ ___
 
 ▸ **deepDecrypt**(`data`: [DeepEncrypted](_symmetric_aes_.md#deepencrypted), `cryptoKey`: CryptoKey): *Promise‹[DeepDecrypted](_symmetric_aes_.md#deepdecrypted)›*
 
-*Defined in [symmetric/aes.ts:144](https://github.com/very-amused/CS-crypto/blob/a6f8797/src/symmetric/aes.ts#L144)*
+*Defined in [symmetric/aes.ts:142](https://github.com/very-amused/CS-crypto/blob/70df232/src/symmetric/aes.ts#L142)*
 
 Recursively decrypt an object or array while preserving its original structure
 
@@ -92,7 +92,7 @@ ___
 
 ▸ **deepEncrypt**(`data`: [DeepEncryptable](_symmetric_aes_.md#deepencryptable), `cryptoKey`: CryptoKey): *Promise‹[DeepEncrypted](_symmetric_aes_.md#deepencrypted)›*
 
-*Defined in [symmetric/aes.ts:114](https://github.com/very-amused/CS-crypto/blob/a6f8797/src/symmetric/aes.ts#L114)*
+*Defined in [symmetric/aes.ts:112](https://github.com/very-amused/CS-crypto/blob/70df232/src/symmetric/aes.ts#L112)*
 
 Recursively encrypt an object or array while preserving its original structure
 
@@ -111,7 +111,7 @@ ___
 
 ▸ **encrypt**(`text`: string, `key`: CryptoKey): *Promise‹string›*
 
-*Defined in [symmetric/aes.ts:23](https://github.com/very-amused/CS-crypto/blob/a6f8797/src/symmetric/aes.ts#L23)*
+*Defined in [symmetric/aes.ts:23](https://github.com/very-amused/CS-crypto/blob/70df232/src/symmetric/aes.ts#L23)*
 
 Encrypt text using AES-GCM or AES-CBC
 
@@ -130,7 +130,7 @@ ___
 
 ▸ **generateKey**(`type`: "AES-GCM" | "AES-CBC"): *PromiseLike‹CryptoKey›*
 
-*Defined in [symmetric/aes.ts:9](https://github.com/very-amused/CS-crypto/blob/a6f8797/src/symmetric/aes.ts#L9)*
+*Defined in [symmetric/aes.ts:9](https://github.com/very-amused/CS-crypto/blob/70df232/src/symmetric/aes.ts#L9)*
 
 Generate a new 256 bit AES-GCM or AES-CBC key
 

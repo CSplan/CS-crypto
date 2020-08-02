@@ -18,7 +18,7 @@
 
 ▸ **generateKeypair**(`keySize`: number): *PromiseLike‹CryptoKeyPair›*
 
-*Defined in [asymmetric/rsa.ts:49](https://github.com/very-amused/CS-crypto/blob/a6f8797/src/asymmetric/rsa.ts#L49)*
+*Defined in [asymmetric/rsa.ts:49](https://github.com/very-amused/CS-crypto/blob/70df232/src/asymmetric/rsa.ts#L49)*
 
 Generate an RSA keypair of a specified keysize
 
@@ -36,7 +36,7 @@ ___
 
 ▸ **unwrapKey**(`encodedKey`: string, `unwrappingKey`: CryptoKey): *PromiseLike‹CryptoKey›*
 
-*Defined in [asymmetric/rsa.ts:151](https://github.com/very-amused/CS-crypto/blob/a6f8797/src/asymmetric/rsa.ts#L151)*
+*Defined in [asymmetric/rsa.ts:151](https://github.com/very-amused/CS-crypto/blob/70df232/src/asymmetric/rsa.ts#L151)*
 
 **Parameters:**
 
@@ -53,7 +53,7 @@ ___
 
 ▸ **unwrapPrivateKey**(`encodedPrivateKey`: string, `passphrase`: string, `PBKDF2salt`: Uint8Array): *Promise‹CryptoKey›*
 
-*Defined in [asymmetric/rsa.ts:96](https://github.com/very-amused/CS-crypto/blob/a6f8797/src/asymmetric/rsa.ts#L96)*
+*Defined in [asymmetric/rsa.ts:96](https://github.com/very-amused/CS-crypto/blob/70df232/src/asymmetric/rsa.ts#L96)*
 
 Decrypt an RSA private key using the same passphrase and salt that were passed to wrapPrivateKey
 
@@ -73,7 +73,7 @@ ___
 
 ▸ **wrapKey**(`key`: CryptoKey, `wrappingKey`: CryptoKey): *Promise‹string›*
 
-*Defined in [asymmetric/rsa.ts:135](https://github.com/very-amused/CS-crypto/blob/a6f8797/src/asymmetric/rsa.ts#L135)*
+*Defined in [asymmetric/rsa.ts:135](https://github.com/very-amused/CS-crypto/blob/70df232/src/asymmetric/rsa.ts#L135)*
 
 Wrap (encrypt) a CryptoKey using an RSA public key
 
@@ -92,7 +92,7 @@ ___
 
 ▸ **wrapPrivateKey**(`privateKey`: CryptoKey, `passphrase`: string, `PBKDF2salt`: Uint8Array, `algorithm`: "AES-GCM" | "AES-CBC"): *Promise‹string›*
 
-*Defined in [asymmetric/rsa.ts:66](https://github.com/very-amused/CS-crypto/blob/a6f8797/src/asymmetric/rsa.ts#L66)*
+*Defined in [asymmetric/rsa.ts:66](https://github.com/very-amused/CS-crypto/blob/70df232/src/asymmetric/rsa.ts#L66)*
 
 Encrypt an RSA private key using an AES private key generated using a passphrase and salt
 

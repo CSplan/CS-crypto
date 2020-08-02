@@ -31,8 +31,7 @@ export async function encrypt(text: string, key: CryptoKey): Promise<string> {
       iv = makeSalt(16)
       break
     default:
-      throw new Error(`Only AES-GCM and AES-CBC encryption are supported in this library.
-      Please specify one of these algorithms to be used in the encryption process.`)
+      throw new Error('Only AES-GCM and AES-CBC encryption are supported in this library. Please specify one of these algorithms to be used in the encryption process.')
   }
 
   // Encrypt the text
@@ -66,8 +65,7 @@ export async function decrypt(ciphertext: string, key: CryptoKey): Promise<strin
       ivLength = 16
       break
     default:
-      throw new Error(`Only AES-GCM and AES-CBC encryption are supported in this library.
-      Please provide a valid AES-GCM or AES-CBC key to be used in decryption.`)
+      throw new Error('Only AES-GCM and AES-CBC encryption are supported in this library. Please provide a valid AES-GCM or AES-CBC key to be used in decryption.')
   }
 
   // Split iv and real ciphertext from the buffer using the iv length
