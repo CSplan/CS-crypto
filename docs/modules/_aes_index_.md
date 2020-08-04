@@ -24,7 +24,7 @@
 
 Ƭ **DeepDecrypted**: *[DeepEncryptable](_aes_index_.md#deepencryptable)*
 
-Defined in aes/index.ts:107
+*Defined in [aes/index.ts:107](https://github.com/very-amused/CS-crypto/blob/f46156f/src/aes/index.ts#L107)*
 
 Alias for encryptable data, used as a return type for deepDecrypt
 
@@ -34,7 +34,7 @@ ___
 
 Ƭ **DeepEncryptable**: *[DeepEncryptable](_aes_index_.md#deepencryptable)[] | object | string | boolean*
 
-Defined in aes/index.ts:99
+*Defined in [aes/index.ts:99](https://github.com/very-amused/CS-crypto/blob/f46156f/src/aes/index.ts#L99)*
 
 Any data that is valid for encryption
 
@@ -44,7 +44,7 @@ ___
 
 Ƭ **DeepEncrypted**: *[DeepEncrypted](_aes_index_.md#deepencrypted)[] | object | string*
 
-Defined in aes/index.ts:103
+*Defined in [aes/index.ts:103](https://github.com/very-amused/CS-crypto/blob/f46156f/src/aes/index.ts#L103)*
 
 A data structure of encrypted information
 
@@ -54,7 +54,7 @@ A data structure of encrypted information
 
 ▸ **decrypt**(`ciphertext`: string, `key`: CryptoKey): *Promise‹string | boolean›*
 
-Defined in aes/index.ts:57
+*Defined in [aes/index.ts:57](https://github.com/very-amused/CS-crypto/blob/f46156f/src/aes/index.ts#L57)*
 
 Decrypt text that was previously encrypted using the same AES key
 
@@ -73,7 +73,7 @@ ___
 
 ▸ **deepDecrypt**(`data`: [DeepEncrypted](_aes_index_.md#deepencrypted), `cryptoKey`: CryptoKey): *Promise‹[DeepDecrypted](_aes_index_.md#deepdecrypted)›*
 
-Defined in aes/index.ts:142
+*Defined in [aes/index.ts:142](https://github.com/very-amused/CS-crypto/blob/f46156f/src/aes/index.ts#L142)*
 
 Recursively decrypt an object or array while preserving its original structure
 
@@ -92,7 +92,7 @@ ___
 
 ▸ **deepEncrypt**(`data`: [DeepEncryptable](_aes_index_.md#deepencryptable), `cryptoKey`: CryptoKey): *Promise‹[DeepEncrypted](_aes_index_.md#deepencrypted)›*
 
-Defined in aes/index.ts:112
+*Defined in [aes/index.ts:112](https://github.com/very-amused/CS-crypto/blob/f46156f/src/aes/index.ts#L112)*
 
 Recursively encrypt an object or array while preserving its original structure
 
@@ -111,7 +111,7 @@ ___
 
 ▸ **encrypt**(`text`: string, `key`: CryptoKey): *Promise‹string›*
 
-Defined in aes/index.ts:23
+*Defined in [aes/index.ts:23](https://github.com/very-amused/CS-crypto/blob/f46156f/src/aes/index.ts#L23)*
 
 Encrypt text using AES-GCM or AES-CBC
 
@@ -130,7 +130,7 @@ ___
 
 ▸ **generateKey**(`type`: "AES-GCM" | "AES-CBC"): *PromiseLike‹CryptoKey›*
 
-Defined in aes/index.ts:9
+*Defined in [aes/index.ts:9](https://github.com/very-amused/CS-crypto/blob/f46156f/src/aes/index.ts#L9)*
 
 Generate a new 256 bit AES-GCM or AES-CBC key
 

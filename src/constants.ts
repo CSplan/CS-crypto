@@ -11,8 +11,9 @@ export const PBKDF2_ITERATIONS = 110000
 export const RSA_PUBLIC_EXPONENT = new Uint8Array([1, 0, 1])
 
 export const enum Formats {
-  Raw = 'raw',
-  PKCS8 = 'pkcs8'
+  Raw = 'raw', // Used for exporting AES keys
+  PKCS8 = 'pkcs8', // Used for exporting RSA private keys
+  SPKI = 'spki' // Used for exporting RSA public keys
 }
 
 export const enum Hashes {

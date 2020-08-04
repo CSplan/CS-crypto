@@ -14,4 +14,4 @@
 
 • **SHA_512**: = "SHA-512"
 
-*Defined in [constants.ts:19](https://github.com/very-amused/CS-crypto/blob/f9c5661/src/constants.ts#L19)*
+*Defined in [constants.ts:20](https://github.com/very-amused/CS-crypto/blob/f46156f/src/constants.ts#L20)*

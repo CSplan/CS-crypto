@@ -4,6 +4,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.6.1] - 2020-08-04
+### Added
+- Functions to handle the importing and exporting of public RSA keys
+- Unit tests for importing/exporting public RSA keys
+
 ## [0.6.0] - 2020-08-04
 ### Added
 - ArrayBuffer -> Base64 encoding and decoding functions to exports

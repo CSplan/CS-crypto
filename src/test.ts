@@ -1,7 +1,7 @@
 import { loadPolyfill, crypto } from './globals'
 import { ABencode, ABdecode } from './encoding'
 import { makeSalt } from './random'
-import { generateKeypair, wrapPrivateKey, unwrapPrivateKey, wrapKey, unwrapKey } from './rsa'
+import { generateKeypair, wrapPrivateKey, unwrapPrivateKey, wrapKey, unwrapKey, exportPublicKey, importPublicKey } from './rsa'
 import { Algorithms } from './constants'
 import { generateKey, encrypt, decrypt, DeepEncryptable, DeepEncrypted, deepEncrypt, deepDecrypt } from './aes'
 import t from 'ava'
@@ -31,10 +31,24 @@ test('Generate a random salt', (t) => {
 
 let publicKey: CryptoKey
 let privateKey: CryptoKey
+let exportedPublicKey: string
 let wrappedPrivateKey: string
 test('Generate a random RSA keypair', async (t) => {
   await t.notThrowsAsync(async () => {
     ({ publicKey, privateKey } = await generateKeypair(2048))
+  })
+})
+
+test('Export the RSA keypair\'s public key', async (t) => {
+  await t.notThrowsAsync(async () => {
+    exportedPublicKey = await exportPublicKey(publicKey)
+  })
+})
+
+test('Import the previously exported RSA public key', async (t) => {
+  await t.notThrowsAsync(async () => {
+    const imported = await importPublicKey(exportedPublicKey)
+    t.deepEqual(imported, publicKey)
   })
 })
 

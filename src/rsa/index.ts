@@ -125,7 +125,33 @@ export async function unwrapPrivateKey(
       hash: Hashes.SHA_512
     },
     false,
-    ['wrapKey', 'unwrapKey']
+    ['unwrapKey']
+  )
+}
+
+/**
+ * Export an RSA public key as base64 encoded text
+ */
+export async function exportPublicKey(publicKey: CryptoKey): Promise<string> {
+  return ABencode(await crypto.subtle.exportKey(
+    Formats.SPKI,
+    publicKey
+  ))
+}
+
+/**
+ * Import an RSA public key from base64 encoded text
+ */
+export function importPublicKey(encoded: string): PromiseLike<CryptoKey> {
+  return crypto.subtle.importKey(
+    Formats.SPKI,
+    ABdecode(encoded),
+    {
+      name: Algorithms.RSA,
+      hash: Hashes.SHA_512
+    },
+    true,
+    ['wrapKey']
   )
 }
 

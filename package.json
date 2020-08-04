@@ -1,8 +1,8 @@
 {
   "name": "cs-crypto",
-  "version": "0.6.0",
+  "version": "0.6.1",
   "description": "A comprehensive, simple, and secure wrapper around the native WebCrypto API.",
-  "main": "lib/index.js",
+  "main": "lib/",
   "types": "lib/index.d.ts",
   "module": "dist/cs-crypto.esm.js",
   "scripts": {
