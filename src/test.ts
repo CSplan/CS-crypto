@@ -1,9 +1,9 @@
 import { loadPolyfill, crypto } from './globals'
 import { ABencode, ABdecode } from './encoding'
-import { makeSalt } from './random/salt'
-import { generateKeypair, wrapPrivateKey, unwrapPrivateKey, wrapKey, unwrapKey } from './asymmetric/rsa'
+import { makeSalt } from './random'
+import { generateKeypair, wrapPrivateKey, unwrapPrivateKey, wrapKey, unwrapKey } from './rsa'
 import { Algorithms } from './constants'
-import { generateKey, encrypt, decrypt, DeepEncryptable, DeepEncrypted, deepEncrypt, deepDecrypt } from './symmetric/aes'
+import { generateKey, encrypt, decrypt, DeepEncryptable, DeepEncrypted, deepEncrypt, deepDecrypt } from './aes'
 import t from 'ava'
 const test = t.serial // Tests are serial by default
 const passphrase = 'Sample Passphrase'

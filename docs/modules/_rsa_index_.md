@@ -1,16 +1,16 @@
-[cs-crypto](../README.md) › [Globals](../globals.md) › ["asymmetric/rsa"](_asymmetric_rsa_.md)
+[cs-crypto](../README.md) › [Globals](../globals.md) › ["rsa/index"](_rsa_index_.md)
 
-# Module: "asymmetric/rsa"
+# Module: "rsa/index"
 
 ## Index
 
 ### Functions
 
-* [generateKeypair](_asymmetric_rsa_.md#generatekeypair)
-* [unwrapKey](_asymmetric_rsa_.md#unwrapkey)
-* [unwrapPrivateKey](_asymmetric_rsa_.md#unwrapprivatekey)
-* [wrapKey](_asymmetric_rsa_.md#wrapkey)
-* [wrapPrivateKey](_asymmetric_rsa_.md#wrapprivatekey)
+* [generateKeypair](_rsa_index_.md#generatekeypair)
+* [unwrapKey](_rsa_index_.md#unwrapkey)
+* [unwrapPrivateKey](_rsa_index_.md#unwrapprivatekey)
+* [wrapKey](_rsa_index_.md#wrapkey)
+* [wrapPrivateKey](_rsa_index_.md#wrapprivatekey)
 
 ## Functions
 
@@ -18,7 +18,7 @@
 
 ▸ **generateKeypair**(`keySize`: number): *PromiseLike‹CryptoKeyPair›*
 
-*Defined in [asymmetric/rsa.ts:49](https://github.com/very-amused/CS-crypto/blob/70df232/src/asymmetric/rsa.ts#L49)*
+Defined in rsa/index.ts:49
 
 Generate an RSA keypair of a specified keysize
 
@@ -36,7 +36,7 @@ ___
 
 ▸ **unwrapKey**(`encodedKey`: string, `unwrappingKey`: CryptoKey): *PromiseLike‹CryptoKey›*
 
-*Defined in [asymmetric/rsa.ts:151](https://github.com/very-amused/CS-crypto/blob/70df232/src/asymmetric/rsa.ts#L151)*
+Defined in rsa/index.ts:151
 
 **Parameters:**
 
@@ -53,7 +53,7 @@ ___
 
 ▸ **unwrapPrivateKey**(`encodedPrivateKey`: string, `passphrase`: string, `PBKDF2salt`: Uint8Array): *Promise‹CryptoKey›*
 
-*Defined in [asymmetric/rsa.ts:96](https://github.com/very-amused/CS-crypto/blob/70df232/src/asymmetric/rsa.ts#L96)*
+Defined in rsa/index.ts:96
 
 Decrypt an RSA private key using the same passphrase and salt that were passed to wrapPrivateKey
 
@@ -73,7 +73,7 @@ ___
 
 ▸ **wrapKey**(`key`: CryptoKey, `wrappingKey`: CryptoKey): *Promise‹string›*
 
-*Defined in [asymmetric/rsa.ts:135](https://github.com/very-amused/CS-crypto/blob/70df232/src/asymmetric/rsa.ts#L135)*
+Defined in rsa/index.ts:135
 
 Wrap (encrypt) a CryptoKey using an RSA public key
 
@@ -92,7 +92,7 @@ ___
 
 ▸ **wrapPrivateKey**(`privateKey`: CryptoKey, `passphrase`: string, `PBKDF2salt`: Uint8Array, `algorithm`: "AES-GCM" | "AES-CBC"): *Promise‹string›*
 
-*Defined in [asymmetric/rsa.ts:66](https://github.com/very-amused/CS-crypto/blob/70df232/src/asymmetric/rsa.ts#L66)*
+Defined in rsa/index.ts:66
 
 Encrypt an RSA private key using an AES private key generated using a passphrase and salt
 

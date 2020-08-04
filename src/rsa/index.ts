@@ -1,7 +1,7 @@
 import { Algorithms, Hashes, Formats, AES_KEY_LENGTH, PBKDF2_ITERATIONS, RSA_PUBLIC_EXPONENT } from '../constants'
 import { crypto } from '../globals'
 import { ABencode, ABconcat, ABdecode } from '../encoding'
-import { makeSalt } from '../random/salt'
+import { makeSalt } from '../random'
 
 /**
  * Get key material from a passphrase to be used in PBKDF2

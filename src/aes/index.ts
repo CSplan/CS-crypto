@@ -1,7 +1,7 @@
 import { crypto } from '../globals'
 import { AES_KEY_LENGTH } from '../constants'
 import { ABconcat, ABencode, ABdecode } from '../encoding'
-import { makeSalt } from '../random/salt'
+import { makeSalt } from '../random'
 
 /**
  * Generate a new 256 bit AES-GCM or AES-CBC key

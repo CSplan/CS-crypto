@@ -1,14 +1,14 @@
-[cs-crypto](../README.md) › [Globals](../globals.md) › ["encoding"](_encoding_.md)
+[cs-crypto](../README.md) › [Globals](../globals.md) › ["encoding/index"](_encoding_index_.md)
 
-# Module: "encoding"
+# Module: "encoding/index"
 
 ## Index
 
 ### Functions
 
-* [ABconcat](_encoding_.md#abconcat)
-* [ABdecode](_encoding_.md#abdecode)
-* [ABencode](_encoding_.md#abencode)
+* [ABconcat](_encoding_index_.md#abconcat)
+* [ABdecode](_encoding_index_.md#abdecode)
+* [ABencode](_encoding_index_.md#abencode)
 
 ## Functions
 
@@ -16,7 +16,7 @@
 
 ▸ **ABconcat**(`buf1`: Uint8Array | ArrayBuffer, `buf2`: Uint8Array | ArrayBuffer): *Uint8Array*
 
-*Defined in [encoding.ts:32](https://github.com/very-amused/CS-crypto/blob/70df232/src/encoding.ts#L32)*
+Defined in encoding/index.ts:32
 
 Concatenate two ArrayBuffers or Uint8Arrays
 
@@ -35,7 +35,7 @@ ___
 
 ▸ **ABdecode**(`encoded`: string): *Uint8Array*
 
-*Defined in [encoding.ts:15](https://github.com/very-amused/CS-crypto/blob/70df232/src/encoding.ts#L15)*
+Defined in encoding/index.ts:15
 
 Decode valid base64 as a Uint8Array
 
@@ -53,7 +53,7 @@ ___
 
 ▸ **ABencode**(`buf`: Uint8Array | ArrayBuffer): *string*
 
-*Defined in [encoding.ts:6](https://github.com/very-amused/CS-crypto/blob/70df232/src/encoding.ts#L6)*
+Defined in encoding/index.ts:6
 
 Encode an ArrayBuffer or Uint8Array to base64
 

@@ -1,10 +1,12 @@
-import * as rsa from './asymmetric/rsa'
-import * as aes from './symmetric/aes'
-import { makeSalt } from './random/salt'
+import * as encoding from './encoding'
+import * as rsa from './rsa'
+import * as aes from './aes'
+import { makeSalt } from './random'
 import { Algorithms } from './constants'
 
 export {
   Algorithms,
+  encoding,
   rsa,
   aes,
   makeSalt

@@ -4,6 +4,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.6.0] - 2020-08-04
+### Added
+- ArrayBuffer -> Base64 encoding and decoding functions to exports
+
+### Changed
+- Submodule structure to allow more semantic imports (i.e: `import { wrapPrivateKey } from 'cs-crypto/rsa'`)
+
 ## [0.5.3] - 2020-08-02
 ### Removed
 - Unnecessary whitespace from error messages, reducing minfied filesize and improving error readability
