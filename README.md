@@ -34,8 +34,4 @@ If self-hosting is still absolutely necessary or preferred, you can always downl
 
 ### jsDelivr
 - ESM: https://cdn.jsdelivr.net/npm/cs-crypto@latest/dist/cs-crypto.esm.min.js
-- IIFE: https://cdn.jsdelivr.net/npm/cs-crypto@0.5.3/dist/cs-crypto.min.js
-
-### bundle.run
-- ESM: https://bundle.run/cs-crypto@latest/dist/cs-crypto.esm.min.js
-- IIFE: https://bundle.run/cs-crypto@latest/dist/cs-crypto.min.js
+- IIFE: https://cdn.jsdelivr.net/npm/cs-crypto@latest/dist/cs-crypto.min.js
