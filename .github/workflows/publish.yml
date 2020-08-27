@@ -24,7 +24,7 @@ jobs:
         run: yarn install
       - name: Build All
         if: env.version_changed == 'true'
-        run: yarn run build-all
+        run: yarn run build:all
       - name: Run Tests
         if: env.version_changed == 'true'
         run: yarn run test

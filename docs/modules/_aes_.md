@@ -26,7 +26,7 @@
 
 Ƭ **DeepDecrypted**: *[DeepEncryptable](_aes_.md#deepencryptable)*
 
-Defined in aes.ts:147
+*Defined in [aes.ts:147](https://github.com/very-amused/CS-crypto/blob/98627a2/src/aes.ts#L147)*
 
 Alias for encryptable data, used as a return type for deepDecrypt
 
@@ -36,7 +36,7 @@ ___
 
 Ƭ **DeepEncryptable**: *[DeepEncryptable](_aes_.md#deepencryptable)[] | object | string | boolean*
 
-Defined in aes.ts:139
+*Defined in [aes.ts:139](https://github.com/very-amused/CS-crypto/blob/98627a2/src/aes.ts#L139)*
 
 Any data that is valid for encryption
 
@@ -46,7 +46,7 @@ ___
 
 Ƭ **DeepEncrypted**: *[DeepEncrypted](_aes_.md#deepencrypted)[] | object | string*
 
-Defined in aes.ts:143
+*Defined in [aes.ts:143](https://github.com/very-amused/CS-crypto/blob/98627a2/src/aes.ts#L143)*
 
 A data structure of encrypted information
 
@@ -56,7 +56,7 @@ A data structure of encrypted information
 
 ▸ **decrypt**(`ciphertext`: string, `key`: CryptoKey): *Promise‹string | boolean›*
 
-Defined in aes.ts:97
+*Defined in [aes.ts:97](https://github.com/very-amused/CS-crypto/blob/98627a2/src/aes.ts#L97)*
 
 Decrypt text that was previously encrypted using the same AES key
 
@@ -75,7 +75,7 @@ ___
 
 ▸ **deepDecrypt**(`data`: [DeepEncrypted](_aes_.md#deepencrypted), `cryptoKey`: CryptoKey): *Promise‹[DeepDecrypted](_aes_.md#deepdecrypted)›*
 
-Defined in aes.ts:182
+*Defined in [aes.ts:182](https://github.com/very-amused/CS-crypto/blob/98627a2/src/aes.ts#L182)*
 
 Recursively decrypt an object or array while preserving its original structure
 
@@ -94,7 +94,7 @@ ___
 
 ▸ **deepEncrypt**(`data`: [DeepEncryptable](_aes_.md#deepencryptable), `cryptoKey`: CryptoKey): *Promise‹[DeepEncrypted](_aes_.md#deepencrypted)›*
 
-Defined in aes.ts:152
+*Defined in [aes.ts:152](https://github.com/very-amused/CS-crypto/blob/98627a2/src/aes.ts#L152)*
 
 Recursively encrypt an object or array while preserving its original structure
 
@@ -113,7 +113,7 @@ ___
 
 ▸ **deriveKey**(`type`: "AES-GCM" | "AES-CBC", `passphrase`: string, `salt`: Uint8Array): *Promise‹CryptoKey›*
 
-Defined in aes.ts:23
+*Defined in [aes.ts:23](https://github.com/very-amused/CS-crypto/blob/98627a2/src/aes.ts#L23)*
 
 Derive an 256-bit AES key of a specified type from a salt and passphrase using PBKDF2
 
@@ -133,7 +133,7 @@ ___
 
 ▸ **encrypt**(`text`: string, `key`: CryptoKey): *Promise‹string›*
 
-Defined in aes.ts:63
+*Defined in [aes.ts:63](https://github.com/very-amused/CS-crypto/blob/98627a2/src/aes.ts#L63)*
 
 Encrypt text using AES-GCM or AES-CBC
 
@@ -152,7 +152,7 @@ ___
 
 ▸ **exportKey**(`key`: CryptoKey, `PBKDF2salt`: Uint8Array): *Promise‹string›*
 
-Defined in aes.ts:209
+*Defined in [aes.ts:209](https://github.com/very-amused/CS-crypto/blob/98627a2/src/aes.ts#L209)*
 
 **Parameters:**
 
@@ -169,7 +169,7 @@ ___
 
 ▸ **generateKey**(`type`: "AES-GCM" | "AES-CBC"): *PromiseLike‹CryptoKey›*
 
-Defined in aes.ts:49
+*Defined in [aes.ts:49](https://github.com/very-amused/CS-crypto/blob/98627a2/src/aes.ts#L49)*
 
 Generate a new 256 bit AES-GCM or AES-CBC key
 

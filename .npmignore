@@ -4,4 +4,5 @@
 !CHANGELOG.md
 !LICENSE
 !lib/**
+!lib_esm/**
 !dist/**
