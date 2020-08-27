@@ -5,6 +5,9 @@
 # CS-crypto
 A comprehensive, simple, and secure wrapper around the native WebCrypto API. The core of CSplan's client-side cryptography.
 
+[![Tests](https://img.shields.io/github/workflow/status/very-amused/cs-crypto/Tests/master?color=success&label=Tests&logo=github&style=flat-square)](https://github.com/very-amused/CS-crypto/actions?query=workflow%3ATests)
+[![NPM](https://img.shields.io/npm/v/cs-crypto?color=success&label=NPM&style=flat-square)](https://www.npmjs.com/package/cs-crypto)
+
 ## Documentation
 For documentation, see [docs](docs/globals.md). This documentation is automatically built using TypeDoc and [typedoc-plugin-markdown](https://www.npmjs.com/package/typedoc-plugin-markdown) before each commit, to ensure that it stays relevant to the source without manual intervention.
 
@@ -35,8 +38,4 @@ If self-hosting is still absolutely necessary or preferred, you can always downl
 
 ### jsDelivr
 - ESM: https://cdn.jsdelivr.net/npm/cs-crypto@latest/dist/cs-crypto.esm.min.js
-- IIFE: https://cdn.jsdelivr.net/npm/cs-crypto@0.5.3/dist/cs-crypto.min.js
-
-### bundle.run
-- ESM: https://bundle.run/cs-crypto@latest/dist/cs-crypto.esm.min.js
-- IIFE: https://bundle.run/cs-crypto@latest/dist/cs-crypto.min.js
+- IIFE: https://cdn.jsdelivr.net/npm/cs-crypto@latest/dist/cs-crypto.min.js

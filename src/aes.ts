@@ -1,7 +1,47 @@
-import { crypto } from '../globals'
-import { AES_KEY_LENGTH } from '../constants'
-import { ABconcat, ABencode, ABdecode } from '../encoding'
-import { makeSalt } from '../random'
+import { crypto } from './globals'
+import { AES_KEY_LENGTH, PBKDF2_ITERATIONS, Formats, Algorithms, Hashes } from './constants'
+import { ABconcat, ABencode, ABdecode } from './encoding'
+import { makeSalt } from './random'
+
+/**
+ * Get key material from a passphrase to be used in PBKDF2
+ */
+function passphraseToKey(passphrase: string): PromiseLike<CryptoKey> {
+  const enc = new TextEncoder()
+  return crypto.subtle.importKey(
+    Formats.Raw,
+    enc.encode(passphrase),
+    Algorithms.PBKDF2,
+    false,
+    ['deriveKey']
+  )
+}
+
+/**
+ * Derive an 256-bit AES key of a specified type from a salt and passphrase using PBKDF2
+ */
+export async function deriveKey(
+  type: 'AES-GCM'|'AES-CBC',
+  passphrase: string,
+  salt: Uint8Array
+): Promise<CryptoKey> {
+  const baseKey = await passphraseToKey(passphrase)
+  return crypto.subtle.deriveKey(
+    {
+      name: Algorithms.PBKDF2,
+      hash: Hashes.SHA_512,
+      salt: salt.buffer,
+      iterations: PBKDF2_ITERATIONS
+    },
+    baseKey,
+    {
+      name: type,
+      length: AES_KEY_LENGTH
+    },
+    false,
+    ['wrapKey', 'unwrapKey', 'encrypt', 'decrypt']
+  )
+}
 
 /**
  * Generate a new 256 bit AES-GCM or AES-CBC key
@@ -164,4 +204,16 @@ export async function deepDecrypt(data: DeepEncrypted, cryptoKey: CryptoKey): Pr
   } else {
     throw new TypeError('Data provided is not of type object, array, or string.')
   }
+}
+
+export async function exportKey(
+  key: CryptoKey,
+  PBKDF2salt: Uint8Array
+): Promise<string> {
+  const exported = await crypto.subtle.exportKey(
+    Formats.Raw,
+    key
+  )
+  const concatenated = ABconcat(PBKDF2salt, exported)
+  return ABencode(concatenated)
 }

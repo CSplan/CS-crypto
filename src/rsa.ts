@@ -1,47 +1,8 @@
-import { Algorithms, Hashes, Formats, AES_KEY_LENGTH, PBKDF2_ITERATIONS, RSA_PUBLIC_EXPONENT } from '../constants'
-import { crypto } from '../globals'
-import { ABencode, ABconcat, ABdecode } from '../encoding'
-import { makeSalt } from '../random'
-
-/**
- * Get key material from a passphrase to be used in PBKDF2
- */
-function passphraseToKey(passphrase: string): PromiseLike<CryptoKey> {
-  const enc = new TextEncoder()
-  return crypto.subtle.importKey(
-    Formats.Raw,
-    enc.encode(passphrase),
-    Algorithms.PBKDF2,
-    false,
-    ['deriveKey']
-  )
-}
-
-/**
- * Derive a temporary key of a specified type from a salt and passphrase  using PBKDF2
- */
-async function deriveKey(
-  type: 'AES-GCM'|'AES-CBC',
-  passphrase: string,
-  salt: Uint8Array
-): Promise<CryptoKey> {
-  const baseKey = await passphraseToKey(passphrase)
-  return crypto.subtle.deriveKey(
-    {
-      name: Algorithms.PBKDF2,
-      hash: Hashes.SHA_512,
-      salt: salt.buffer,
-      iterations: PBKDF2_ITERATIONS
-    },
-    baseKey,
-    {
-      name: type,
-      length: AES_KEY_LENGTH
-    },
-    false,
-    ['wrapKey', 'unwrapKey']
-  )
-}
+import { deriveKey } from './aes'
+import { Algorithms, Hashes, Formats, RSA_PUBLIC_EXPONENT } from './constants'
+import { crypto } from './globals'
+import { ABencode, ABconcat, ABdecode } from './encoding'
+import { makeSalt } from './random'
 
 /**
  * Generate an RSA keypair of a specified keysize

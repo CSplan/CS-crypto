@@ -4,6 +4,18 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.6.2] - 2020-08-27
+### Added
+- Function to export AES keys unencrypted
+
+### Changed
+- Encoding functions are now exported at the top level
+- Moved AES deriveKey function from the RSA submodule to the AES submodule
+- AES deriveKey function is now public
+
+### Fixed
+- Broken imports due to past submodule structure change
+
 ## [0.6.1] - 2020-08-04
 ### Added
 - Functions to handle the importing and exporting of public RSA keys

@@ -1,6 +1,6 @@
 {
   "name": "cs-crypto",
-  "version": "0.6.1",
+  "version": "0.6.2",
   "description": "A comprehensive, simple, and secure wrapper around the native WebCrypto API.",
   "main": "lib/",
   "types": "lib/index.d.ts",
