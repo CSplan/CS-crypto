@@ -15,7 +15,7 @@
     "view-docs": "find docs_html/index.html || npm run build-docs-html; xdg-open docs_html/index.html &>/dev/null",
     "test": "ava src/test.ts",
     "clean": "rm -rf lib; rm -rf lib_esm; rm -rf dist; rm -rf docs_html",
-    "prepublishOnly": "npm run build-all"
+    "prepublishOnly": "npm run build:all"
   },
   "repository": "git@github.com:very-amused/CS-crypto.git",
   "author": "very-amused <very-amused@pm.me>",
