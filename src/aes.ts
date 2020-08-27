@@ -23,7 +23,8 @@ function passphraseToKey(passphrase: string): PromiseLike<CryptoKey> {
 export async function deriveKey(
   type: 'AES-GCM'|'AES-CBC',
   passphrase: string,
-  salt: Uint8Array
+  salt: Uint8Array,
+  extractable: boolean = false
 ): Promise<CryptoKey> {
   const baseKey = await passphraseToKey(passphrase)
   return crypto.subtle.deriveKey(
@@ -38,7 +39,7 @@ export async function deriveKey(
       name: type,
       length: AES_KEY_LENGTH
     },
-    false,
+    extractable,
     ['wrapKey', 'unwrapKey', 'encrypt', 'decrypt']
   )
 }

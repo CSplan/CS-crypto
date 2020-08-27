@@ -3,7 +3,7 @@ import { ABencode, ABdecode } from './encoding'
 import { makeSalt } from './random'
 import { generateKeypair, wrapPrivateKey, unwrapPrivateKey, wrapKey, unwrapKey, exportPublicKey, importPublicKey } from './rsa'
 import { Algorithms } from './constants'
-import { generateKey, encrypt, decrypt, DeepEncryptable, DeepEncrypted, deepEncrypt, deepDecrypt } from './aes'
+import { generateKey, encrypt, decrypt, DeepEncryptable, DeepEncrypted, deepEncrypt, deepDecrypt, deriveKey, exportKey } from './aes'
 import t from 'ava'
 const test = t.serial // Tests are serial by default
 const passphrase = 'Sample Passphrase'
@@ -77,6 +77,21 @@ test('Generate a random AES-GCM key', async (t) => {
   await t.notThrowsAsync(async () => {
     key = await generateKey('AES-GCM')
     t.is(key.algorithm.name, 'AES-GCM')
+  })
+})
+
+let PBKDF2salt: Uint8Array
+let derivedKey: CryptoKey
+test('Derive an AES-GCM key', async (t) => {
+  await t.notThrowsAsync(async () => {
+    PBKDF2salt = makeSalt(16)
+    derivedKey = await deriveKey('AES-GCM', passphrase, PBKDF2salt, true)
+  })
+})
+
+test('Extract the previously derived AES-GCM key', async (t) => {
+  await t.notThrowsAsync(async () => {
+    await exportKey(derivedKey, PBKDF2salt)
   })
 })
 
