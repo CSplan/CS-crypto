@@ -2438,7 +2438,7 @@ rollup-plugin-terser@^6.1.0:
   dependencies:
     "@babel/code-frame" "^7.8.3"
     jest-worker "^26.0.0"
-    serialize-javascript "^3.0.0"
+    serialize-javascript "^3.1.0"
     terser "^4.7.0"
 
 rollup-plugin-typescript2@^0.27.1:
@@ -2501,7 +2501,7 @@ serialize-error@^2.1.0:
   resolved "https://registry.yarnpkg.com/serialize-error/-/serialize-error-2.1.0.tgz#50b679d5635cdf84667bdc8e59af4e5b81d5f60a"
   integrity sha1-ULZ51WNc34Rme9yOWa9OW4HV9go=
 
-serialize-javascript@^3.0.0:
+serialize-javascript@^3.1.0:
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/serialize-javascript/-/serialize-javascript-3.1.0.tgz#8bf3a9170712664ef2561b44b691eafe399214ea"
   integrity sha512-JIJT1DGiWmIKhzRsG91aS6Ze4sFUrYbltlkg2onR5OrnNM02Kl/hnY/T4FN2omvyeBbQmMJv+K4cPOpGzOTFBg==
