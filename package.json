@@ -1,21 +1,20 @@
 {
   "name": "cs-crypto",
-  "version": "0.6.3",
+  "version": "0.6.4",
   "description": "A comprehensive, simple, and secure wrapper around the native WebCrypto API.",
   "main": "lib/",
   "types": "lib/index.d.ts",
-  "module": "lib_esm/index.js",
   "scripts": {
     "build": "tsc",
-    "build:esm": "tsc --outdir lib_esm --module esnext",
     "bundle": "rollup -c",
-    "build:all": "yarn run build && yarn run build:esm && yarn run bundle",
+    "build:all": "yarn run build && yarn run bundle",
     "build:docs": "typedoc --exclude src/test.ts --excludeNotExported --out docs",
     "build:docs-html": "typedoc --exclude src/test.ts --excludeNotExported --out docs_html --plugin none",
-    "view-docs": "find docs_html/index.html || npm run build-docs-html; xdg-open docs_html/index.html &>/dev/null",
+    "view-docs": "xdg-open docs_html/index.html &>/dev/null",
     "test": "ava src/test.ts",
-    "clean": "rm -rf lib; rm -rf lib_esm; rm -rf dist; rm -rf docs_html",
-    "prepublishOnly": "npm run build:all"
+    "clean": "rm -rf lib; rm -rf dist; rm -rf docs; rm -rf docs_html",
+    "has-build": "[ -f lib/index.js ] && [ $(find dist -mindepth 1 | wc -l) == 4 ]",
+    "prepublishOnly": "yarn run has-build &>/dev/null || yarn run build:all"
   },
   "repository": "git@github.com:very-amused/CS-crypto.git",
   "author": "very-amused <very-amused@pm.me>",
