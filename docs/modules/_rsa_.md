@@ -20,7 +20,7 @@
 
 ▸ **exportPublicKey**(`publicKey`: CryptoKey): *Promise‹string›*
 
-*Defined in [rsa.ts:96](https://github.com/very-amused/CS-crypto/blob/3b1ba86/src/rsa.ts#L96)*
+*Defined in [rsa.ts:96](https://github.com/very-amused/CS-crypto/blob/58b6d68/src/rsa.ts#L96)*
 
 Export an RSA public key as base64 encoded text
 
@@ -38,7 +38,7 @@ ___
 
 ▸ **generateKeypair**(`keySize`: number): *PromiseLike‹CryptoKeyPair›*
 
-*Defined in [rsa.ts:10](https://github.com/very-amused/CS-crypto/blob/3b1ba86/src/rsa.ts#L10)*
+*Defined in [rsa.ts:10](https://github.com/very-amused/CS-crypto/blob/58b6d68/src/rsa.ts#L10)*
 
 Generate an RSA keypair of a specified keysize
 
@@ -56,7 +56,7 @@ ___
 
 ▸ **importPublicKey**(`encoded`: string): *PromiseLike‹CryptoKey›*
 
-*Defined in [rsa.ts:106](https://github.com/very-amused/CS-crypto/blob/3b1ba86/src/rsa.ts#L106)*
+*Defined in [rsa.ts:106](https://github.com/very-amused/CS-crypto/blob/58b6d68/src/rsa.ts#L106)*
 
 Import an RSA public key from base64 encoded text
 
@@ -74,7 +74,7 @@ ___
 
 ▸ **unwrapKey**(`encodedKey`: string, `unwrappingKey`: CryptoKey): *PromiseLike‹CryptoKey›*
 
-*Defined in [rsa.ts:138](https://github.com/very-amused/CS-crypto/blob/3b1ba86/src/rsa.ts#L138)*
+*Defined in [rsa.ts:138](https://github.com/very-amused/CS-crypto/blob/58b6d68/src/rsa.ts#L138)*
 
 **Parameters:**
 
@@ -91,7 +91,7 @@ ___
 
 ▸ **unwrapPrivateKey**(`encodedPrivateKey`: string, `passphrase`: string, `PBKDF2salt`: Uint8Array): *Promise‹CryptoKey›*
 
-*Defined in [rsa.ts:57](https://github.com/very-amused/CS-crypto/blob/3b1ba86/src/rsa.ts#L57)*
+*Defined in [rsa.ts:57](https://github.com/very-amused/CS-crypto/blob/58b6d68/src/rsa.ts#L57)*
 
 Decrypt an RSA private key using the same passphrase and salt that were passed to wrapPrivateKey
 
@@ -111,7 +111,7 @@ ___
 
 ▸ **wrapKey**(`key`: CryptoKey, `wrappingKey`: CryptoKey): *Promise‹string›*
 
-*Defined in [rsa.ts:122](https://github.com/very-amused/CS-crypto/blob/3b1ba86/src/rsa.ts#L122)*
+*Defined in [rsa.ts:122](https://github.com/very-amused/CS-crypto/blob/58b6d68/src/rsa.ts#L122)*
 
 Wrap (encrypt) a CryptoKey using an RSA public key
 
@@ -130,7 +130,7 @@ ___
 
 ▸ **wrapPrivateKey**(`privateKey`: CryptoKey, `passphrase`: string, `PBKDF2salt`: Uint8Array, `algorithm`: "AES-GCM" | "AES-CBC"): *Promise‹string›*
 
-*Defined in [rsa.ts:27](https://github.com/very-amused/CS-crypto/blob/3b1ba86/src/rsa.ts#L27)*
+*Defined in [rsa.ts:27](https://github.com/very-amused/CS-crypto/blob/58b6d68/src/rsa.ts#L27)*
 
 Encrypt an RSA private key using an AES private key generated using a passphrase and salt
 

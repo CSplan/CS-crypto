@@ -2,7 +2,7 @@ import typescript from 'rollup-plugin-typescript2'
 import { terser } from 'rollup-plugin-terser'
 
 export default {
-  input: 'src/index.ts',
+  input: 'tmp/index.ts',
   output: [
     // Regular and minified iife bundles
     {
@@ -32,10 +32,13 @@ export default {
       tsconfigOverride: {
         compilerOptions: {
           module: 'esnext',
-          declaration: false
-        }
+          declaration: true
+        },
+        include: [
+          'src'
+        ]
       }
     })
   ],
-  external: ['node-webcrypto-ossl']
+  external: ['node-webcrypto-ossl', 'Base64']
 }
