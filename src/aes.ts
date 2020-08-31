@@ -16,7 +16,7 @@ function passphraseToKey(passphrase: string): PromiseLike<CryptoKey> {
     ['deriveKey']
   )
 }
-// this is only being changed to test the build workflow
+// this is only being changed to test the build workflow (again)
 
 /**
  * Derive an 256-bit AES key of a specified type from a salt and passphrase using PBKDF2
