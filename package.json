@@ -30,7 +30,7 @@
     "test": "ava src/test.ts",
   
     "clean": "rm -rf lib; rm -rf dist; rm -rf docs; rm -rf docs_html",
-    "has-build": "[ -f lib/index.js ] && [ $(find dist -mindepth 1 | wc -l) == 4 ]",
+    "has-build": "bash -c [ -f lib/index.js ] && [ $(find dist -mindepth 1 | wc -l) == 4 ]",
     "prepublishOnly": "yarn run has-build &>/dev/null || yarn run build:all"
   },
   "repository": "git@github.com:very-amused/CS-crypto.git",
