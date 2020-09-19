@@ -1,20 +1,15 @@
 {
   "name": "cs-crypto",
-  "version": "0.6.4",
+  "version": "0.6.5",
   "description": "A comprehensive, simple, and secure wrapper around the native WebCrypto API.",
   "main": "./lib/index.js",
   "module": "./lib/index.mjs",
   "types": "./lib/index.d.ts",
   "scripts": {
     "build": "./compile.js",
-
     "build:test": "./compile.js --test",
-
     "build:esm": "./compile.js --esm",
-    "postbuild:esm": "rename .js .mjs lib/*",
-  
     "bundle": "rollup -c",
-  
     "build:all": "yarn run build:esm && yarn run build && yarn run bundle",
 
     "build:docs": "typedoc src/* --exclude src/test.ts tmp/* --excludeNotExported --out docs",
@@ -26,10 +21,9 @@
     "posttest": "yarn run clean",
   
     "clean": "rm -rf lib; rm -rf dist; rm -rf docs; rm -rf docs_html",
-    "has-build": "find lib/index.js && [[ $(find dist -mindepth 1 | wc -l) == 4 ]]",
     "prepublishOnly": "yarn run clean && yarn run build:all"
   },
-  "repository": "git@github.com:very-amused/CS-crypto.git",
+  "repository": "git+https://github.com/very-amused/cs-crypto",
   "author": "very-amused <very-amused@pm.me>",
   "license": "MIT",
   "private": false,

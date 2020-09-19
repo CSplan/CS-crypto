@@ -16,7 +16,6 @@ for (const arg of process.argv.slice(2)) {
 }
 
 const stripCodeRegex = /^( *)\/\/ strip-code\n[\s\S]*?\n( *)\/\/ end-strip-code$/mg
-const importRegex = /^(import|export) ({ )?(\S,?)+( })? from '\S+'(;?)$/g
 
 // Generate a random id to append to the tmp directory (5 digits of base16)
 let id = ''
@@ -37,20 +36,23 @@ try {
 }
 
 // Patch the src
-for (const file of fs.readdirSync('src')) {
-  try {
-    fs.copyFileSync(`src/${file}`, `${tmp}/${file}`)
-  } catch {
-    // Don't patch any file that wasn't successfully able to be backed up
-    continue
-  }
-  if (!file.endsWith('.ts') || isTestBuild) {
-    break
-  }
+if (!isTestBuild) {
+  for (const file of fs.readdirSync('src')) {
+    if (!file.endsWith('.ts')) {
+      continue
+    }
   
-  const content = fs.readFileSync(`src/${file}`).toString()
-    .replace(stripCodeRegex, '')   // Strip any code blocks between // strip-code and // end-strip-code
-  fs.writeFileSync(`src/${file}`, content)
+    try {
+      fs.copyFileSync(`src/${file}`, `${tmp}/${file}`)
+    } catch {
+      // Don't patch any file that wasn't successfully able to be backed up
+      continue
+    }
+    
+    const content = fs.readFileSync(`src/${file}`).toString()
+      .replace(stripCodeRegex, '')   // Strip any code blocks between // strip-code and // end-strip-code
+    fs.writeFileSync(`src/${file}`, content)
+  }
 }
 
 // Run the typescript compiler
@@ -58,7 +60,7 @@ const cmd = isEsmBuild ? spawn(tsc, ['--module', 'esnext']) : spawn(tsc)
 cmd.stdout.pipe(process.stdout)
 cmd.stderr.pipe(process.stderr)
 cmd.on('close', (code) => {
-  // Restore the backup of the src directory
+  // Restore any files that were backed up and possibly patched
   for (const file of fs.readdirSync(tmp)) {
     fs.copyFileSync(`${tmp}/${file}`, `src/${file}`)
   }
@@ -66,5 +68,20 @@ cmd.on('close', (code) => {
   fs.rmdirSync(tmp, {
     recursive: true
   })
+
+  // Post-build cleanup
+  for (const file of fs.readdirSync('lib')) {
+    // Remove empty test files
+    if (file.startsWith('test') && !isTestBuild) {
+      fs.unlinkSync(`lib/${file}`)
+      continue
+    }
+    // If this is a module build, rename all output files from .js to .mjs
+    if (file.endsWith('.js') && isEsmBuild) {
+      fs.renameSync(`lib/${file}`, `lib/${file.split('.')[0]}.mjs`)
+    }
+  }
+
+  // Pass the typescript compiler's exit code to bash
   process.exit(code)
 })
