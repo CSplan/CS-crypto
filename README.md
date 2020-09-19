@@ -1,8 +1,8 @@
 # CS-crypto
 A comprehensive, simple, and secure wrapper around the native WebCrypto API. The core of CSplan's client-side cryptography.
 
-[![Tests](https://img.shields.io/github/workflow/status/very-amused/cs-crypto/Tests?label=Tests&style=flat-square)](https://github.com/very-amused/CS-crypto/actions?query=workflow%3ATests)
-[![NPM](https://img.shields.io/npm/v/cs-crypto?color=success&label=NPM&style=flat-square)](https://www.npmjs.com/package/cs-crypto)
+[![Tests](https://img.shields.io/github/workflow/status/very-amused/cs-crypto/Tests?label=Tests&logo=github&style=flat-square)](https://github.com/very-amused/CS-crypto/actions?query=workflow%3ATests)
+[![NPM](https://img.shields.io/npm/v/cs-crypto?color=darkred&logo=npm&style=flat-square)](https://www.npmjs.com/package/cs-crypto)
 
 ## Documentation
 For documentation, see [docs](docs/globals.md). This documentation is automatically built using TypeDoc and [typedoc-plugin-markdown](https://www.npmjs.com/package/typedoc-plugin-markdown).
