@@ -2,7 +2,7 @@ import typescript from 'rollup-plugin-typescript2'
 import { terser } from 'rollup-plugin-terser'
 
 export default {
-  input: 'tmp/index.ts',
+  input: 'src/index.ts',
   output: [
     // Regular and minified iife bundles
     {
@@ -32,7 +32,7 @@ export default {
       tsconfigOverride: {
         compilerOptions: {
           module: 'esnext',
-          declaration: true
+          declaration: false
         },
         include: [
           'src'

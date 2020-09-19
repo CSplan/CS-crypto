@@ -6,32 +6,28 @@
   "module": "./lib/index.mjs",
   "types": "./lib/index.d.ts",
   "scripts": {
-    "prebuild": "node precompile.js",
-    "build": "tsc",
+    "build": "./compile.js",
 
-    "build:test": "NODE_ENV=test yarn run build",
-    "postbuild:test": "rm -rf tmp",
+    "build:test": "./compile.js --test",
 
-    "prebuild:esm": "node precompile.js",
-    "build:esm": "tsc --module es2020",
+    "build:esm": "./compile.js --esm",
     "postbuild:esm": "rename .js .mjs lib/*",
   
-    "prebundle": "node precompile.js",
     "bundle": "rollup -c",
   
     "build:all": "yarn run build:esm && yarn run build && yarn run bundle",
-    "postbuild:all": "rm -rf tmp",
 
     "build:docs": "typedoc src/* --exclude src/test.ts tmp/* --excludeNotExported --out docs",
     "build:docs-html": "typedoc src/* --exclude src/test.ts tmp/* --excludeNotExported --out docs_html --plugin none",
     "view-docs": "xdg-open docs_html/index.html &>/dev/null",
 
-    "pretest": "yarn run has-build &>/dev/null || yarn run build:test",
+    "pretest": "yarn run build:test",
     "test": "ava src/test.ts",
+    "posttest": "yarn run clean",
   
     "clean": "rm -rf lib; rm -rf dist; rm -rf docs; rm -rf docs_html",
-    "has-build": "bash -c [[ -f lib/index.js ]] && [[ $(find dist -mindepth 1 | wc -l) == 4 ]]",
-    "prepublishOnly": "yarn run has-build &>/dev/null || yarn run build:all"
+    "has-build": "find lib/index.js && [[ $(find dist -mindepth 1 | wc -l) == 4 ]]",
+    "prepublishOnly": "yarn run clean && yarn run build:all"
   },
   "repository": "git@github.com:very-amused/CS-crypto.git",
   "author": "very-amused <very-amused@pm.me>",

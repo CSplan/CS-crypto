@@ -9,6 +9,6 @@
     "skipLibCheck": true // Skip library typechecking, KEEP THIS ON TO MASSIVELY SPEED UP BUILDS
   },
   "include": [
-    "tmp"
+    "src"
   ]
 }

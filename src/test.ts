@@ -1,3 +1,4 @@
+// strip-code
 import { loadPolyfill, crypto } from './globals'
 import { ABencode, ABdecode } from './encoding'
 import { makeSalt } from './random'
@@ -160,3 +161,4 @@ test('Recursively decrypt the previously decrypted array using AES-GCM', async (
     t.deepEqual(decrypted, encryptable)
   })
 })
+// end-strip-code
