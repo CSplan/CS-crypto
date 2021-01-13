@@ -11,12 +11,15 @@
     "build:esm": "./compile.js --esm",
     "bundle": "rollup -c",
     "build:all": "yarn run build:esm && yarn run build && yarn run bundle",
+
     "build:docs": "typedoc src/* --exclude src/test.ts tmp/* --excludeNotExported --out docs",
     "build:docs-html": "typedoc src/* --exclude src/test.ts tmp/* --excludeNotExported --out docs_html --plugin none",
     "view-docs": "xdg-open docs_html/index.html &>/dev/null",
+
     "pretest": "yarn run build:test",
     "test": "ava src/test.ts",
     "posttest": "yarn run clean",
+  
     "clean": "rm -rf lib; rm -rf dist; rm -rf docs; rm -rf docs_html",
     "prepublishOnly": "yarn run clean && yarn run build:all"
   },

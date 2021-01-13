@@ -78,10 +78,6 @@ cmd.on('close', (code) => {
     }
     // If this is a module build, rename all output files from .js to .mjs
     if (file.endsWith('.js') && isEsmBuild) {
-      const content = fs.readFileSync(`lib/${file}`).toString()
-        .replace(/\.js/g, '.mjs') // Rename imports/exports based on esm build
-      fs.writeFileSync(`lib/${file}`, content)
-
       fs.renameSync(`lib/${file}`, `lib/${file.split('.')[0]}.mjs`)
     }
   }

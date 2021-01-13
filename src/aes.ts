@@ -1,7 +1,7 @@
-import { crypto } from './globals.js'
-import { AES_KEY_LENGTH, PBKDF2_ITERATIONS, Formats, Algorithms, Hashes } from './constants.js'
-import { ABconcat, ABencode, ABdecode } from './encoding.js'
-import { makeSalt } from './random.js'
+import { crypto } from './globals'
+import { AES_KEY_LENGTH, PBKDF2_ITERATIONS, Formats, Algorithms, Hashes } from './constants'
+import { ABconcat, ABencode, ABdecode } from './encoding'
+import { makeSalt } from './random'
 
 /**
  * Get key material from a passphrase to be used in PBKDF2

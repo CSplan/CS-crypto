@@ -1,8 +1,8 @@
-import { deriveKey } from './aes.js'
-import { Algorithms, Hashes, Formats, RSA_PUBLIC_EXPONENT } from './constants.js'
-import { crypto } from './globals.js'
-import { ABencode, ABconcat, ABdecode } from './encoding.js'
-import { makeSalt } from './random.js'
+import { deriveKey } from './aes'
+import { Algorithms, Hashes, Formats, RSA_PUBLIC_EXPONENT } from './constants'
+import { crypto } from './globals'
+import { ABencode, ABconcat, ABdecode } from './encoding'
+import { makeSalt } from './random'
 
 /**
  * Generate an RSA keypair of a specified keysize
