@@ -4,3 +4,4 @@ lib_esm
 dist
 docs_html
 tmp
+yarn-error.log

@@ -1,4 +1,4 @@
-import { atob, btoa } from './globals'
+import { atob, btoa } from './globals.js'
 
 /**
  * Encode an ArrayBuffer or Uint8Array to base64

@@ -1,4 +1,4 @@
-import { crypto } from './globals'
+import { crypto } from './globals.js'
 
 /**
  * Make a salt of a specified byte length

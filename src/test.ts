@@ -1,10 +1,10 @@
 // strip-code
-import { loadPolyfill, crypto } from './globals'
-import { ABencode, ABdecode } from './encoding'
-import { makeSalt } from './random'
-import { generateKeypair, wrapPrivateKey, unwrapPrivateKey, wrapKey, unwrapKey, exportPublicKey, importPublicKey } from './rsa'
-import { Algorithms } from './constants'
-import { generateKey, encrypt, decrypt, DeepEncryptable, DeepEncrypted, deepEncrypt, deepDecrypt, deriveKey, exportKey } from './aes'
+import { loadPolyfill, crypto } from './globals.js'
+import { ABencode, ABdecode } from './encoding.js'
+import { makeSalt } from './random.js'
+import { generateKeypair, wrapPrivateKey, unwrapPrivateKey, wrapKey, unwrapKey, exportPublicKey, importPublicKey } from './rsa.js'
+import { Algorithms } from './constants.js'
+import { generateKey, encrypt, decrypt, DeepEncryptable, DeepEncrypted, deepEncrypt, deepDecrypt, deriveKey, exportKey } from './aes.js'
 import t from 'ava'
 const test = t.serial // Tests are serial by default
 const passphrase = 'Sample Passphrase'
