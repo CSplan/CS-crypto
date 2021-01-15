@@ -16,7 +16,7 @@
 
 ▸ **ABconcat**(`buf1`: Uint8Array | ArrayBuffer, `buf2`: Uint8Array | ArrayBuffer): *Uint8Array*
 
-*Defined in [base64.ts:170](https://github.com/very-amused/CS-crypto/blob/f347297/src/base64.ts#L170)*
+*Defined in [base64.ts:170](https://github.com/very-amused/CS-crypto/blob/52dcd0b/src/base64.ts#L170)*
 
 Concatenate two ArrayBuffers or Uint8Arrays
 
@@ -35,7 +35,7 @@ ___
 
 ▸ **decode**(`encoded`: string): *Uint8Array*
 
-*Defined in [base64.ts:126](https://github.com/very-amused/CS-crypto/blob/f347297/src/base64.ts#L126)*
+*Defined in [base64.ts:126](https://github.com/very-amused/CS-crypto/blob/52dcd0b/src/base64.ts#L126)*
 
 **Parameters:**
 
@@ -51,7 +51,7 @@ ___
 
 ▸ **encode**(`data`: Uint8Array): *string*
 
-*Defined in [base64.ts:85](https://github.com/very-amused/CS-crypto/blob/f347297/src/base64.ts#L85)*
+*Defined in [base64.ts:85](https://github.com/very-amused/CS-crypto/blob/52dcd0b/src/base64.ts#L85)*
 
 **Parameters:**
 

@@ -18,7 +18,7 @@
 
 • **crypto**: *Crypto*
 
-*Defined in [globals.ts:1](https://github.com/very-amused/CS-crypto/blob/f347297/src/globals.ts#L1)*
+*Defined in [globals.ts:1](https://github.com/very-amused/CS-crypto/blob/52dcd0b/src/globals.ts#L1)*
 
 ## Functions
 
@@ -26,7 +26,7 @@
 
 ▸ **loadPolyfill**(): *Promise‹void›*
 
-*Defined in [globals.ts:16](https://github.com/very-amused/CS-crypto/blob/f347297/src/globals.ts#L16)*
+*Defined in [globals.ts:16](https://github.com/very-amused/CS-crypto/blob/52dcd0b/src/globals.ts#L16)*
 
 Load a polyfill for all browser globals
 

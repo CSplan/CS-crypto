@@ -22,7 +22,7 @@
 
 • **AES_KEY_LENGTH**: *256* = 256
 
-*Defined in [constants.ts:9](https://github.com/very-amused/CS-crypto/blob/f347297/src/constants.ts#L9)*
+*Defined in [constants.ts:9](https://github.com/very-amused/CS-crypto/blob/52dcd0b/src/constants.ts#L9)*
 
 ___
 
@@ -30,7 +30,7 @@ ___
 
 • **PBKDF2_ITERATIONS**: *110000* = 110000
 
-*Defined in [constants.ts:10](https://github.com/very-amused/CS-crypto/blob/f347297/src/constants.ts#L10)*
+*Defined in [constants.ts:10](https://github.com/very-amused/CS-crypto/blob/52dcd0b/src/constants.ts#L10)*
 
 ___
 
@@ -38,4 +38,4 @@ ___
 
 • **RSA_PUBLIC_EXPONENT**: *Uint8Array‹›* = new Uint8Array([1, 0, 1])
 
-*Defined in [constants.ts:11](https://github.com/very-amused/CS-crypto/blob/f347297/src/constants.ts#L11)*
+*Defined in [constants.ts:11](https://github.com/very-amused/CS-crypto/blob/52dcd0b/src/constants.ts#L11)*
