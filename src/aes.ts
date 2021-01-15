@@ -1,6 +1,6 @@
 import { crypto } from './globals'
 import { AES_KEY_LENGTH, PBKDF2_ITERATIONS, Formats, Algorithms, Hashes } from './constants'
-import { ABconcat, ABencode, ABdecode } from './encoding'
+import { ABconcat, encode, decode } from './base64'
 import { makeSalt } from './random'
 
 /**
@@ -89,7 +89,7 @@ export async function encrypt(text: string, key: CryptoKey): Promise<string> {
 
   // Concatenate the iv to the encrypted data
   const concatenated = ABconcat(iv, encrypted)
-  return ABencode(concatenated) // The key type is NOT prepended to AES-encrypted text,
+  return encode(concatenated) // The key type is NOT prepended to AES-encrypted text,
   // The key type is already prepended to itself when it is wrapped for storage
 }
 
@@ -111,7 +111,7 @@ export async function decrypt(ciphertext: string, key: CryptoKey): Promise<strin
   }
 
   // Split iv and real ciphertext from the buffer using the iv length
-  const cipherbuf = ABdecode(ciphertext)
+  const cipherbuf = decode(ciphertext)
   const iv = cipherbuf.slice(0, ivLength)
   const encrypted = cipherbuf.slice(ivLength)
 
@@ -217,5 +217,5 @@ export async function exportKey(
     key
   )
   const concatenated = ABconcat(PBKDF2salt, exported)
-  return ABencode(concatenated)
+  return encode(concatenated)
 }

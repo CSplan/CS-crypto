@@ -1,7 +1,7 @@
 import { deriveKey } from './aes'
 import { Algorithms, Hashes, Formats, RSA_PUBLIC_EXPONENT } from './constants'
 import { crypto } from './globals'
-import { ABencode, ABconcat, ABdecode } from './encoding'
+import { encode, ABconcat, decode } from './base64'
 import { makeSalt } from './random'
 
 /**
@@ -48,7 +48,7 @@ export async function wrapPrivateKey(
   const concatenated = ABconcat(iv, encrypted)
 
   // Encode to base64 and prepend the encryption algorithm
-  return `${algorithm}:${ABencode(concatenated)}`
+  return `${algorithm}:${encode(concatenated)}`
 }
 
 /**
@@ -69,7 +69,7 @@ export async function unwrapPrivateKey(
   const tempKey = await deriveKey(algorithm, passphrase, PBKDF2salt)
 
   // Decode the provided information and split into iv and encrypted private key
-  const decoded = ABdecode(concatenated)
+  const decoded = decode(concatenated)
   const iv = decoded.slice(0, 12)
   const encrypted = decoded.slice(12)
 
@@ -94,10 +94,11 @@ export async function unwrapPrivateKey(
  * Export an RSA public key as base64 encoded text
  */
 export async function exportPublicKey(publicKey: CryptoKey): Promise<string> {
-  return ABencode(await crypto.subtle.exportKey(
+  const buf = await crypto.subtle.exportKey(
     Formats.SPKI,
     publicKey
-  ))
+  )
+  return encode(new Uint8Array(buf))
 }
 
 /**
@@ -106,7 +107,7 @@ export async function exportPublicKey(publicKey: CryptoKey): Promise<string> {
 export function importPublicKey(encoded: string): PromiseLike<CryptoKey> {
   return crypto.subtle.importKey(
     Formats.SPKI,
-    ABdecode(encoded),
+    decode(encoded),
     {
       name: Algorithms.RSA,
       hash: Hashes.SHA_512
@@ -132,7 +133,7 @@ export async function wrapKey(
     }
   )
 
-  return `${key.algorithm.name}:${ABencode(buf)}`
+  return `${key.algorithm.name}:${encode(new Uint8Array(buf))}`
 }
 
 export function unwrapKey(
@@ -143,7 +144,7 @@ export function unwrapKey(
 
   return crypto.subtle.unwrapKey(
     Formats.Raw,
-    ABdecode(encoded),
+    decode(encoded),
     unwrappingKey,
     {
       name: Algorithms.RSA // Algorithm used to unwrap the key

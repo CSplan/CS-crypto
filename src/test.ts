@@ -1,6 +1,6 @@
 // strip-code
 import { loadPolyfill, crypto } from './globals'
-import { ABencode, ABdecode } from './encoding'
+import { encode, decode } from './base64'
 import { makeSalt } from './random'
 import { generateKeypair, wrapPrivateKey, unwrapPrivateKey, wrapKey, unwrapKey, exportPublicKey, importPublicKey } from './rsa'
 import { Algorithms } from './constants'
@@ -17,10 +17,13 @@ test('Load polyfill', async (t) => {
 })
 
 test('Encode and decode a random array buffer', (t) => {
-  const buf = crypto.getRandomValues(new Uint8Array(16))
-  const encoded = ABencode(buf)
-  const decoded = ABdecode(encoded)
-  t.deepEqual(decoded, buf, 'Decoded array buffer is not equal to original')
+  // encode and decode 10 random sequences of bytes, with a random length between 0 and 255
+  for (let i = 0; i < 10; i++) {
+    const buf = crypto.getRandomValues(new Uint8Array(i))
+    const encoded = encode(buf)
+    const decoded = decode(encoded)
+    t.deepEqual(decoded, buf, 'Decoded array buffer is not equal to original')
+  }
 })
 
 let salt: Uint8Array
@@ -43,6 +46,7 @@ test('Generate a random RSA keypair', async (t) => {
 test('Export the RSA keypair\'s public key', async (t) => {
   await t.notThrowsAsync(async () => {
     exportedPublicKey = await exportPublicKey(publicKey)
+    t.deepEqual(encode(decode(exportedPublicKey)), exportedPublicKey)
   })
 })
 

@@ -11,15 +11,12 @@
     "build:esm": "./compile.js --esm",
     "bundle": "rollup -c",
     "build:all": "yarn run build:esm && yarn run build && yarn run bundle",
-
     "build:docs": "typedoc src/* --exclude src/test.ts tmp/* --excludeNotExported --out docs",
     "build:docs-html": "typedoc src/* --exclude src/test.ts tmp/* --excludeNotExported --out docs_html --plugin none",
     "view-docs": "xdg-open docs_html/index.html &>/dev/null",
-
     "pretest": "yarn run build:test",
     "test": "ava src/test.ts",
     "posttest": "yarn run clean",
-  
     "clean": "rm -rf lib; rm -rf dist; rm -rf docs; rm -rf docs_html",
     "prepublishOnly": "yarn run clean && yarn run build:all"
   },
@@ -39,10 +36,11 @@
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-standard": "^4.0.1",
-    "node-webcrypto-ossl": "^2.1.0",
+    "node-webcrypto-ossl": "^2.1.2",
     "rollup": "^2.23.0",
     "rollup-plugin-terser": "^6.1.0",
     "rollup-plugin-typescript2": "^0.27.1",
+    "ts-node": "^9.1.1",
     "typedoc": "^0.17.8",
     "typedoc-plugin-markdown": "^2.3.1",
     "typescript": "^3.9.7"
@@ -53,6 +51,8 @@
       "rewritePaths": {
         "src/": "lib/"
       }
-    }
+    },
+    "failFast": true,
+    "verbose": true
   }
 }

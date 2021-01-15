@@ -1,9 +1,4 @@
 let crypto: Crypto
-let atob = function(data: string): string { return data }
-let btoa = function(data: string): string { return data }
-if (typeof window === 'object') {
-  ({ crypto, atob, btoa } = window)
-}
 
 // strip-code
 function showDevelopmentWarning(): void {
@@ -19,9 +14,8 @@ function showDevelopmentWarning(): void {
  * Load a polyfill for all browser globals
  */
 async function loadPolyfill(): Promise<void> {
-  showDevelopmentWarning();
+  showDevelopmentWarning()
   // @ts-ignore
-  ({ atob, btoa } = await import('Base64'))
   const { Crypto } = await import('node-webcrypto-ossl')
   crypto = new Crypto()
 }
@@ -34,7 +28,5 @@ export {
   // strip-code
   loadPolyfill,
   // end-strip-code
-  crypto,
-  atob,
-  btoa
+  crypto
 }
