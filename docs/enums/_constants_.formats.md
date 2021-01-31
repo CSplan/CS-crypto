@@ -16,7 +16,7 @@
 
 • **PKCS8**: = "pkcs8"
 
-*Defined in [constants.ts:14](https://github.com/very-amused/CS-crypto/blob/72d9d06/src/constants.ts#L14)*
+*Defined in [constants.ts:14](https://github.com/very-amused/CS-crypto/blob/abdac76/src/constants.ts#L14)*
 
 ___
 
@@ -24,7 +24,7 @@ ___
 
 • **Raw**: = "raw"
 
-*Defined in [constants.ts:13](https://github.com/very-amused/CS-crypto/blob/72d9d06/src/constants.ts#L13)*
+*Defined in [constants.ts:13](https://github.com/very-amused/CS-crypto/blob/abdac76/src/constants.ts#L13)*
 
 ___
 
@@ -32,4 +32,4 @@ ___
 
 • **SPKI**: = "spki"
 
-*Defined in [constants.ts:15](https://github.com/very-amused/CS-crypto/blob/72d9d06/src/constants.ts#L15)*
+*Defined in [constants.ts:15](https://github.com/very-amused/CS-crypto/blob/abdac76/src/constants.ts#L15)*
