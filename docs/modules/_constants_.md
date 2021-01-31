@@ -21,7 +21,7 @@
 
 • **AES_KEY_LENGTH**: *256* = 256
 
-*Defined in [constants.ts:9](https://github.com/very-amused/CS-crypto/blob/abdac76/src/constants.ts#L9)*
+*Defined in [constants.ts:9](https://github.com/very-amused/CS-crypto/blob/7fe6b70/src/constants.ts#L9)*
 
 ___
 
@@ -29,4 +29,4 @@ ___
 
 • **RSA_PUBLIC_EXPONENT**: *Uint8Array‹›* = new Uint8Array([1, 0, 1])
 
-*Defined in [constants.ts:10](https://github.com/very-amused/CS-crypto/blob/abdac76/src/constants.ts#L10)*
+*Defined in [constants.ts:10](https://github.com/very-amused/CS-crypto/blob/7fe6b70/src/constants.ts#L10)*
