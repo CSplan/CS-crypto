@@ -4,6 +4,20 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.7.0] - 2020-01-31
+### Added
+- Full base64 implementation for encoding and decoding functions
+- `aes.importKeyMaterial` function to import an AES-GCM or AES-CBC key from a Uint8Array of key material
+
+### Removed
+- `aes.deriveKey` function and all behavior related to PBKDF2
+- Dependency of `atob` and `btoa` for encoding
+- Encryption mode prefixes for wrapped keys, this makes 0.7.0 completely incompatible with any previous versions
+
+### Changed
+- `rsa.wrapPrivateKey` and `rsa.unwrapPrivateKey` are hardcoded to use AES-GCM encryption
+- `aes.exportKey` no longer prepends a salt to the exported key
+
 ## [0.6.5] - 2020-09-19
 ### Added
 - Build script and code stripping

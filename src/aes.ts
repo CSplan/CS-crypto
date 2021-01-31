@@ -1,47 +1,18 @@
 import { crypto } from './globals'
-import { AES_KEY_LENGTH, PBKDF2_ITERATIONS, Formats, Algorithms, Hashes } from './constants'
+import { AES_KEY_LENGTH, Formats, Algorithms } from './constants'
 import { ABconcat, encode, decode } from './base64'
 import { makeSalt } from './random'
 
 /**
- * Get key material from a passphrase to be used in PBKDF2
+ * Import an AES key from raw key material
  */
-function passphraseToKey(passphrase: string): PromiseLike<CryptoKey> {
-  const enc = new TextEncoder()
+export function importKeyMaterial(keyMaterial: Uint8Array, type: Algorithms.AES_GCM|Algorithms.AES_CBC): PromiseLike<CryptoKey> {
   return crypto.subtle.importKey(
     Formats.Raw,
-    enc.encode(passphrase),
-    Algorithms.PBKDF2,
+    keyMaterial,
+    type,
     false,
-    ['deriveKey']
-  )
-}
-// this is only being changed to test the build workflow (again)
-
-/**
- * Derive an 256-bit AES key of a specified type from a salt and passphrase using PBKDF2
- */
-export async function deriveKey(
-  type: 'AES-GCM'|'AES-CBC',
-  passphrase: string,
-  salt: Uint8Array,
-  extractable: boolean = false
-): Promise<CryptoKey> {
-  const baseKey = await passphraseToKey(passphrase)
-  return crypto.subtle.deriveKey(
-    {
-      name: Algorithms.PBKDF2,
-      hash: Hashes.SHA_512,
-      salt: salt.buffer,
-      iterations: PBKDF2_ITERATIONS
-    },
-    baseKey,
-    {
-      name: type,
-      length: AES_KEY_LENGTH
-    },
-    extractable,
-    ['wrapKey', 'unwrapKey', 'encrypt', 'decrypt']
+    ['encrypt', 'decrypt', 'wrapKey', 'unwrapKey']
   )
 }
 
@@ -89,8 +60,7 @@ export async function encrypt(text: string, key: CryptoKey): Promise<string> {
 
   // Concatenate the iv to the encrypted data
   const concatenated = ABconcat(iv, encrypted)
-  return encode(concatenated) // The key type is NOT prepended to AES-encrypted text,
-  // The key type is already prepended to itself when it is wrapped for storage
+  return encode(concatenated)
 }
 
 /**
@@ -209,13 +179,11 @@ export async function deepDecrypt(data: DeepEncrypted, cryptoKey: CryptoKey): Pr
 }
 
 export async function exportKey(
-  key: CryptoKey,
-  PBKDF2salt: Uint8Array
+  key: CryptoKey
 ): Promise<string> {
   const exported = await crypto.subtle.exportKey(
     Formats.Raw,
     key
   )
-  const concatenated = ABconcat(PBKDF2salt, exported)
-  return encode(concatenated)
+  return encode(new Uint8Array(exported))
 }

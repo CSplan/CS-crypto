@@ -1,7 +1,10 @@
 // Only standard encoding is supported as of now
 const StdEncoding = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/'
 
-// Piecewise function to encode 1-3 characters from data into result
+/**
+ * @internal
+ * Encode up to 3 bytes from data into result
+ */
 function encodeGroup(data: Uint8Array, result: Uint8Array): void {
   // Byte 1
   result[0] = StdEncoding.charCodeAt(data[0] >> 2)
@@ -24,7 +27,10 @@ function encodeGroup(data: Uint8Array, result: Uint8Array): void {
   result[3] = StdEncoding.charCodeAt(data[2] & 0x3F)
 }
 
-// Function to decode 2-4 base64 indexes into data
+/**
+ * @internal
+ * Decode a group of base64 indexes to result
+ */
 function decodeGroup(data: Uint8Array, result: Uint8Array): void {
   // Byte 1
   result[0] = data[0] << 2 | data[1] >> 4
@@ -43,8 +49,8 @@ function decodeGroup(data: Uint8Array, result: Uint8Array): void {
 }
 
 /**
- * ASCII to indexes, convert each ASCII character code in encoded to a usable index for decoding
  * @internal
+ * ASCII to indexes, convert each ASCII character code in encoded to a usable index for decoding
  */
 function atoi(encoded: Uint8Array): Uint8Array {
   let unpaddedLength = encoded.byteLength
@@ -82,6 +88,9 @@ function atoi(encoded: Uint8Array): Uint8Array {
   return indexes
 }
 
+/**
+ * Encode a Uint8Array using Base64 standard encoding
+ */
 export function encode(data: Uint8Array): string {
   // Calculate result size
   const resultSize = (Math.floor(data.byteLength / 3) * 4) + (data.byteLength % 3 !== 0 ? 4 : 0)
@@ -123,6 +132,9 @@ export function encode(data: Uint8Array): string {
   return new TextDecoder().decode(result)
 }
 
+/**
+ * Decode standard encoded Base64 to a Uint8Array.
+ */
 export function decode(encoded: string): Uint8Array {
   // Convert from ASCII encoding to indexes 0-63
   const indexes = atoi(new TextEncoder().encode(encoded))

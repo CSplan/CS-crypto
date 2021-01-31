@@ -4,10 +4,9 @@ import { encode, decode } from './base64'
 import { makeSalt } from './random'
 import { generateKeypair, wrapPrivateKey, unwrapPrivateKey, wrapKey, unwrapKey, exportPublicKey, importPublicKey } from './rsa'
 import { Algorithms } from './constants'
-import { generateKey, encrypt, decrypt, DeepEncryptable, DeepEncrypted, deepEncrypt, deepDecrypt, deriveKey, exportKey } from './aes'
+import { generateKey, encrypt, decrypt, DeepEncryptable, DeepEncrypted, deepEncrypt, deepDecrypt, importKeyMaterial } from './aes'
 import t from 'ava'
 const test = t.serial // Tests are serial by default
-const passphrase = 'Sample Passphrase'
 const sampleText = 'klasdmlkasdaslkdalkdasl'
 
 test('Load polyfill', async (t) => {
@@ -35,6 +34,7 @@ test('Generate a random salt', (t) => {
 
 let publicKey: CryptoKey
 let privateKey: CryptoKey
+let wrappingKey: CryptoKey
 let exportedPublicKey: string
 let wrappedPrivateKey: string
 test('Generate a random RSA keypair', async (t) => {
@@ -57,15 +57,22 @@ test('Import the previously exported RSA public key', async (t) => {
   })
 })
 
+test('Import an AES-GCM key from raw key material', async (t) => {
+  await t.notThrowsAsync(async () => {
+    const keyMaterial = crypto.getRandomValues(new Uint8Array(32))
+    wrappingKey = await importKeyMaterial(keyMaterial, Algorithms.AES_GCM)
+  })
+})
+
 test('Wrap (encrypt) the RSA keypair\'s private key using AES-GCM encryption', async (t) => {
   await t.notThrowsAsync(async () => {
-    wrappedPrivateKey = await wrapPrivateKey(privateKey, passphrase, salt, Algorithms.AES_GCM)
+    wrappedPrivateKey = await wrapPrivateKey(privateKey, wrappingKey)
   })
 })
 
 test('Unwrap (decrypt) the previously wrapped RSA private key', async (t) => {
   await t.notThrowsAsync(async () => {
-    const decrypted = await unwrapPrivateKey(wrappedPrivateKey, passphrase, salt)
+    const decrypted = await unwrapPrivateKey(wrappedPrivateKey, wrappingKey)
 
     // Override properties that are intentionally changed or of an unpredictable order when comparing
     t.deepEqual({ ...decrypted, usages: [] }, {
@@ -85,25 +92,9 @@ test('Generate a random AES-GCM key', async (t) => {
   })
 })
 
-let PBKDF2salt: Uint8Array
-let derivedKey: CryptoKey
-test('Derive an AES-GCM key', async (t) => {
-  await t.notThrowsAsync(async () => {
-    PBKDF2salt = makeSalt(16)
-    derivedKey = await deriveKey('AES-GCM', passphrase, PBKDF2salt, true)
-  })
-})
-
-test('Extract the previously derived AES-GCM key', async (t) => {
-  await t.notThrowsAsync(async () => {
-    await exportKey(derivedKey, PBKDF2salt)
-  })
-})
-
 test('Wrap (encrypt) the AES-GCM key with the RSA keypair\'s public key', async (t) => {
   await t.notThrowsAsync(async () => {
     encryptedKey = await wrapKey(key, publicKey)
-    t.is(encryptedKey.split(':')[0], 'AES-GCM')
   })
 })
 
