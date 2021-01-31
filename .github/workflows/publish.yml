@@ -15,8 +15,9 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Compare Versions
-        run: oldver=$(npm info cs-crypto version) newver=$(node -p "require('./package.json').version"); [ $oldver != $newver ] && |
-        echo 'version_changed=true' >> $GITHUB_ENV; exit 0
+        run: |
+          oldver=$(npm info cs-crypto version) newver=$(node -p "require('./package.json').version"); [ $oldver != $newver ] && |
+          echo 'version_changed=true' >> $GITHUB_ENV; exit 0
       - name: Use Authentication Token
         if: env.version_changed == 'true'
         run: echo '//registry.npmjs.org/:_authToken=${NPM_AUTH_TOKEN}' > .npmrc
