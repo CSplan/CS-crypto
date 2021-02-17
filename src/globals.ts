@@ -1,4 +1,7 @@
 let crypto: Crypto
+if (typeof window === 'object' && window.crypto instanceof Crypto) {
+  crypto = window.crypto
+}
 
 // strip-code
 function showDevelopmentWarning(): void {

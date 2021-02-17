@@ -4,6 +4,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.7.1]
+### Fixed
+- Base64 decoding now ignores newlines, which fixes decoding long base64 strings produced many standard implementations of base64 (including MySQL's `TO_BASE64()`)
+- WebCrypto/node crypto provider detection errors
+
 ## [0.7.0] - 2020-01-31
 ### Added
 - Full base64 implementation for encoding and decoding functions

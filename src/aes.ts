@@ -30,22 +30,23 @@ export function generateKey(type: 'AES-GCM'|'AES-CBC'): PromiseLike<CryptoKey> {
   )
 }
 
+function genIV(key: CryptoKey): Uint8Array {
+  // Different forms of AES encryption require different iv lengths
+  switch (key.algorithm.name) {
+    case 'AES-GCM':
+      return makeSalt(12)
+    case 'AES-CBC':
+      return makeSalt(16)
+    default:
+      throw new Error('Only AES-GCM and AES-CBC encryption are supported in this library. Please specify one of these algorithms to be used in the encryption process.')
+  }
+}
+
 /**
  * Encrypt text using AES-GCM or AES-CBC
  */
 export async function encrypt(text: string, key: CryptoKey): Promise<string> {
-  let iv: Uint8Array
-  // Different forms of AES encryption require different iv lengths
-  switch (key.algorithm.name) {
-    case 'AES-GCM':
-      iv = makeSalt(12)
-      break
-    case 'AES-CBC':
-      iv = makeSalt(16)
-      break
-    default:
-      throw new Error('Only AES-GCM and AES-CBC encryption are supported in this library. Please specify one of these algorithms to be used in the encryption process.')
-  }
+  const iv = genIV(key)
 
   // Encrypt the text
   const plainbuf = new TextEncoder().encode(text)

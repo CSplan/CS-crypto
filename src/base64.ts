@@ -137,7 +137,9 @@ export function encode(data: Uint8Array): string {
  */
 export function decode(encoded: string): Uint8Array {
   // Convert from ASCII encoding to indexes 0-63
-  const indexes = atoi(new TextEncoder().encode(encoded))
+  const indexes = atoi(new TextEncoder().encode(
+    encoded.replace(/\n/g, '') // Standard base64 behavior requires ignoring newlines
+  ))
 
   // Calculate result length
   const resultSize = (Math.floor(indexes.byteLength / 4) * 3) + // Each full group of 4 encoded -> 3 bytes

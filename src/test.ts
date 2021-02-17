@@ -25,6 +25,17 @@ test('Encode and decode a random array buffer', (t) => {
   }
 })
 
+test('Base64 decoding ignores carriage returns', (t) => {
+  const buf = crypto.getRandomValues(new Uint8Array(10))
+  let encoded = encode(buf)
+  // Separate each encoded char with \n
+  for (let i = 0; i < encoded.length; i += 2) {
+    encoded = encoded.slice(0, i) + '\n' + encoded.slice(i)
+  }
+  const decoded = decode(encoded)
+  t.deepEqual(decoded, buf, 'Decoded buffer is not equal to original')
+})
+
 let salt: Uint8Array
 test('Generate a random salt', (t) => {
   salt = makeSalt(16)
