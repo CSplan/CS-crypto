@@ -1,6 +1,5 @@
 node_modules
-lib
-lib_esm
+build
 dist
 docs_html
 tmp

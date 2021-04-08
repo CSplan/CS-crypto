@@ -70,15 +70,15 @@ cmd.on('close', (code) => {
   })
 
   // Post-build cleanup
-  for (const file of fs.readdirSync('lib')) {
+  for (const file of fs.readdirSync('build')) {
     // Remove empty test files
     if (file.startsWith('test') && !isTestBuild) {
-      fs.unlinkSync(`lib/${file}`)
+      fs.unlinkSync(`build/${file}`)
       continue
     }
     // If this is a module build, rename all output files from .js to .mjs
     if (file.endsWith('.js') && isEsmBuild) {
-      fs.renameSync(`lib/${file}`, `lib/${file.split('.')[0]}.mjs`)
+      fs.renameSync(`build/${file}`, `build/${file.split('.')[0]}.mjs`)
     }
   }
 

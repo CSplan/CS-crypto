@@ -2,9 +2,9 @@
   "name": "cs-crypto",
   "version": "0.7.1",
   "description": "A comprehensive, simple, and secure wrapper around the native WebCrypto API.",
-  "main": "./lib/index.js",
-  "module": "./lib/index.mjs",
-  "types": "./lib/index.d.ts",
+  "main": "./build/index.js",
+  "module": "./build/index.mjs",
+  "types": "./build/index.d.ts",
   "scripts": {
     "build": "./compile.js",
     "build:test": "./compile.js --test",
@@ -17,7 +17,7 @@
     "pretest": "yarn run build:test",
     "test": "ava src/test.ts",
     "posttest": "yarn run clean",
-    "clean": "rm -rf lib; rm -rf dist; rm -rf docs; rm -rf docs_html",
+    "clean": "rm -rf build; rm -rf dist; rm -rf docs; rm -rf docs_html",
     "prepublishOnly": "yarn run clean && yarn run build:all"
   },
   "repository": "git+https://github.com/very-amused/cs-crypto",
@@ -48,7 +48,7 @@
   "ava": {
     "typescript": {
       "rewritePaths": {
-        "src/": "lib/"
+        "src/": "build/"
       }
     },
     "failFast": true,
