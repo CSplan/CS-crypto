@@ -1,6 +1,6 @@
 import type { JSON_RPC_Request, JSON_RPC_Response } from '../rpc'
 import { JSON_RPC_Errors } from '../rpc'
-import * as nacl from 'tweetnacl'
+import { sign as ed25519 } from 'tweetnacl'
 
 // Methods return a response object, and an optional list of buffers to pass by reference (transfering ownership to the client)
 type MethodResult = {
@@ -20,7 +20,7 @@ function generateFromSeed(message: JSON_RPC_Request & {
 }): MethodResult {
   let keys: nacl.SignKeyPair
   try {
-    keys = nacl.sign.keyPair.fromSeed(message.params.seed)
+    keys = ed25519.keyPair.fromSeed(message.params.seed)
   } catch (err) {
     return {
       response: {

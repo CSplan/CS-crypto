@@ -11,8 +11,8 @@
     "build:esm": "./compile.js --esm",
     "bundle": "rollup -c",
     "build:all": "yarn run build:esm && yarn run build && yarn run bundle",
-    "build:docs": "typedoc src/* --exclude src/test.ts tmp/* --excludeNotExported --out docs",
-    "build:docs-html": "typedoc src/* --exclude src/test.ts tmp/* --excludeNotExported --out docs_html --plugin none",
+    "build:docs": "typedoc src/index.ts --out docs",
+    "build:docs-html": "typedoc src/* --exclude src/test.ts tmp/* --out docs_html --plugin none",
     "view-docs": "xdg-open docs_html/index.html &>/dev/null",
     "pretest": "yarn run build:test",
     "test": "ava src/test.ts",
@@ -41,9 +41,9 @@
     "rollup-plugin-typescript2": "^0.27.1",
     "ts-node": "^9.1.1",
     "tweetnacl": "^1.0.3",
-    "typedoc": "^0.17.8",
-    "typedoc-plugin-markdown": "^2.3.1",
-    "typescript": "^3.9.7"
+    "typedoc": "^0.20.35",
+    "typedoc-plugin-markdown": "^3.6.1",
+    "typescript": "^4.2.4"
   },
   "dependencies": {},
   "ava": {

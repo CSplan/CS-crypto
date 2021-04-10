@@ -9,14 +9,14 @@
 
 export interface JSON_RPC_Request {
   jsonrpc: '2.0'
-  id: string
+  id: Uint8Array
   method: string
   params: { [param: string]: unknown }
 }
 
 export type JSON_RPC_Response = {
   jsonrpc: '2.0'
-  id: string
+  id: Uint8Array
   result?: unknown
   error?: {
     code: number

@@ -7,7 +7,8 @@
     "outDir": "build",                        /* Redirect output structure to the directory. */
     "strict": true,                          /* Enable all strict type-checking options. */
     "moduleResolution": "node", // Explicitly use node's module resolution algorithm
-    "skipLibCheck": true // Skip library typechecking, KEEP THIS ON TO MASSIVELY SPEED UP BUILDS
+    "skipLibCheck": true, // Skip library typechecking, KEEP THIS ON TO MASSIVELY SPEED UP BUILDS
+    "stripInternal": true
   },
   "include": [
     "src"
