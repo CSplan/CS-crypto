@@ -2,7 +2,7 @@
  * This file is meant to keep track of communication with workers with a promise based interface.
  */
 
-import { crypto } from './globals'
+import { crypto } from '../globals'
 import type { JSON_RPC_Request, JSON_RPC_Response } from './rpc'
 
 type MessageResponse = {

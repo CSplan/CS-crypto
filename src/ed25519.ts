@@ -1,4 +1,5 @@
-import { initResponseListener, sendMessage } from './ipc'
+import { initResponseListener, sendMessage } from './internal/ipc'
+import { Worker } from './globals'
 
 let worker: Worker
 

@@ -1,6 +1,6 @@
-import type { JSON_RPC_Request, JSON_RPC_Response } from '../rpc'
-import { JSON_RPC_Errors } from '../rpc'
-import { overwriteSecure } from '../memory'
+import type { JSON_RPC_Request, JSON_RPC_Response } from '../internal/rpc'
+import { JSON_RPC_Errors } from '../internal/rpc'
+import { overwriteSecure } from '../internal/memory'
 
 // #region WASM Exports
 

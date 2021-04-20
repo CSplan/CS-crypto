@@ -56,7 +56,9 @@ if (!isTestBuild) {
 }
 
 // Run the typescript compiler
-const cmd = isEsmBuild ? spawn(tsc, ['--module', 'esnext']) : spawn(tsc)
+const arguments = ['-b']
+arguments.push(isEsmBuild ? 'src/tsconfig-esm.json' : 'src/tsconfig.json')
+const cmd = spawn(tsc, arguments)
 cmd.stdout.pipe(process.stdout)
 cmd.stderr.pipe(process.stderr)
 cmd.on('close', (code) => {

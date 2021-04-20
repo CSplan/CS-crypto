@@ -9,11 +9,18 @@
     "build": "./compile.js",
     "build:test": "./compile.js --test",
     "build:esm": "./compile.js --esm",
+
     "bundle": "rollup -c",
-    "build:all": "yarn run build:esm && yarn run build && yarn run bundle",
+    "bundle:workers": "rollup -c src/workers/rollup.config.js",
+
+    "build:wasm": "make",
+
+    "build:all": "yarn run build:esm && yarn run build && yarn run bundle && yarn run build:wasm && yarn run bundle:workers",
+
     "build:docs": "typedoc src/index.ts --out docs",
     "build:docs-html": "typedoc src/index.ts --out docs_html --plugin none",
     "view-docs": "xdg-open docs_html/index.html &>/dev/null",
+
     "pretest": "yarn run build:test",
     "test": "ava src/test.ts",
     "posttest": "yarn run clean",
@@ -26,6 +33,7 @@
   "private": false,
   "devDependencies": {
     "@ava/typescript": "^1.1.1",
+    "@rollup/plugin-typescript": "^8.2.1",
     "@typescript-eslint/eslint-plugin": "^3.7.0",
     "@typescript-eslint/parser": "^3.7.0",
     "ava": "^3.10.1",
@@ -38,7 +46,6 @@
     "node-webcrypto-ossl": "^2.1.2",
     "rollup": "^2.23.0",
     "rollup-plugin-terser": "^6.1.0",
-    "rollup-plugin-typescript2": "^0.27.1",
     "ts-node": "^9.1.1",
     "tweetnacl": "^1.0.3",
     "typedoc": "^0.20.35",

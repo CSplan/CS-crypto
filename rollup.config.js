@@ -1,21 +1,9 @@
-import typescript from 'rollup-plugin-typescript2'
+import typescript from '@rollup/plugin-typescript'
 import { terser } from 'rollup-plugin-terser'
 
 export default {
   input: 'src/index.ts',
   output: [
-    // Regular and minified iife bundles
-    {
-      file: 'dist/cs-crypto.js',
-      format: 'iife',
-      name: 'csCrypto'
-    },
-    {
-      file: 'dist/cs-crypto.min.js',
-      format: 'iife',
-      name: 'csCrypto',
-      plugins: [terser()]
-    },
     // Regular and minified esnext module bundles
     {
       file: 'dist/cs-crypto.esm.js',
@@ -29,16 +17,9 @@ export default {
   ],
   plugins: [
     typescript({
-      tsconfigOverride: {
-        compilerOptions: {
-          module: 'esnext',
-          declaration: false
-        },
-        include: [
-          'src'
-        ]
-      }
+      tsconfig: 'src/tsconfig-esm.json',
+      declaration: false
     })
   ],
-  external: ['node-webcrypto-ossl', 'Base64']
+  external: ['node-webcrypto-ossl', 'worker_threads']
 }
