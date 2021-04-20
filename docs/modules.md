@@ -37,7 +37,7 @@ Name | Type |
 
 **Returns:** Uint8Array
 
-Defined in: [base64.ts:184](https://github.com/very-amused/CS-crypto/blob/8298123/src/base64.ts#L184)
+Defined in: [base64.ts:184](https://github.com/very-amused/CS-crypto/blob/f7ee57f/src/base64.ts#L184)
 
 ___
 
@@ -55,7 +55,7 @@ Name | Type |
 
 **Returns:** Uint8Array
 
-Defined in: [base64.ts:138](https://github.com/very-amused/CS-crypto/blob/8298123/src/base64.ts#L138)
+Defined in: [base64.ts:138](https://github.com/very-amused/CS-crypto/blob/f7ee57f/src/base64.ts#L138)
 
 ___
 
@@ -73,7 +73,7 @@ Name | Type |
 
 **Returns:** *string*
 
-Defined in: [base64.ts:94](https://github.com/very-amused/CS-crypto/blob/8298123/src/base64.ts#L94)
+Defined in: [base64.ts:94](https://github.com/very-amused/CS-crypto/blob/f7ee57f/src/base64.ts#L94)
 
 ___
 
@@ -91,4 +91,4 @@ Name | Type |
 
 **Returns:** Uint8Array
 
-Defined in: [random.ts:6](https://github.com/very-amused/CS-crypto/blob/8298123/src/random.ts#L6)
+Defined in: [random.ts:6](https://github.com/very-amused/CS-crypto/blob/f7ee57f/src/random.ts#L6)

@@ -1,8 +1,6 @@
 let localCrypto: Crypto
-let localWorker: typeof Worker
 if (typeof window === 'object') {
   localCrypto = window.crypto
-  localWorker = window.Worker
 }
 
 // strip-code
@@ -22,9 +20,6 @@ async function loadPolyfill(): Promise<void> {
   showDevelopmentWarning()
   const { Crypto } = await import('node-webcrypto-ossl')
   localCrypto = new Crypto()
-
-  const { Worker } = await import('worker_threads')
-  localWorker = Worker as unknown as typeof localWorker // pain
 }
 // end-strip-code
 
@@ -35,6 +30,5 @@ export {
   // strip-code
   loadPolyfill,
   // end-strip-code
-  localCrypto as crypto,
-  localWorker as Worker
+  localCrypto as crypto
 }
