@@ -1,0 +1,3 @@
+[submodule "c/ed25519"]
+	path = c/ed25519
+	url = https://github.com/very-amused/ed25519-wasm

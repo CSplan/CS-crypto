@@ -12,7 +12,7 @@
     "bundle": "rollup -c",
     "build:all": "yarn run build:esm && yarn run build && yarn run bundle",
     "build:docs": "typedoc src/index.ts --out docs",
-    "build:docs-html": "typedoc src/* --exclude src/test.ts tmp/* --out docs_html --plugin none",
+    "build:docs-html": "typedoc src/index.ts --out docs_html --plugin none",
     "view-docs": "xdg-open docs_html/index.html &>/dev/null",
     "pretest": "yarn run build:test",
     "test": "ava src/test.ts",
