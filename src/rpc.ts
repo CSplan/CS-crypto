@@ -7,7 +7,7 @@
  * The end result is that multithreaded, non-blocking crypto is achieved without leaving IPC up to users.
  */
 
-export interface JSON_RPC_Request {
+export type JSON_RPC_Request = {
   jsonrpc: '2.0'
   id: Uint8Array
   method: string

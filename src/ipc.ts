@@ -3,7 +3,7 @@
  */
 
 import { crypto } from './globals'
-import { JSON_RPC_Request, JSON_RPC_Response } from './rpc'
+import type { JSON_RPC_Request, JSON_RPC_Response } from './rpc'
 
 type MessageResponse = {
   resolve: (value: JSON_RPC_Response['result']) => void
@@ -29,7 +29,7 @@ export function sendMessage(
   const id = makeID()
 
   // Set up the promise that will be triggered when the  worker responds
-  const promise = new Promise((resolve, reject) => {
+  const promise: Promise<JSON_RPC_Response['result']> = new Promise((resolve, reject) => {
     promises.set(id, {
       resolve,
       reject
