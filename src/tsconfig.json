@@ -3,8 +3,9 @@
   "composite": true,
   "compilerOptions": {
     "lib": ["DOM", "ES2020"],
-    "outDir": "../build"
+    "module": "ESNext",
+    "stripInternal": true
   },
-  "include": ["*.ts", "internal/ipc.ts", "internal/memory.ts", "internal/rpc.ts"],
-  "exclude": ["workers"]
+  "include": ["*.ts", "internal/*"],
+  "exclude": ["workers", "test.ts"]
 }

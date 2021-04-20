@@ -7,3 +7,6 @@ wasm
 yarn-error.log
 * copy
 workers
+module
+test
+*.tgz

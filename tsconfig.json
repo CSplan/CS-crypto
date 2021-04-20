@@ -10,7 +10,6 @@
   },
   "references": [
     { "path": "src/tsconfig.json" },
-    { "path": "src/tsconfig-esm.json" }
   ],
   "files": []
 }

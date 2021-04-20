@@ -1,0 +1,10 @@
+{
+  "composite": true,
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "module": "CommonJS",
+    "outDir": "../test",
+    "declaration": false
+  },
+  "exclude": ["workers"]
+}

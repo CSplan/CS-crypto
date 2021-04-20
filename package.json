@@ -1,26 +1,21 @@
 {
   "name": "cs-crypto",
-  "version": "0.7.1",
+  "version": "0.7.2-PRERELEASE",
   "description": "A comprehensive, simple, and secure wrapper around the native WebCrypto API.",
-  "main": "./build/index.js",
-  "module": "./build/index.mjs",
-  "types": "./build/index.d.ts",
+  "main": "module/index.js",
+  "types": "module/index.d.ts",
   "scripts": {
-    "build": "./compile.js",
-    "build:test": "./compile.js --test",
-    "build:esm": "./compile.js --esm",
-    "bundle": "rollup -c",
-    "bundle:workers": "rollup -c src/workers/rollup.config.js",
+    "build": "rollup -c",
+    "postbuild": "rm -rf module/internal",
+    "build:test": "tsc -b src/tsconfig-test.json",
+    "build:workers": "rollup -c src/workers/rollup.config.js",
     "build:wasm": "make",
-    "build:all": "yarn run build:esm && yarn run build && yarn run bundle && yarn run build:wasm && yarn run bundle:workers",
+    "build:all": "yarn run build && yarn run build:wasm && yarn run build:workers",
     "build:docs": "typedoc src/index.ts --out docs",
     "build:docs-html": "typedoc src/index.ts --out docs_html --plugin none",
     "view-docs": "xdg-open docs_html/index.html &>/dev/null",
-    "pretest": "yarn run build:test",
     "test": "ava src/test.ts",
-    "posttest": "yarn run clean",
-    "clean": "rm -rf build; rm -rf dist; rm -rf docs; rm -rf docs_html",
-    "prepublishOnly": "yarn run clean && yarn run build:all"
+    "prepack": "yarn run build:all"
   },
   "repository": "git+https://github.com/very-amused/cs-crypto",
   "author": "very-amused <very-amused@pm.me>",
@@ -40,6 +35,7 @@
     "eslint-plugin-standard": "^4.0.1",
     "node-webcrypto-ossl": "^2.1.2",
     "rollup": "^2.23.0",
+    "rollup-plugin-dts": "^3.0.1",
     "rollup-plugin-terser": "^6.1.0",
     "ts-node": "^9.1.1",
     "typedoc": "^0.20.35",
@@ -50,7 +46,7 @@
   "ava": {
     "typescript": {
       "rewritePaths": {
-        "src/": "build/"
+        "src/": "test/"
       }
     },
     "failFast": true,

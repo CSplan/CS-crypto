@@ -7,6 +7,9 @@
  * The end result is that multithreaded, non-blocking crypto is achieved without leaving IPC up to users.
  */
 
+/**
+ * @internal
+ */
 export type JSON_RPC_Request = {
   jsonrpc: '2.0'
   id: Uint8Array
@@ -14,6 +17,9 @@ export type JSON_RPC_Request = {
   params: { [param: string]: unknown }
 }
 
+/**
+ * @internal
+ */
 export type JSON_RPC_Response = {
   jsonrpc: '2.0'
   id: Uint8Array
@@ -24,6 +30,9 @@ export type JSON_RPC_Response = {
   }
 }
 
+/**
+ * @internal
+ */
 export enum JSON_RPC_Errors {
   UnknownMethod = 0,
   InternalError = 1

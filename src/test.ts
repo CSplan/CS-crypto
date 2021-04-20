@@ -1,5 +1,5 @@
 // strip-code
-import { loadPolyfill, crypto } from './globals'
+import { loadPolyfill, crypto } from './internal/globals'
 import { encode, decode } from './base64'
 import { makeSalt } from './random'
 import { generateKeypair, wrapPrivateKey, unwrapPrivateKey, wrapKey, unwrapKey, exportPublicKey, importPublicKey } from './rsa'

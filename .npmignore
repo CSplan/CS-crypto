@@ -3,6 +3,7 @@
 !README.md
 !CHANGELOG.md
 !LICENSE
-!lib/**
-lib/test.*
 !dist/**
+!module/**
+!workers/**
+!wasm/**

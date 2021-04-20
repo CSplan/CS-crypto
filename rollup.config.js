@@ -1,25 +1,38 @@
 import typescript from '@rollup/plugin-typescript'
 import { terser } from 'rollup-plugin-terser'
 
-export default {
-  input: 'src/index.ts',
-  output: [
-    // Regular and minified esnext module bundles
-    {
-      file: 'dist/cs-crypto.esm.js',
+const tsconfig = 'src/tsconfig.json'
+const external = ['node-webcrypto-ossl']
+
+export default [
+  {
+    input: 'src/index.ts',
+    output: {
+      dir: 'module',
       format: 'es'
     },
-    {
-      file: 'dist/cs-crypto.esm.min.js',
-      format: 'es',
-      plugins: [terser()]
-    }
-  ],
-  plugins: [
-    typescript({
-      tsconfig: 'src/tsconfig-esm.json',
-      declaration: false
-    })
-  ],
-  external: ['node-webcrypto-ossl', 'worker_threads']
-}
+    plugins: [
+      typescript({
+        tsconfig,
+        declaration: true,
+        outDir: 'module'
+      })
+    ],
+    external
+  },
+  {
+    input: 'src/index.ts',
+    output: {
+      file: 'dist/cs-crypto.min.js',
+      format: 'es'
+    },
+    plugins: [
+      typescript({
+        tsconfig,
+        declaration: false
+      }),
+      terser()
+    ],
+    external
+  }
+]
