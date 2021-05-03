@@ -22,16 +22,24 @@ export default [
   },
   {
     input: 'src/index.ts',
-    output: {
-      file: 'dist/cs-crypto.min.js',
-      format: 'es'
-    },
+    output: [
+      {
+        file: 'dist/cs-crypto.js',
+        format: 'es'
+      },
+      {
+        file: 'dist/cs-crypto.min.js',
+        format: 'es',
+        plugins: [
+          terser()
+        ]
+      }
+    ],
     plugins: [
       typescript({
         tsconfig,
         declaration: false
-      }),
-      terser()
+      })
     ],
     external
   }
