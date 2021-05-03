@@ -1,24 +1,19 @@
 {
   "name": "cs-crypto",
-  "version": "0.7.1",
+  "version": "0.7.2-PRERELEASE",
   "description": "A comprehensive, simple, and secure wrapper around the native WebCrypto API.",
-  "main": "./build/index.js",
-  "module": "./build/index.mjs",
-  "types": "./build/index.d.ts",
+  "main": "module/index.js",
+  "types": "module/index.d.ts",
   "scripts": {
-    "build": "./compile.js",
-    "build:test": "./compile.js --test",
-    "build:esm": "./compile.js --esm",
-    "bundle": "rollup -c",
-    "build:all": "yarn run build:esm && yarn run build && yarn run bundle",
-    "build:docs": "typedoc src/* --exclude src/test.ts tmp/* --excludeNotExported --out docs",
-    "build:docs-html": "typedoc src/* --exclude src/test.ts tmp/* --excludeNotExported --out docs_html --plugin none",
+    "build": "rollup -c",
+    "postbuild": "rm -rf module/internal",
+    "build:test": "tsc -b src/tsconfig-test.json",
+    "build:docs": "typedoc src/index.ts --out docs",
+    "build:docs-html": "typedoc src/index.ts --out docs_html --plugin none",
     "view-docs": "xdg-open docs_html/index.html &>/dev/null",
-    "pretest": "yarn run build:test",
     "test": "ava src/test.ts",
-    "posttest": "yarn run clean",
-    "clean": "rm -rf build; rm -rf dist; rm -rf docs; rm -rf docs_html",
-    "prepublishOnly": "yarn run clean && yarn run build:all"
+    "clean": "rm -rf test module dist",
+    "prepack": "yarn run build:all"
   },
   "repository": "git+https://github.com/very-amused/cs-crypto",
   "author": "very-amused <very-amused@pm.me>",
@@ -26,6 +21,7 @@
   "private": false,
   "devDependencies": {
     "@ava/typescript": "^1.1.1",
+    "@rollup/plugin-typescript": "^8.2.1",
     "@typescript-eslint/eslint-plugin": "^3.7.0",
     "@typescript-eslint/parser": "^3.7.0",
     "ava": "^3.10.1",
@@ -37,18 +33,18 @@
     "eslint-plugin-standard": "^4.0.1",
     "node-webcrypto-ossl": "^2.1.2",
     "rollup": "^2.23.0",
+    "rollup-plugin-dts": "^3.0.1",
     "rollup-plugin-terser": "^6.1.0",
-    "rollup-plugin-typescript2": "^0.27.1",
     "ts-node": "^9.1.1",
-    "typedoc": "^0.17.8",
-    "typedoc-plugin-markdown": "^2.3.1",
-    "typescript": "^3.9.7"
+    "typedoc": "^0.20.35",
+    "typedoc-plugin-markdown": "^3.6.1",
+    "typescript": "^4.2.4"
   },
   "dependencies": {},
   "ava": {
     "typescript": {
       "rewritePaths": {
-        "src/": "build/"
+        "src/": "test/"
       }
     },
     "failFast": true,

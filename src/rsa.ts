@@ -1,5 +1,5 @@
 import { Algorithms, Hashes, Formats, RSA_PUBLIC_EXPONENT } from './constants'
-import { crypto } from './globals'
+import { crypto } from './internal/globals'
 import { encode, ABconcat, decode } from './base64'
 import { makeSalt } from './random'
 

@@ -1,6 +1,4 @@
-[cs-crypto](README.md) › [Globals](globals.md)
-
-# cs-crypto
+cs-crypto / [Exports](modules.md)
 
 # CS-crypto
 A comprehensive, simple, and secure wrapper around the native WebCrypto API. The core of CSplan's client-side cryptography.

@@ -3,3 +3,10 @@ build
 dist
 docs_html
 tmp
+wasm
+yarn-error.log
+* copy
+workers
+module
+test
+*.tgz

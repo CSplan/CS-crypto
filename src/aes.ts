@@ -1,4 +1,4 @@
-import { crypto } from './globals'
+import { crypto } from './internal/globals'
 import { AES_KEY_LENGTH, Formats, Algorithms } from './constants'
 import { ABconcat, encode, decode } from './base64'
 import { makeSalt } from './random'
