@@ -20,4 +20,4 @@ jobs:
       - name: Install
         run: yarn install
       - name: Build & Run Tests
-        run: yarn run test
+        run: yarn build:test && yarn test
