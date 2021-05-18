@@ -1,6 +1,6 @@
 {
   "name": "cs-crypto",
-  "version": "0.7.2-PRERELEASE",
+  "version": "0.7.2-rc1",
   "description": "A comprehensive, simple, and secure wrapper around the native WebCrypto API.",
   "main": "module/index.js",
   "types": "module/index.d.ts",
@@ -13,7 +13,7 @@
     "view-docs": "xdg-open docs_html/index.html &>/dev/null",
     "test": "ava src/test.ts",
     "clean": "rm -rf test module dist",
-    "prepack": "yarn run build:all"
+    "prepack": "yarn clean && yarn build"
   },
   "repository": "git+https://github.com/very-amused/cs-crypto",
   "author": "very-amused <very-amused@pm.me>",

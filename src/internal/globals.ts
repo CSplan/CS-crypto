@@ -1,6 +1,6 @@
-let localCrypto: Crypto
+let crypto: Crypto
 if (typeof window === 'object') {
-  localCrypto = window.crypto
+  crypto = window.crypto
 }
 
 /**
@@ -20,12 +20,12 @@ function showDevelopmentWarning(): void {
 export async function loadPolyfill(): Promise<void> {
   showDevelopmentWarning()
   const { Crypto } = await import('node-webcrypto-ossl')
-  localCrypto = new Crypto()
+  crypto = new Crypto()
 }
 
 // These exports pass value by reference.
 // This means that when their value is updated from this module,
 // their value is updated everywhere they're imported and used.
 export {
-  localCrypto as crypto
+  crypto
 }

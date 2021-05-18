@@ -5,5 +5,3 @@
 !LICENSE
 !dist/**
 !module/**
-!workers/**
-!wasm/**
