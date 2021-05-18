@@ -6,9 +6,7 @@
 
 ### Type aliases
 
-- [DeepDecrypted](aes.md#deepdecrypted)
-- [DeepEncryptable](aes.md#deepencryptable)
-- [DeepEncrypted](aes.md#deepencrypted)
+- [StringLike](aes.md#stringlike)
 
 ### Functions
 
@@ -22,39 +20,25 @@
 
 ## Type aliases
 
-### DeepDecrypted
+### StringLike
 
-Ƭ **DeepDecrypted**: [*DeepEncryptable*](aes.md#deepencryptable)
-
-Alias for encryptable data, used as a return type for deepDecrypt
-
-Defined in: [aes.ts:120](https://github.com/very-amused/CS-crypto/blob/0ceb37a/src/aes.ts#L120)
-
-___
-
-### DeepEncryptable
-
-Ƭ **DeepEncryptable**: [*DeepEncryptable*](aes.md#deepencryptable)[] \| { [index: string]: [*DeepEncryptable*](aes.md#deepencryptable);  } \| *string* \| *boolean*
+Ƭ **StringLike**: *object*
 
 Any data that is valid for encryption
 
-Defined in: [aes.ts:112](https://github.com/very-amused/CS-crypto/blob/0ceb37a/src/aes.ts#L112)
+#### Type declaration:
 
-___
+Name | Type |
+:------ | :------ |
+`toString` | () => *string* |
 
-### DeepEncrypted
-
-Ƭ **DeepEncrypted**: [*DeepEncrypted*](aes.md#deepencrypted)[] \| { [index: string]: [*DeepEncrypted*](aes.md#deepencrypted);  } \| *string*
-
-A data structure of encrypted information
-
-Defined in: [aes.ts:116](https://github.com/very-amused/CS-crypto/blob/0ceb37a/src/aes.ts#L116)
+Defined in: [aes.ts:111](https://github.com/very-amused/CS-crypto/blob/5c5d341/src/aes.ts#L111)
 
 ## Functions
 
 ### decrypt
 
-▸ **decrypt**(`ciphertext`: *string*, `key`: CryptoKey): *Promise*<string \| boolean\>
+▸ **decrypt**(`ciphertext`: *string*, `key`: CryptoKey): *Promise*<string\>
 
 Decrypt text that was previously encrypted using the same AES key
 
@@ -65,47 +49,59 @@ Name | Type |
 `ciphertext` | *string* |
 `key` | CryptoKey |
 
-**Returns:** *Promise*<string \| boolean\>
+**Returns:** *Promise*<string\>
 
-Defined in: [aes.ts:70](https://github.com/very-amused/CS-crypto/blob/0ceb37a/src/aes.ts#L70)
+Defined in: [aes.ts:76](https://github.com/very-amused/CS-crypto/blob/5c5d341/src/aes.ts#L76)
 
 ___
 
 ### deepDecrypt
 
-▸ **deepDecrypt**(`data`: [*DeepEncrypted*](aes.md#deepencrypted), `cryptoKey`: CryptoKey): *Promise*<[*DeepDecrypted*](aes.md#deepdecrypted)\>
+▸ **deepDecrypt**<T\>(`data`: T, `cryptoKey`: CryptoKey): *Promise*<T\>
 
 Recursively decrypt an object or array while preserving its original structure
+
+#### Type parameters:
+
+Name | Type |
+:------ | :------ |
+`T` | *unknown* |
 
 #### Parameters:
 
 Name | Type |
 :------ | :------ |
-`data` | [*DeepEncrypted*](aes.md#deepencrypted) |
+`data` | T |
 `cryptoKey` | CryptoKey |
 
-**Returns:** *Promise*<[*DeepDecrypted*](aes.md#deepdecrypted)\>
+**Returns:** *Promise*<T\>
 
-Defined in: [aes.ts:155](https://github.com/very-amused/CS-crypto/blob/0ceb37a/src/aes.ts#L155)
+Defined in: [aes.ts:150](https://github.com/very-amused/CS-crypto/blob/5c5d341/src/aes.ts#L150)
 
 ___
 
 ### deepEncrypt
 
-▸ **deepEncrypt**(`data`: [*DeepEncryptable*](aes.md#deepencryptable), `cryptoKey`: CryptoKey): *Promise*<[*DeepEncrypted*](aes.md#deepencrypted)\>
+▸ **deepEncrypt**<T\>(`data`: T, `cryptoKey`: CryptoKey): *Promise*<T\>
 
 Recursively encrypt an object or array while preserving its original structure
+
+#### Type parameters:
+
+Name | Type |
+:------ | :------ |
+`T` | *unknown* |
 
 #### Parameters:
 
 Name | Type |
 :------ | :------ |
-`data` | [*DeepEncryptable*](aes.md#deepencryptable) |
+`data` | T |
 `cryptoKey` | CryptoKey |
 
-**Returns:** *Promise*<[*DeepEncrypted*](aes.md#deepencrypted)\>
+**Returns:** *Promise*<T\>
 
-Defined in: [aes.ts:125](https://github.com/very-amused/CS-crypto/blob/0ceb37a/src/aes.ts#L125)
+Defined in: [aes.ts:118](https://github.com/very-amused/CS-crypto/blob/5c5d341/src/aes.ts#L118)
 
 ___
 
@@ -124,7 +120,7 @@ Name | Type |
 
 **Returns:** *Promise*<string\>
 
-Defined in: [aes.ts:48](https://github.com/very-amused/CS-crypto/blob/0ceb37a/src/aes.ts#L48)
+Defined in: [aes.ts:54](https://github.com/very-amused/CS-crypto/blob/5c5d341/src/aes.ts#L54)
 
 ___
 
@@ -140,7 +136,7 @@ Name | Type |
 
 **Returns:** *Promise*<string\>
 
-Defined in: [aes.ts:182](https://github.com/very-amused/CS-crypto/blob/0ceb37a/src/aes.ts#L182)
+Defined in: [aes.ts:178](https://github.com/very-amused/CS-crypto/blob/5c5d341/src/aes.ts#L178)
 
 ___
 
@@ -158,7 +154,7 @@ Name | Type |
 
 **Returns:** *PromiseLike*<CryptoKey\>
 
-Defined in: [aes.ts:22](https://github.com/very-amused/CS-crypto/blob/0ceb37a/src/aes.ts#L22)
+Defined in: [aes.ts:28](https://github.com/very-amused/CS-crypto/blob/5c5d341/src/aes.ts#L28)
 
 ___
 
@@ -177,4 +173,4 @@ Name | Type |
 
 **Returns:** *PromiseLike*<CryptoKey\>
 
-Defined in: [aes.ts:9](https://github.com/very-amused/CS-crypto/blob/0ceb37a/src/aes.ts#L9)
+Defined in: [aes.ts:15](https://github.com/very-amused/CS-crypto/blob/5c5d341/src/aes.ts#L15)
