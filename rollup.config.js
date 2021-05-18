@@ -31,7 +31,13 @@ export default [
         file: 'dist/cs-crypto.min.js',
         format: 'es',
         plugins: [
-          terser()
+          terser({
+            compress: {
+              global_defs: {
+                'process.env.NODE_ENV': 'production'
+              }
+            }
+          })
         ]
       }
     ],

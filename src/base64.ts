@@ -1,3 +1,8 @@
+const dev = process.env.NODE_ENV === 'development'
+const messages = {
+  badInput: 'invalid input, only standard base64 encoding is currently supported'
+}
+
 // Only standard encoding is supported as of now
 const StdEncoding = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/'
 
@@ -81,7 +86,7 @@ function atoi(encoded: Uint8Array): Uint8Array {
       } else if (encoded[i] === 47) {
         indexes[i] = 63
       } else {
-        throw new Error('Invalid input. Only standard base64 encoding is currently supported.')
+        throw new Error(dev ? messages.badInput : undefined)
       }
     }
   }

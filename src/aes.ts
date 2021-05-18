@@ -3,6 +3,12 @@ import { AES_KEY_LENGTH, Formats, Algorithms } from './constants'
 import { ABconcat, encode, decode } from './base64'
 import { makeSalt } from './random'
 
+const dev = process.env.NODE_ENV === 'development'
+const messages = {
+  unsupportedAlgorithm: 'an unsupported AES algorithm was requested, only AES-GCM and AES-CBC encryption are supported in this library',
+  badData: 'data provided is not of type object, array, or stringlike'
+}
+
 /**
  * Import an AES key from raw key material
  */
@@ -38,7 +44,7 @@ function genIV(key: CryptoKey): Uint8Array {
     case 'AES-CBC':
       return makeSalt(16)
     default:
-      throw new Error('Only AES-GCM and AES-CBC encryption are supported in this library. Please specify one of these algorithms to be used in the encryption process.')
+      throw new Error(dev ? messages.unsupportedAlgorithm : undefined)
   }
 }
 
@@ -67,7 +73,7 @@ export async function encrypt(text: string, key: CryptoKey): Promise<string> {
 /**
  * Decrypt text that was previously encrypted using the same AES key
  */
-export async function decrypt(ciphertext: string, key: CryptoKey): Promise<string|boolean> {
+export async function decrypt(ciphertext: string, key: CryptoKey): Promise<string> {
   let ivLength: number
   // Different forms of AES encryption require different iv lengths
   switch (key.algorithm.name) {
@@ -78,7 +84,7 @@ export async function decrypt(ciphertext: string, key: CryptoKey): Promise<strin
       ivLength = 16
       break
     default:
-      throw new Error('Only AES-GCM and AES-CBC encryption are supported in this library. Please provide a valid AES-GCM or AES-CBC key to be used in decryption.')
+      throw new Error(dev ? messages.unsupportedAlgorithm : undefined)
   }
 
   // Split iv and real ciphertext from the buffer using the iv length
@@ -96,86 +102,76 @@ export async function decrypt(ciphertext: string, key: CryptoKey): Promise<strin
   )
 
   // Decode the plaintext as utf-8
-  const plaintext = new TextDecoder('utf-8').decode(decrypted)
-  // Parse decrypted booleans
-  if (plaintext === 'true' || plaintext === 'false') {
-    return plaintext === 'true'
-  }
-
-  // Otherwise just return the plaintext
-  return plaintext
+  return new TextDecoder('UTF-8').decode(decrypted)
 }
 
 /**
  * Any data that is valid for encryption
  */
-export type DeepEncryptable = DeepEncryptable[]|{ [index:string]: DeepEncryptable }|string|boolean
-/**
- * A data structure of encrypted information
- */
-export type DeepEncrypted = DeepEncrypted[]|{ [index:string]: DeepEncrypted }|string
-/**
- * Alias for encryptable data, used as a return type for deepDecrypt
- */
-export type DeepDecrypted = DeepEncryptable
+export type StringLike = {
+  toString(): string
+}
 
 /**
  * Recursively encrypt an object or array while preserving its original structure
  */
-export async function deepEncrypt(data: DeepEncryptable, cryptoKey: CryptoKey): Promise<DeepEncrypted> {
+export async function deepEncrypt<T extends unknown>(data: T, cryptoKey: CryptoKey): Promise<T> {
   // Encrypt arrays while preserving their structure
   if (Array.isArray(data)) {
-    const encrypted: DeepEncrypted[] = []
+    const encrypted: unknown[] = []
     for (let i = 0; i < data.length; i++) {
       encrypted[i] = await deepEncrypt(data[i], cryptoKey)
     }
-    return encrypted
+    return encrypted as T
 
   // Encrypt objects while preserving their structure
   } else if (typeof data === 'object') {
-    const encrypted: { [index:string]: DeepEncrypted } = {}
+    const encrypted: {
+      [key: string]: unknown
+    } = {}
     for (const key in data) {
       encrypted[key] = await deepEncrypt(data[key], cryptoKey)
     }
-    return encrypted
+    return encrypted as T
 
   // Encrypt strings/data which can be coerced to a string using the AES key provided
-  } else if (typeof data.toString === 'function') {
-    return encrypt(data.toString(), cryptoKey)
+  } else if (typeof (data as StringLike).toString === 'function') {
+    return encrypt((data as StringLike).toString(), cryptoKey) as Promise<T>
 
   // Any data that doesn't implement any of the above is not supported
   } else {
-    throw new TypeError('Data provided is not of type object, array, or string.')
+    throw new TypeError(dev ? messages.badData : undefined)
   }
 }
 
 /**
  * Recursively decrypt an object or array while preserving its original structure
  */
-export async function deepDecrypt(data: DeepEncrypted, cryptoKey: CryptoKey): Promise<DeepDecrypted> {
+export async function deepDecrypt<T extends unknown>(data: T, cryptoKey: CryptoKey): Promise<T> {
   // Decrypt arrays while preserving their structure
   if (Array.isArray(data)) {
-    const decrypted: DeepDecrypted[] = []
+    const decrypted: unknown[] = []
     for (let i = 0; i < data.length; i++) {
       decrypted[i] = await deepDecrypt(data[i], cryptoKey)
     }
-    return decrypted
+    return decrypted as T
 
   // Decrypt objects while preserving their structures
   } else if (typeof data === 'object') {
-    const decrypted: { [index:string]: DeepDecrypted } = {}
+    const decrypted: {
+      [key: string]: unknown
+    } = {}
     for (const key in data) {
       decrypted[key] = await deepDecrypt(data[key], cryptoKey)
     }
-    return decrypted
+    return decrypted as T
 
-  // Decrypt strings/booleans (decrypt handles parsing of booleans)
+  // Decrypt strings
   } else if (typeof data === 'string') {
-    return decrypt(data, cryptoKey)
-
+    return decrypt(data, cryptoKey) as T
   // Any data that doesn't implement any of the above is not supported
   } else {
-    throw new TypeError('Data provided is not of type object, array, or string.')
+    throw new TypeError(dev ? messages.badData : undefined)
   }
 }
 
