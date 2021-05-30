@@ -1,12 +1,13 @@
 {
   "name": "cs-crypto",
-  "version": "0.7.2-rc1",
+  "version": "0.7.2-rc4",
   "description": "A comprehensive, simple, and secure wrapper around the native WebCrypto API.",
-  "main": "module/index.js",
-  "types": "module/index.d.ts",
+  "main": "lib/index.cjs",
+  "module": "lib/index.js",
+  "types": "lib/index.d.ts",
   "scripts": {
     "build": "rollup -c",
-    "postbuild": "rm -rf module/internal",
+    "postbuild": "rm -rf lib/internal",
     "build:test": "tsc -b src/tsconfig-test.json",
     "build:docs": "typedoc src/index.ts --out docs",
     "build:docs-html": "typedoc src/index.ts --out docs_html --plugin none",

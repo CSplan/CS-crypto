@@ -26,13 +26,13 @@
 
 Any data that is valid for encryption
 
-#### Type declaration:
+#### Type declaration
 
-Name | Type |
-:------ | :------ |
-`toString` | () => *string* |
+| Name | Type |
+| :------ | :------ |
+| `toString` | () => *string* |
 
-Defined in: [aes.ts:111](https://github.com/very-amused/CS-crypto/blob/2707970/src/aes.ts#L111)
+Defined in: [aes.ts:111](https://github.com/very-amused/CS-crypto/blob/37422b2/src/aes.ts#L111)
 
 ## Functions
 
@@ -42,16 +42,16 @@ Defined in: [aes.ts:111](https://github.com/very-amused/CS-crypto/blob/2707970/s
 
 Decrypt text that was previously encrypted using the same AES key
 
-#### Parameters:
+#### Parameters
 
-Name | Type |
-:------ | :------ |
-`ciphertext` | *string* |
-`key` | CryptoKey |
+| Name | Type |
+| :------ | :------ |
+| `ciphertext` | *string* |
+| `key` | CryptoKey |
 
 **Returns:** *Promise*<string\>
 
-Defined in: [aes.ts:76](https://github.com/very-amused/CS-crypto/blob/2707970/src/aes.ts#L76)
+Defined in: [aes.ts:76](https://github.com/very-amused/CS-crypto/blob/37422b2/src/aes.ts#L76)
 
 ___
 
@@ -61,22 +61,22 @@ ___
 
 Recursively decrypt an object or array while preserving its original structure
 
-#### Type parameters:
+#### Type parameters
 
-Name | Type |
-:------ | :------ |
-`T` | *unknown* |
+| Name | Type |
+| :------ | :------ |
+| `T` | *unknown* |
 
-#### Parameters:
+#### Parameters
 
-Name | Type |
-:------ | :------ |
-`data` | T |
-`cryptoKey` | CryptoKey |
+| Name | Type |
+| :------ | :------ |
+| `data` | T |
+| `cryptoKey` | CryptoKey |
 
 **Returns:** *Promise*<T\>
 
-Defined in: [aes.ts:150](https://github.com/very-amused/CS-crypto/blob/2707970/src/aes.ts#L150)
+Defined in: [aes.ts:150](https://github.com/very-amused/CS-crypto/blob/37422b2/src/aes.ts#L150)
 
 ___
 
@@ -86,22 +86,22 @@ ___
 
 Recursively encrypt an object or array while preserving its original structure
 
-#### Type parameters:
+#### Type parameters
 
-Name | Type |
-:------ | :------ |
-`T` | *unknown* |
+| Name | Type |
+| :------ | :------ |
+| `T` | *unknown* |
 
-#### Parameters:
+#### Parameters
 
-Name | Type |
-:------ | :------ |
-`data` | T |
-`cryptoKey` | CryptoKey |
+| Name | Type |
+| :------ | :------ |
+| `data` | T |
+| `cryptoKey` | CryptoKey |
 
 **Returns:** *Promise*<T\>
 
-Defined in: [aes.ts:118](https://github.com/very-amused/CS-crypto/blob/2707970/src/aes.ts#L118)
+Defined in: [aes.ts:118](https://github.com/very-amused/CS-crypto/blob/37422b2/src/aes.ts#L118)
 
 ___
 
@@ -111,16 +111,16 @@ ___
 
 Encrypt text using AES-GCM or AES-CBC
 
-#### Parameters:
+#### Parameters
 
-Name | Type |
-:------ | :------ |
-`text` | *string* |
-`key` | CryptoKey |
+| Name | Type |
+| :------ | :------ |
+| `text` | *string* |
+| `key` | CryptoKey |
 
 **Returns:** *Promise*<string\>
 
-Defined in: [aes.ts:54](https://github.com/very-amused/CS-crypto/blob/2707970/src/aes.ts#L54)
+Defined in: [aes.ts:54](https://github.com/very-amused/CS-crypto/blob/37422b2/src/aes.ts#L54)
 
 ___
 
@@ -128,33 +128,33 @@ ___
 
 ▸ **exportKey**(`key`: CryptoKey): *Promise*<string\>
 
-#### Parameters:
+#### Parameters
 
-Name | Type |
-:------ | :------ |
-`key` | CryptoKey |
+| Name | Type |
+| :------ | :------ |
+| `key` | CryptoKey |
 
 **Returns:** *Promise*<string\>
 
-Defined in: [aes.ts:178](https://github.com/very-amused/CS-crypto/blob/2707970/src/aes.ts#L178)
+Defined in: [aes.ts:178](https://github.com/very-amused/CS-crypto/blob/37422b2/src/aes.ts#L178)
 
 ___
 
 ### generateKey
 
-▸ **generateKey**(`type`: *AES-GCM* \| *AES-CBC*): *PromiseLike*<CryptoKey\>
+▸ **generateKey**(`type`: ``"AES-GCM"`` \| ``"AES-CBC"``): *PromiseLike*<CryptoKey\>
 
 Generate a new 256 bit AES-GCM or AES-CBC key
 
-#### Parameters:
+#### Parameters
 
-Name | Type |
-:------ | :------ |
-`type` | *AES-GCM* \| *AES-CBC* |
+| Name | Type |
+| :------ | :------ |
+| `type` | ``"AES-GCM"`` \| ``"AES-CBC"`` |
 
 **Returns:** *PromiseLike*<CryptoKey\>
 
-Defined in: [aes.ts:28](https://github.com/very-amused/CS-crypto/blob/2707970/src/aes.ts#L28)
+Defined in: [aes.ts:28](https://github.com/very-amused/CS-crypto/blob/37422b2/src/aes.ts#L28)
 
 ___
 
@@ -164,13 +164,13 @@ ___
 
 Import an AES key from raw key material
 
-#### Parameters:
+#### Parameters
 
-Name | Type |
-:------ | :------ |
-`keyMaterial` | Uint8Array |
-`type` | [*AES\_GCM*](../enums/algorithms.md#aes_gcm) \| [*AES\_CBC*](../enums/algorithms.md#aes_cbc) |
+| Name | Type |
+| :------ | :------ |
+| `keyMaterial` | Uint8Array |
+| `type` | [*AES\_GCM*](../enums/algorithms.md#aes_gcm) \| [*AES\_CBC*](../enums/algorithms.md#aes_cbc) |
 
 **Returns:** *PromiseLike*<CryptoKey\>
 
-Defined in: [aes.ts:15](https://github.com/very-amused/CS-crypto/blob/2707970/src/aes.ts#L15)
+Defined in: [aes.ts:15](https://github.com/very-amused/CS-crypto/blob/37422b2/src/aes.ts#L15)

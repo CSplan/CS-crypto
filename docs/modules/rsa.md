@@ -22,15 +22,15 @@
 
 Export an RSA public key as base64 encoded text
 
-#### Parameters:
+#### Parameters
 
-Name | Type |
-:------ | :------ |
-`publicKey` | CryptoKey |
+| Name | Type |
+| :------ | :------ |
+| `publicKey` | CryptoKey |
 
 **Returns:** *Promise*<string\>
 
-Defined in: [rsa.ts:84](https://github.com/very-amused/CS-crypto/blob/2707970/src/rsa.ts#L84)
+Defined in: [rsa.ts:84](https://github.com/very-amused/CS-crypto/blob/37422b2/src/rsa.ts#L84)
 
 ___
 
@@ -40,15 +40,15 @@ ___
 
 Generate an RSA keypair of a specified keysize
 
-#### Parameters:
+#### Parameters
 
-Name | Type |
-:------ | :------ |
-`keySize` | *number* |
+| Name | Type |
+| :------ | :------ |
+| `keySize` | *number* |
 
 **Returns:** *PromiseLike*<CryptoKeyPair\>
 
-Defined in: [rsa.ts:9](https://github.com/very-amused/CS-crypto/blob/2707970/src/rsa.ts#L9)
+Defined in: [rsa.ts:9](https://github.com/very-amused/CS-crypto/blob/37422b2/src/rsa.ts#L9)
 
 ___
 
@@ -58,35 +58,35 @@ ___
 
 Import an RSA public key from base64 encoded text
 
-#### Parameters:
+#### Parameters
 
-Name | Type |
-:------ | :------ |
-`encoded` | *string* |
+| Name | Type |
+| :------ | :------ |
+| `encoded` | *string* |
 
 **Returns:** *PromiseLike*<CryptoKey\>
 
-Defined in: [rsa.ts:95](https://github.com/very-amused/CS-crypto/blob/2707970/src/rsa.ts#L95)
+Defined in: [rsa.ts:95](https://github.com/very-amused/CS-crypto/blob/37422b2/src/rsa.ts#L95)
 
 ___
 
 ### unwrapKey
 
-▸ **unwrapKey**(`encodedKey`: *string*, `unwrappingKey`: CryptoKey, `algorithm?`: *AES-GCM* \| *AEC-CBC*): *PromiseLike*<CryptoKey\>
+▸ **unwrapKey**(`encodedKey`: *string*, `unwrappingKey`: CryptoKey, `algorithm?`: ``"AES-GCM"`` \| ``"AEC-CBC"``): *PromiseLike*<CryptoKey\>
 
 Unwrap (decrypt) a CryptoKey using an RSA private key
 
-#### Parameters:
+#### Parameters
 
-Name | Type | Default value |
-:------ | :------ | :------ |
-`encodedKey` | *string* | - |
-`unwrappingKey` | CryptoKey | - |
-`algorithm` | *AES-GCM* \| *AEC-CBC* | 'AES-GCM' |
+| Name | Type | Default value |
+| :------ | :------ | :------ |
+| `encodedKey` | *string* | - |
+| `unwrappingKey` | CryptoKey | - |
+| `algorithm` | ``"AES-GCM"`` \| ``"AEC-CBC"`` | 'AES-GCM' |
 
 **Returns:** *PromiseLike*<CryptoKey\>
 
-Defined in: [rsa.ts:130](https://github.com/very-amused/CS-crypto/blob/2707970/src/rsa.ts#L130)
+Defined in: [rsa.ts:130](https://github.com/very-amused/CS-crypto/blob/37422b2/src/rsa.ts#L130)
 
 ___
 
@@ -96,16 +96,16 @@ ___
 
 Decrypt an RSA key using unwrappingKey (AES-GCM)
 
-#### Parameters:
+#### Parameters
 
-Name | Type |
-:------ | :------ |
-`encodedPrivateKey` | *string* |
-`unwrappingKey` | CryptoKey |
+| Name | Type |
+| :------ | :------ |
+| `encodedPrivateKey` | *string* |
+| `unwrappingKey` | CryptoKey |
 
 **Returns:** *Promise*<CryptoKey\>
 
-Defined in: [rsa.ts:53](https://github.com/very-amused/CS-crypto/blob/2707970/src/rsa.ts#L53)
+Defined in: [rsa.ts:53](https://github.com/very-amused/CS-crypto/blob/37422b2/src/rsa.ts#L53)
 
 ___
 
@@ -115,16 +115,16 @@ ___
 
 Wrap (encrypt) a CryptoKey using an RSA public key
 
-#### Parameters:
+#### Parameters
 
-Name | Type |
-:------ | :------ |
-`key` | CryptoKey |
-`wrappingKey` | CryptoKey |
+| Name | Type |
+| :------ | :------ |
+| `key` | CryptoKey |
+| `wrappingKey` | CryptoKey |
 
 **Returns:** *Promise*<string\>
 
-Defined in: [rsa.ts:111](https://github.com/very-amused/CS-crypto/blob/2707970/src/rsa.ts#L111)
+Defined in: [rsa.ts:111](https://github.com/very-amused/CS-crypto/blob/37422b2/src/rsa.ts#L111)
 
 ___
 
@@ -134,13 +134,13 @@ ___
 
 Encrypt an RSA private key using an AES private key generated using a passphrase and salt
 
-#### Parameters:
+#### Parameters
 
-Name | Type |
-:------ | :------ |
-`privateKey` | CryptoKey |
-`wrappingKey` | CryptoKey |
+| Name | Type |
+| :------ | :------ |
+| `privateKey` | CryptoKey |
+| `wrappingKey` | CryptoKey |
 
 **Returns:** *Promise*<string\>
 
-Defined in: [rsa.ts:26](https://github.com/very-amused/CS-crypto/blob/2707970/src/rsa.ts#L26)
+Defined in: [rsa.ts:26](https://github.com/very-amused/CS-crypto/blob/37422b2/src/rsa.ts#L26)

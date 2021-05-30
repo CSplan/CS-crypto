@@ -28,16 +28,16 @@
 
 Concatenate two ArrayBuffers or Uint8Arrays
 
-#### Parameters:
+#### Parameters
 
-Name | Type |
-:------ | :------ |
-`buf1` | Uint8Array \| ArrayBuffer |
-`buf2` | Uint8Array \| ArrayBuffer |
+| Name | Type |
+| :------ | :------ |
+| `buf1` | Uint8Array \| ArrayBuffer |
+| `buf2` | Uint8Array \| ArrayBuffer |
 
 **Returns:** Uint8Array
 
-Defined in: [base64.ts:189](https://github.com/very-amused/CS-crypto/blob/2707970/src/base64.ts#L189)
+Defined in: [base64.ts:189](https://github.com/very-amused/CS-crypto/blob/37422b2/src/base64.ts#L189)
 
 ___
 
@@ -47,15 +47,15 @@ ___
 
 Decode standard encoded Base64 to a Uint8Array.
 
-#### Parameters:
+#### Parameters
 
-Name | Type |
-:------ | :------ |
-`encoded` | *string* |
+| Name | Type |
+| :------ | :------ |
+| `encoded` | *string* |
 
 **Returns:** Uint8Array
 
-Defined in: [base64.ts:143](https://github.com/very-amused/CS-crypto/blob/2707970/src/base64.ts#L143)
+Defined in: [base64.ts:143](https://github.com/very-amused/CS-crypto/blob/37422b2/src/base64.ts#L143)
 
 ___
 
@@ -65,15 +65,15 @@ ___
 
 Encode a Uint8Array using Base64 standard encoding
 
-#### Parameters:
+#### Parameters
 
-Name | Type |
-:------ | :------ |
-`data` | Uint8Array |
+| Name | Type |
+| :------ | :------ |
+| `data` | Uint8Array |
 
 **Returns:** *string*
 
-Defined in: [base64.ts:99](https://github.com/very-amused/CS-crypto/blob/2707970/src/base64.ts#L99)
+Defined in: [base64.ts:99](https://github.com/very-amused/CS-crypto/blob/37422b2/src/base64.ts#L99)
 
 ___
 
@@ -83,12 +83,12 @@ ___
 
 Make a salt of a specified byte length
 
-#### Parameters:
+#### Parameters
 
-Name | Type |
-:------ | :------ |
-`byteLength` | *number* |
+| Name | Type |
+| :------ | :------ |
+| `byteLength` | *number* |
 
 **Returns:** Uint8Array
 
-Defined in: [random.ts:6](https://github.com/very-amused/CS-crypto/blob/2707970/src/random.ts#L6)
+Defined in: [random.ts:6](https://github.com/very-amused/CS-crypto/blob/37422b2/src/random.ts#L6)

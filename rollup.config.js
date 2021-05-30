@@ -8,14 +8,28 @@ export default [
   {
     input: 'src/index.ts',
     output: {
-      dir: 'module',
+      dir: 'lib',
       format: 'es'
     },
     plugins: [
       typescript({
         tsconfig,
         declaration: true,
-        outDir: 'module'
+        outDir: 'lib'
+      })
+    ],
+    external
+  },
+  {
+    input: 'src/index.ts',
+    output: {
+      file: 'lib/index.cjs',
+      format: 'cjs'
+    },
+    plugins: [
+      typescript({
+        tsconfig,
+        declaration: false
       })
     ],
     external
