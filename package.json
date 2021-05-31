@@ -13,7 +13,7 @@
     "build:docs-html": "typedoc src/index.ts --out docs_html --plugin none",
     "view-docs": "xdg-open docs_html/index.html &>/dev/null",
     "test": "ava src/test.ts",
-    "clean": "rm -rf test module dist",
+    "clean": "rm -rf test lib dist",
     "prepack": "yarn clean && yarn build"
   },
   "repository": "git+https://github.com/very-amused/cs-crypto",
