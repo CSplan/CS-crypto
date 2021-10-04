@@ -6,8 +6,7 @@ import { makeSalt } from './random'
 /**
  * Generate an RSA keypair of a specified keysize
  */
-export function generateKeypair(keySize: number): PromiseLike<CryptoKeyPair> {
-  // @ts-ignore
+export function generateKeypair(keySize: number): Promise<CryptoKeyPair> {
   return crypto.subtle.generateKey(
     {
       name: Algorithms.RSA,

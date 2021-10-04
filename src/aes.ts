@@ -37,15 +37,8 @@ export function generateKey(type: 'AES-GCM'|'AES-CBC'): PromiseLike<CryptoKey> {
 }
 
 function genIV(key: CryptoKey): Uint8Array {
-  // Different forms of AES encryption require different iv lengths
-  switch (key.algorithm.name) {
-    case 'AES-GCM':
-      return makeSalt(12)
-    case 'AES-CBC':
-      return makeSalt(16)
-    default:
-      throw new Error(dev ? messages.unsupportedAlgorithm : undefined)
-  }
+  const ivLength = getIVlength(key)
+  return makeSalt(ivLength)
 }
 
 /**
@@ -71,22 +64,25 @@ export async function encrypt(text: string, key: CryptoKey): Promise<string> {
 }
 
 /**
- * Decrypt text that was previously encrypted using the same AES key
+ * @internal
+ * Find the recommended iv length based on a key's aes algorithm
  */
-export async function decrypt(ciphertext: string, key: CryptoKey): Promise<string> {
-  let ivLength: number
-  // Different forms of AES encryption require different iv lengths
+function getIVlength(key: CryptoKey): number {
   switch (key.algorithm.name) {
     case 'AES-GCM':
-      ivLength = 12
-      break
+      return 12
     case 'AES-CBC':
-      ivLength = 16
-      break
+      return 16
     default:
       throw new Error(dev ? messages.unsupportedAlgorithm : undefined)
   }
+}
 
+/**
+ * Decrypt text that was previously encrypted using the same AES key
+ */
+export async function decrypt(ciphertext: string, key: CryptoKey): Promise<string> {
+  const ivLength = getIVlength(key)
   // Split iv and real ciphertext from the buffer using the iv length
   const cipherbuf = decode(ciphertext)
   const iv = cipherbuf.slice(0, ivLength)
@@ -110,6 +106,56 @@ export async function decrypt(ciphertext: string, key: CryptoKey): Promise<strin
  */
 export type StringLike = {
   toString(): string
+}
+
+/**
+ * Encrypt an ArrayBuffer, used for encrypting non-text data such as images
+ */
+export async function ABencrypt(plainbuf: ArrayBuffer|Uint8Array, key: CryptoKey): Promise<Uint8Array> {
+  const iv = genIV(key)
+  const encrypted = await crypto.subtle.encrypt(
+    {
+      name: key.algorithm.name,
+      iv
+    },
+    key,
+    plainbuf
+  )
+
+  const concatenated = ABconcat(iv, encrypted)
+  return concatenated
+}
+
+/**
+ * Decrypt an ArrayBuffer
+ */
+export async function ABdecrypt(cipherbuf: Uint8Array, key: CryptoKey): Promise<Uint8Array> {
+  // Separate iv and ciphertext
+  const ivLength = getIVlength(key)
+  const iv = cipherbuf.slice(0, ivLength)
+  const encrypted = cipherbuf.slice(ivLength)
+
+  const decrypted = await crypto.subtle.decrypt(
+    {
+      name: key.algorithm.name,
+      iv
+    },
+    key,
+    encrypted
+  )
+
+  return new Uint8Array(decrypted)
+}
+
+// TODO: Write Blob -> Buffer polyfill to allow testing blobDecrypt
+/**
+ * Decrypt an ArrayBuffer as a blob with a specified encoding
+ */
+export async function blobDecrypt(cipherbuf: Uint8Array, key: CryptoKey, encoding: string): Promise<Blob> {
+  const raw = await ABdecrypt(cipherbuf, key)
+  return new Blob([raw], {
+    type: encoding
+  })
 }
 
 /**

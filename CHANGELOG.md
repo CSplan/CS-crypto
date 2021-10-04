@@ -9,6 +9,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `aes.deepDecrypt` and `aes.deepEncrypt` now use generics for better return typing
 - Configured terser to remove error messages for minified builds
 - CommonJS builds are back
+- `aes.ABencrypt` and `aes.ABdecrypt` - encrypt/decrypt array buffers
+- `aes.blobDecrypt` - decrypt array buffer as typed blob
 
 ### Removed
 - Parsing of 'true' or 'false' as booleans in `aes.decrypt`, applications should handle this manually on a case by case basis

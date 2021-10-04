@@ -3,7 +3,7 @@ import { encode, decode } from './base64'
 import { makeSalt } from './random'
 import { generateKeypair, wrapPrivateKey, unwrapPrivateKey, wrapKey, unwrapKey, exportPublicKey, importPublicKey } from './rsa'
 import { Algorithms } from './constants'
-import { generateKey, encrypt, decrypt, deepEncrypt, deepDecrypt, importKeyMaterial } from './aes'
+import { generateKey, encrypt, decrypt, deepEncrypt, deepDecrypt, importKeyMaterial, ABencrypt, ABdecrypt } from './aes'
 import t from 'ava'
 const test = t.serial // Tests are serial by default
 const sampleText = 'klasdmlkasdaslkdalkdasl'
@@ -172,3 +172,23 @@ test('Recursively decrypt the previously decrypted array using AES-GCM', async (
     t.deepEqual(decrypted, encryptable2)
   })
 })
+
+{
+  let buf: Uint8Array
+  let key: CryptoKey
+  let encrypted: Uint8Array
+  test('Encrypt ArrayBuffer using AES-GCM', async (t) => {
+    await t.notThrowsAsync(async () => {
+      buf = crypto.getRandomValues(new Uint8Array(32))
+      key = await generateKey('AES-GCM')
+      encrypted = await ABencrypt(buf, key)
+    })
+  })
+
+  test('Decrypt ArrayBuffer using AES-GCM', async (t) => {
+    await t.notThrowsAsync(async () => {
+      const decrypted = await ABdecrypt(encrypted, key)
+      t.deepEqual(decrypted, buf)
+    })
+  })
+}
