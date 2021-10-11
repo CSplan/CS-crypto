@@ -11,7 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 - Simplified and shortened test names
 
-[0.7.3]
+## [0.7.3] - 2021-10-04
 ### Added
 - `aes.deepDecrypt` and `aes.deepEncrypt` now use generics for better return typing
 - Configured terser to remove error messages for minified builds
@@ -25,12 +25,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 - ESlint errors caused by TypeScript-incompatible rules
 
-## [0.7.1]
+## [0.7.1] - 2021-02-17
 ### Fixed
 - Base64 decoding now ignores newlines, which fixes decoding long base64 strings produced many standard implementations of base64 (including MySQL's `TO_BASE64()`)
 - WebCrypto/node crypto provider detection errors
 
-## [0.7.0] - 2020-01-31
+## [0.7.0] - 2021-01-31
 ### Added
 - Full base64 implementation for encoding and decoding functions
 - `aes.importKeyMaterial` function to import an AES-GCM or AES-CBC key from a Uint8Array of key material
