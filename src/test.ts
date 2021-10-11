@@ -115,63 +115,79 @@ test('Unwrap (decrypt) the previously wrapped AES-GCM key', async (t) => {
   })
 })
 
-let encrypted: string
-test('Encrypt some text using AES-GCM', async (t) => {
-  await t.notThrowsAsync(async () => {
-    encrypted = await encrypt(sampleText, key)
+{
+  let encrypted: string
+  test('Encrypt text using AES-GCM', async (t) => {
+    await t.notThrowsAsync(async () => {
+      encrypted = await encrypt(sampleText, key)
+    })
   })
-})
 
-test('Decrypt the previously encrypted text using AES-GCM', async (t) => {
-  await t.notThrowsAsync(async () => {
+  test('Decrypt text using AES-GCM', async (t) => {
+    await t.notThrowsAsync(async () => {
+      const decrypted = await decrypt(encrypted, key)
+      t.is(decrypted, sampleText)
+    })
+  })
+
+  test('Encrypt empty text using AES-GCM', async (t) => {
+    await t.notThrowsAsync(async () => {
+      encrypted = await encrypt('', key)
+      t.is(encrypted, '')
+    })
+  })
+
+  test('Decrypt empty text using AES-GCM', async (t) => {
     const decrypted = await decrypt(encrypted, key)
-    t.is(decrypted, sampleText)
+    t.is(decrypted, '')
   })
-})
+}
 
-const encryptable1: unknown = {
-  someKey: ['some', 'cool', {
-    val: 'ues'
+{
+  const encryptable1: unknown = {
+    someKey: ['some', 'cool', {
+      val: 'ues'
+    }]
+  }
+  let deepEncrypted: unknown = {}
+  test('Recursively encrypt an object using AES-GCM', async (t) => {
+    await t.notThrowsAsync(async () => {
+      deepEncrypted = await deepEncrypt(encryptable1, key)
+    })
+  })
+
+  test('Recursively decrypt the previously encrypted object using AES-GCM', async (t) => {
+    await t.notThrowsAsync(async () => {
+      const decrypted = await deepDecrypt(deepEncrypted, key)
+      t.deepEqual(decrypted, encryptable1)
+    })
+  })
+
+  type obj = {
+    [key: string]: string|boolean
+  }
+
+  const encryptable2: Array<string|obj> = ['some', 'more', {
+    cool: 'values',
+    thisIs: true,
+    butThisIs: false
   }]
+
+  test('Recursively encrypt an array using AES-GCM', async (t) => {
+    await t.notThrowsAsync(async () => {
+      deepEncrypted = await deepEncrypt(encryptable2, key)
+    })
+  })
+
+  test('Recursively decrypt the previously decrypted array using AES-GCM', async (t) => {
+    await t.notThrowsAsync(async () => {
+      const decrypted = await deepDecrypt(deepEncrypted, key) as typeof encryptable2
+      (decrypted[2] as obj).thisIs = (decrypted[2] as obj).thisIs === 'true';
+      (decrypted[2] as obj).butThisIs = (decrypted[2] as obj).thisIs === 'true'
+      t.deepEqual(decrypted, encryptable2)
+    })
+  })
 }
-let deepEncrypted: unknown = {}
-test('Recursively encrypt an object using AES-GCM', async (t) => {
-  await t.notThrowsAsync(async () => {
-    deepEncrypted = await deepEncrypt(encryptable1, key)
-  })
-})
-
-test('Recursively decrypt the previously encrypted object using AES-GCM', async (t) => {
-  await t.notThrowsAsync(async () => {
-    const decrypted = await deepDecrypt(deepEncrypted, key)
-    t.deepEqual(decrypted, encryptable1)
-  })
-})
-
-type obj = {
-  [key: string]: string|boolean
-}
-
-const encryptable2: Array<string|obj> = ['some', 'more', {
-  cool: 'values',
-  thisIs: true,
-  butThisIs: false
-}]
-
-test('Recursively encrypt an array using AES-GCM', async (t) => {
-  await t.notThrowsAsync(async () => {
-    deepEncrypted = await deepEncrypt(encryptable2, key)
-  })
-})
-
-test('Recursively decrypt the previously decrypted array using AES-GCM', async (t) => {
-  await t.notThrowsAsync(async () => {
-    const decrypted = await deepDecrypt(deepEncrypted, key) as typeof encryptable2
-    (decrypted[2] as obj).thisIs = (decrypted[2] as obj).thisIs === 'true';
-    (decrypted[2] as obj).butThisIs = (decrypted[2] as obj).thisIs === 'true'
-    t.deepEqual(decrypted, encryptable2)
-  })
-})
 
 {
   let buf: Uint8Array

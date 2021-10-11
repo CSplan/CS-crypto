@@ -45,6 +45,10 @@ function genIV(key: CryptoKey): Uint8Array {
  * Encrypt text using AES-GCM or AES-CBC
  */
 export async function encrypt(text: string, key: CryptoKey): Promise<string> {
+  if (text.length === 0) {
+    return ''
+  }
+
   const iv = genIV(key)
 
   // Encrypt the text
@@ -82,6 +86,10 @@ function getIVlength(key: CryptoKey): number {
  * Decrypt text that was previously encrypted using the same AES key
  */
 export async function decrypt(ciphertext: string, key: CryptoKey): Promise<string> {
+  if (ciphertext.length === 0) {
+    return ''
+  }
+
   const ivLength = getIVlength(key)
   // Split iv and real ciphertext from the buffer using the iv length
   const cipherbuf = decode(ciphertext)
