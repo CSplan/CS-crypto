@@ -14,7 +14,7 @@ test('Load polyfill', async (t) => {
   })
 })
 
-test('Encode and decode a random array buffer', (t) => {
+test('Encode and decode random array buffer', (t) => {
   // encode and decode 10 random sequences of bytes, with a random length between 0 and 255
   for (let i = 0; i < 10; i++) {
     const buf = crypto.getRandomValues(new Uint8Array(i))
@@ -36,7 +36,7 @@ test('Base64 decoding ignores carriage returns', (t) => {
 })
 
 let salt: Uint8Array
-test('Generate a random salt', (t) => {
+test('Generate random salt', (t) => {
   salt = makeSalt(16)
   const emptySalt = new Uint8Array(16)
   t.notDeepEqual(salt, emptySalt)
@@ -47,40 +47,40 @@ let privateKey: CryptoKey
 let wrappingKey: CryptoKey
 let exportedPublicKey: string
 let wrappedPrivateKey: string
-test('Generate a random RSA keypair', async (t) => {
+test('Generate RSA keypair', async (t) => {
   await t.notThrowsAsync(async () => {
     ({ publicKey, privateKey } = await generateKeypair(2048))
   })
 })
 
-test('Export the RSA keypair\'s public key', async (t) => {
+test('Export RSA public key', async (t) => {
   await t.notThrowsAsync(async () => {
     exportedPublicKey = await exportPublicKey(publicKey)
     t.deepEqual(encode(decode(exportedPublicKey)), exportedPublicKey)
   })
 })
 
-test('Import the previously exported RSA public key', async (t) => {
+test('Import RSA public key', async (t) => {
   await t.notThrowsAsync(async () => {
     const imported = await importPublicKey(exportedPublicKey)
     t.deepEqual(imported, publicKey)
   })
 })
 
-test('Import an AES-GCM key from raw key material', async (t) => {
+test('Import AES-GCM key from key material', async (t) => {
   await t.notThrowsAsync(async () => {
     const keyMaterial = crypto.getRandomValues(new Uint8Array(32))
     wrappingKey = await importKeyMaterial(keyMaterial, Algorithms.AES_GCM)
   })
 })
 
-test('Wrap (encrypt) the RSA keypair\'s private key using AES-GCM encryption', async (t) => {
+test('Wrap (encrypt) RSA public key with AES-GCM key', async (t) => {
   await t.notThrowsAsync(async () => {
     wrappedPrivateKey = await wrapPrivateKey(privateKey, wrappingKey)
   })
 })
 
-test('Unwrap (decrypt) the previously wrapped RSA private key', async (t) => {
+test('Unwrap (decrypt) RSA private key with AES-GCM key', async (t) => {
   await t.notThrowsAsync(async () => {
     const decrypted = await unwrapPrivateKey(wrappedPrivateKey, wrappingKey)
 
@@ -95,20 +95,20 @@ test('Unwrap (decrypt) the previously wrapped RSA private key', async (t) => {
 
 let key: CryptoKey
 let encryptedKey: string
-test('Generate a random AES-GCM key', async (t) => {
+test('Generate AES-GCM key', async (t) => {
   await t.notThrowsAsync(async () => {
     key = await generateKey('AES-GCM')
     t.is(key.algorithm.name, 'AES-GCM')
   })
 })
 
-test('Wrap (encrypt) the AES-GCM key with the RSA keypair\'s public key', async (t) => {
+test('Wrap (encrypt) AES-GCM key with RSA public key', async (t) => {
   await t.notThrowsAsync(async () => {
     encryptedKey = await wrapKey(key, publicKey)
   })
 })
 
-test('Unwrap (decrypt) the previously wrapped AES-GCM key', async (t) => {
+test('Unwrap (decrypt) AES-GCM key with RSA private key', async (t) => {
   await t.notThrowsAsync(async () => {
     const decrypted = await unwrapKey(encryptedKey, privateKey)
     t.deepEqual(decrypted, key)
@@ -150,13 +150,13 @@ test('Unwrap (decrypt) the previously wrapped AES-GCM key', async (t) => {
     }]
   }
   let deepEncrypted: unknown = {}
-  test('Recursively encrypt an object using AES-GCM', async (t) => {
+  test('Recursively encrypt object with AES-GCM', async (t) => {
     await t.notThrowsAsync(async () => {
       deepEncrypted = await deepEncrypt(encryptable1, key)
     })
   })
 
-  test('Recursively decrypt the previously encrypted object using AES-GCM', async (t) => {
+  test('Recursively decrypt object with AES-GCM', async (t) => {
     await t.notThrowsAsync(async () => {
       const decrypted = await deepDecrypt(deepEncrypted, key)
       t.deepEqual(decrypted, encryptable1)
@@ -173,13 +173,13 @@ test('Unwrap (decrypt) the previously wrapped AES-GCM key', async (t) => {
     butThisIs: false
   }]
 
-  test('Recursively encrypt an array using AES-GCM', async (t) => {
+  test('Recursively encrypt array with AES-GCM', async (t) => {
     await t.notThrowsAsync(async () => {
       deepEncrypted = await deepEncrypt(encryptable2, key)
     })
   })
 
-  test('Recursively decrypt the previously decrypted array using AES-GCM', async (t) => {
+  test('Recursively decrypt array with AES-GCM', async (t) => {
     await t.notThrowsAsync(async () => {
       const decrypted = await deepDecrypt(deepEncrypted, key) as typeof encryptable2
       (decrypted[2] as obj).thisIs = (decrypted[2] as obj).thisIs === 'true';
@@ -193,7 +193,7 @@ test('Unwrap (decrypt) the previously wrapped AES-GCM key', async (t) => {
   let buf: Uint8Array
   let key: CryptoKey
   let encrypted: Uint8Array
-  test('Encrypt ArrayBuffer using AES-GCM', async (t) => {
+  test('Encrypt ArrayBuffer with AES-GCM', async (t) => {
     await t.notThrowsAsync(async () => {
       buf = crypto.getRandomValues(new Uint8Array(32))
       key = await generateKey('AES-GCM')
@@ -201,7 +201,7 @@ test('Unwrap (decrypt) the previously wrapped AES-GCM key', async (t) => {
     })
   })
 
-  test('Decrypt ArrayBuffer using AES-GCM', async (t) => {
+  test('Decrypt ArrayBuffer with AES-GCM', async (t) => {
     await t.notThrowsAsync(async () => {
       const decrypted = await ABdecrypt(encrypted, key)
       t.deepEqual(decrypted, buf)

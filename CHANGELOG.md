@@ -8,6 +8,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - `aes.deepEncrypt` and `aes.deepDecrypt` now pass through empty strings, preventing extraneous IV generation
 
+### Changed
+- Simplified and shortened test names
+
 [0.7.3]
 ### Added
 - `aes.deepDecrypt` and `aes.deepEncrypt` now use generics for better return typing
