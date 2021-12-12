@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 ### Added
 - `aes.deepEncrypt` and `aes.deepDecrypt` now pass through empty strings, preventing extraneous IV generation
+- `exportable` parameter to `rsa.unwrapPrivateKey`, allowing RSA keys to be decrypted and then re-encrypted or exported (needed in CSplan for password changes)
 
 ### Changed
 - Simplified and shortened test names

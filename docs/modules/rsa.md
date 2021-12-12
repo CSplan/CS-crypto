@@ -30,13 +30,13 @@ Export an RSA public key as base64 encoded text
 
 **Returns:** *Promise*<string\>
 
-Defined in: [rsa.ts:84](https://github.com/very-amused/CS-crypto/blob/37422b2/src/rsa.ts#L84)
+Defined in: [rsa.ts:84](https://github.com/very-amused/cs-crypto/blob/d91115d/src/rsa.ts#L84)
 
 ___
 
 ### generateKeypair
 
-▸ **generateKeypair**(`keySize`: *number*): *PromiseLike*<CryptoKeyPair\>
+▸ **generateKeypair**(`keySize`: *number*): *Promise*<CryptoKeyPair\>
 
 Generate an RSA keypair of a specified keysize
 
@@ -46,9 +46,9 @@ Generate an RSA keypair of a specified keysize
 | :------ | :------ |
 | `keySize` | *number* |
 
-**Returns:** *PromiseLike*<CryptoKeyPair\>
+**Returns:** *Promise*<CryptoKeyPair\>
 
-Defined in: [rsa.ts:9](https://github.com/very-amused/CS-crypto/blob/37422b2/src/rsa.ts#L9)
+Defined in: [rsa.ts:9](https://github.com/very-amused/cs-crypto/blob/d91115d/src/rsa.ts#L9)
 
 ___
 
@@ -66,7 +66,7 @@ Import an RSA public key from base64 encoded text
 
 **Returns:** *PromiseLike*<CryptoKey\>
 
-Defined in: [rsa.ts:95](https://github.com/very-amused/CS-crypto/blob/37422b2/src/rsa.ts#L95)
+Defined in: [rsa.ts:95](https://github.com/very-amused/cs-crypto/blob/d91115d/src/rsa.ts#L95)
 
 ___
 
@@ -86,26 +86,27 @@ Unwrap (decrypt) a CryptoKey using an RSA private key
 
 **Returns:** *PromiseLike*<CryptoKey\>
 
-Defined in: [rsa.ts:130](https://github.com/very-amused/CS-crypto/blob/37422b2/src/rsa.ts#L130)
+Defined in: [rsa.ts:130](https://github.com/very-amused/cs-crypto/blob/d91115d/src/rsa.ts#L130)
 
 ___
 
 ### unwrapPrivateKey
 
-▸ **unwrapPrivateKey**(`encodedPrivateKey`: *string*, `unwrappingKey`: CryptoKey): *Promise*<CryptoKey\>
+▸ **unwrapPrivateKey**(`encodedPrivateKey`: *string*, `unwrappingKey`: CryptoKey, `exportable?`: *boolean*): *Promise*<CryptoKey\>
 
 Decrypt an RSA key using unwrappingKey (AES-GCM)
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `encodedPrivateKey` | *string* |
-| `unwrappingKey` | CryptoKey |
+| Name | Type | Default value |
+| :------ | :------ | :------ |
+| `encodedPrivateKey` | *string* | - |
+| `unwrappingKey` | CryptoKey | - |
+| `exportable` | *boolean* | false |
 
 **Returns:** *Promise*<CryptoKey\>
 
-Defined in: [rsa.ts:53](https://github.com/very-amused/CS-crypto/blob/37422b2/src/rsa.ts#L53)
+Defined in: [rsa.ts:52](https://github.com/very-amused/cs-crypto/blob/d91115d/src/rsa.ts#L52)
 
 ___
 
@@ -124,7 +125,7 @@ Wrap (encrypt) a CryptoKey using an RSA public key
 
 **Returns:** *Promise*<string\>
 
-Defined in: [rsa.ts:111](https://github.com/very-amused/CS-crypto/blob/37422b2/src/rsa.ts#L111)
+Defined in: [rsa.ts:111](https://github.com/very-amused/cs-crypto/blob/d91115d/src/rsa.ts#L111)
 
 ___
 
@@ -143,4 +144,4 @@ Encrypt an RSA private key using an AES private key generated using a passphrase
 
 **Returns:** *Promise*<string\>
 
-Defined in: [rsa.ts:26](https://github.com/very-amused/CS-crypto/blob/37422b2/src/rsa.ts#L26)
+Defined in: [rsa.ts:25](https://github.com/very-amused/cs-crypto/blob/d91115d/src/rsa.ts#L25)

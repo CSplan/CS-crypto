@@ -1,6 +1,6 @@
 {
   "name": "cs-crypto",
-  "version": "0.7.4-rc1",
+  "version": "0.7.4-rc2",
   "description": "A comprehensive, simple, and secure wrapper around the native WebCrypto API.",
   "main": "lib/index.cjs",
   "module": "lib/index.js",

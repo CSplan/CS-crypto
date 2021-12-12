@@ -51,7 +51,8 @@ export async function wrapPrivateKey(
  */
 export async function unwrapPrivateKey(
   encodedPrivateKey: string,
-  unwrappingKey: CryptoKey
+  unwrappingKey: CryptoKey,
+  exportable = false
 ): Promise<CryptoKey> {
   // Parse the algorithm from the key
 
@@ -72,7 +73,7 @@ export async function unwrapPrivateKey(
       name: Algorithms.RSA,
       hash: Hashes.SHA_512
     },
-    false,
+    exportable,
     ['unwrapKey']
   )
 }
