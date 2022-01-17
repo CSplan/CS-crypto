@@ -8,10 +8,10 @@
   "scripts": {
     "build": "rollup -c",
     "postbuild": "rm -rf lib/internal",
-    "build:test": "tsc -b src/tsconfig-test.json",
     "build:docs": "typedoc src/index.ts --out docs",
     "build:docs-html": "typedoc src/index.ts --out docs_html --plugin none",
     "view-docs": "xdg-open docs_html/index.html &>/dev/null",
+    "pretest": "tsc -b src/tsconfig-test.json",
     "test": "ava src/test.ts",
     "clean": "rm -rf test lib dist",
     "prepack": "yarn clean && yarn build"
