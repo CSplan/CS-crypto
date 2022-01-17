@@ -25,7 +25,7 @@
 
 ### StringLike
 
-Ƭ **StringLike**: *object*
+Ƭ **StringLike**: `Object`
 
 Any data that is valid for encryption
 
@@ -33,15 +33,17 @@ Any data that is valid for encryption
 
 | Name | Type |
 | :------ | :------ |
-| `toString` | () => *string* |
+| `toString` | () => `string` |
 
-Defined in: [aes.ts:115](https://github.com/very-amused/cs-crypto/blob/d91115d/src/aes.ts#L115)
+#### Defined in
+
+[aes.ts:115](https://github.com/very-amused/cs-crypto/blob/4379417/src/aes.ts#L115)
 
 ## Functions
 
 ### ABdecrypt
 
-▸ **ABdecrypt**(`cipherbuf`: Uint8Array, `key`: CryptoKey): *Promise*<Uint8Array\>
+▸ **ABdecrypt**(`cipherbuf`, `key`): `Promise`<`Uint8Array`\>
 
 Decrypt an ArrayBuffer
 
@@ -49,18 +51,22 @@ Decrypt an ArrayBuffer
 
 | Name | Type |
 | :------ | :------ |
-| `cipherbuf` | Uint8Array |
-| `key` | CryptoKey |
+| `cipherbuf` | `Uint8Array` |
+| `key` | `CryptoKey` |
 
-**Returns:** *Promise*<Uint8Array\>
+#### Returns
 
-Defined in: [aes.ts:140](https://github.com/very-amused/cs-crypto/blob/d91115d/src/aes.ts#L140)
+`Promise`<`Uint8Array`\>
+
+#### Defined in
+
+[aes.ts:140](https://github.com/very-amused/cs-crypto/blob/4379417/src/aes.ts#L140)
 
 ___
 
 ### ABencrypt
 
-▸ **ABencrypt**(`plainbuf`: ArrayBuffer \| Uint8Array, `key`: CryptoKey): *Promise*<Uint8Array\>
+▸ **ABencrypt**(`plainbuf`, `key`): `Promise`<`Uint8Array`\>
 
 Encrypt an ArrayBuffer, used for encrypting non-text data such as images
 
@@ -68,18 +74,22 @@ Encrypt an ArrayBuffer, used for encrypting non-text data such as images
 
 | Name | Type |
 | :------ | :------ |
-| `plainbuf` | ArrayBuffer \| Uint8Array |
-| `key` | CryptoKey |
+| `plainbuf` | `Uint8Array` \| `ArrayBuffer` |
+| `key` | `CryptoKey` |
 
-**Returns:** *Promise*<Uint8Array\>
+#### Returns
 
-Defined in: [aes.ts:122](https://github.com/very-amused/cs-crypto/blob/d91115d/src/aes.ts#L122)
+`Promise`<`Uint8Array`\>
+
+#### Defined in
+
+[aes.ts:122](https://github.com/very-amused/cs-crypto/blob/4379417/src/aes.ts#L122)
 
 ___
 
 ### blobDecrypt
 
-▸ **blobDecrypt**(`cipherbuf`: Uint8Array, `key`: CryptoKey, `encoding`: *string*): *Promise*<Blob\>
+▸ **blobDecrypt**(`cipherbuf`, `key`, `encoding`): `Promise`<`Blob`\>
 
 Decrypt an ArrayBuffer as a blob with a specified encoding
 
@@ -87,19 +97,23 @@ Decrypt an ArrayBuffer as a blob with a specified encoding
 
 | Name | Type |
 | :------ | :------ |
-| `cipherbuf` | Uint8Array |
-| `key` | CryptoKey |
-| `encoding` | *string* |
+| `cipherbuf` | `Uint8Array` |
+| `key` | `CryptoKey` |
+| `encoding` | `string` |
 
-**Returns:** *Promise*<Blob\>
+#### Returns
 
-Defined in: [aes.ts:162](https://github.com/very-amused/cs-crypto/blob/d91115d/src/aes.ts#L162)
+`Promise`<`Blob`\>
+
+#### Defined in
+
+[aes.ts:162](https://github.com/very-amused/cs-crypto/blob/4379417/src/aes.ts#L162)
 
 ___
 
 ### decrypt
 
-▸ **decrypt**(`ciphertext`: *string*, `key`: CryptoKey): *Promise*<string\>
+▸ **decrypt**(`ciphertext`, `key`): `Promise`<`string`\>
 
 Decrypt text that was previously encrypted using the same AES key
 
@@ -107,18 +121,22 @@ Decrypt text that was previously encrypted using the same AES key
 
 | Name | Type |
 | :------ | :------ |
-| `ciphertext` | *string* |
-| `key` | CryptoKey |
+| `ciphertext` | `string` |
+| `key` | `CryptoKey` |
 
-**Returns:** *Promise*<string\>
+#### Returns
 
-Defined in: [aes.ts:88](https://github.com/very-amused/cs-crypto/blob/d91115d/src/aes.ts#L88)
+`Promise`<`string`\>
+
+#### Defined in
+
+[aes.ts:88](https://github.com/very-amused/cs-crypto/blob/4379417/src/aes.ts#L88)
 
 ___
 
 ### deepDecrypt
 
-▸ **deepDecrypt**<T\>(`data`: T, `cryptoKey`: CryptoKey): *Promise*<T\>
+▸ **deepDecrypt**<`T`\>(`data`, `cryptoKey`): `Promise`<`T`\>
 
 Recursively decrypt an object or array while preserving its original structure
 
@@ -126,24 +144,28 @@ Recursively decrypt an object or array while preserving its original structure
 
 | Name | Type |
 | :------ | :------ |
-| `T` | *unknown* |
+| `T` | extends `unknown` |
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `data` | T |
-| `cryptoKey` | CryptoKey |
+| `data` | `T` |
+| `cryptoKey` | `CryptoKey` |
 
-**Returns:** *Promise*<T\>
+#### Returns
 
-Defined in: [aes.ts:204](https://github.com/very-amused/cs-crypto/blob/d91115d/src/aes.ts#L204)
+`Promise`<`T`\>
+
+#### Defined in
+
+[aes.ts:204](https://github.com/very-amused/cs-crypto/blob/4379417/src/aes.ts#L204)
 
 ___
 
 ### deepEncrypt
 
-▸ **deepEncrypt**<T\>(`data`: T, `cryptoKey`: CryptoKey): *Promise*<T\>
+▸ **deepEncrypt**<`T`\>(`data`, `cryptoKey`): `Promise`<`T`\>
 
 Recursively encrypt an object or array while preserving its original structure
 
@@ -151,24 +173,28 @@ Recursively encrypt an object or array while preserving its original structure
 
 | Name | Type |
 | :------ | :------ |
-| `T` | *unknown* |
+| `T` | extends `unknown` |
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `data` | T |
-| `cryptoKey` | CryptoKey |
+| `data` | `T` |
+| `cryptoKey` | `CryptoKey` |
 
-**Returns:** *Promise*<T\>
+#### Returns
 
-Defined in: [aes.ts:172](https://github.com/very-amused/cs-crypto/blob/d91115d/src/aes.ts#L172)
+`Promise`<`T`\>
+
+#### Defined in
+
+[aes.ts:172](https://github.com/very-amused/cs-crypto/blob/4379417/src/aes.ts#L172)
 
 ___
 
 ### encrypt
 
-▸ **encrypt**(`text`: *string*, `key`: CryptoKey): *Promise*<string\>
+▸ **encrypt**(`text`, `key`): `Promise`<`string`\>
 
 Encrypt text using AES-GCM or AES-CBC
 
@@ -176,34 +202,42 @@ Encrypt text using AES-GCM or AES-CBC
 
 | Name | Type |
 | :------ | :------ |
-| `text` | *string* |
-| `key` | CryptoKey |
+| `text` | `string` |
+| `key` | `CryptoKey` |
 
-**Returns:** *Promise*<string\>
+#### Returns
 
-Defined in: [aes.ts:47](https://github.com/very-amused/cs-crypto/blob/d91115d/src/aes.ts#L47)
+`Promise`<`string`\>
+
+#### Defined in
+
+[aes.ts:47](https://github.com/very-amused/cs-crypto/blob/4379417/src/aes.ts#L47)
 
 ___
 
 ### exportKey
 
-▸ **exportKey**(`key`: CryptoKey): *Promise*<string\>
+▸ **exportKey**(`key`): `Promise`<`string`\>
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `key` | CryptoKey |
+| `key` | `CryptoKey` |
 
-**Returns:** *Promise*<string\>
+#### Returns
 
-Defined in: [aes.ts:232](https://github.com/very-amused/cs-crypto/blob/d91115d/src/aes.ts#L232)
+`Promise`<`string`\>
+
+#### Defined in
+
+[aes.ts:232](https://github.com/very-amused/cs-crypto/blob/4379417/src/aes.ts#L232)
 
 ___
 
 ### generateKey
 
-▸ **generateKey**(`type`: ``"AES-GCM"`` \| ``"AES-CBC"``): *PromiseLike*<CryptoKey\>
+▸ **generateKey**(`type`): `PromiseLike`<`CryptoKey`\>
 
 Generate a new 256 bit AES-GCM or AES-CBC key
 
@@ -213,15 +247,19 @@ Generate a new 256 bit AES-GCM or AES-CBC key
 | :------ | :------ |
 | `type` | ``"AES-GCM"`` \| ``"AES-CBC"`` |
 
-**Returns:** *PromiseLike*<CryptoKey\>
+#### Returns
 
-Defined in: [aes.ts:28](https://github.com/very-amused/cs-crypto/blob/d91115d/src/aes.ts#L28)
+`PromiseLike`<`CryptoKey`\>
+
+#### Defined in
+
+[aes.ts:28](https://github.com/very-amused/cs-crypto/blob/4379417/src/aes.ts#L28)
 
 ___
 
 ### importKeyMaterial
 
-▸ **importKeyMaterial**(`keyMaterial`: Uint8Array, `type`: [*AES\_GCM*](../enums/algorithms.md#aes_gcm) \| [*AES\_CBC*](../enums/algorithms.md#aes_cbc)): *PromiseLike*<CryptoKey\>
+▸ **importKeyMaterial**(`keyMaterial`, `type`): `PromiseLike`<`CryptoKey`\>
 
 Import an AES key from raw key material
 
@@ -229,9 +267,13 @@ Import an AES key from raw key material
 
 | Name | Type |
 | :------ | :------ |
-| `keyMaterial` | Uint8Array |
-| `type` | [*AES\_GCM*](../enums/algorithms.md#aes_gcm) \| [*AES\_CBC*](../enums/algorithms.md#aes_cbc) |
+| `keyMaterial` | `Uint8Array` |
+| `type` | [`AES_GCM`](../enums/Algorithms.md#aes_gcm) \| [`AES_CBC`](../enums/Algorithms.md#aes_cbc) |
 
-**Returns:** *PromiseLike*<CryptoKey\>
+#### Returns
 
-Defined in: [aes.ts:15](https://github.com/very-amused/cs-crypto/blob/d91115d/src/aes.ts#L15)
+`PromiseLike`<`CryptoKey`\>
+
+#### Defined in
+
+[aes.ts:15](https://github.com/very-amused/cs-crypto/blob/4379417/src/aes.ts#L15)

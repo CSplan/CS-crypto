@@ -11,7 +11,7 @@
 
 ### Enumerations
 
-- [Algorithms](enums/algorithms.md)
+- [Algorithms](enums/Algorithms.md)
 
 ### Functions
 
@@ -24,7 +24,7 @@
 
 ### ABconcat
 
-▸ **ABconcat**(`buf1`: Uint8Array \| ArrayBuffer, `buf2`: Uint8Array \| ArrayBuffer): Uint8Array
+▸ **ABconcat**(`buf1`, `buf2`): `Uint8Array`
 
 Concatenate two ArrayBuffers or Uint8Arrays
 
@@ -32,18 +32,22 @@ Concatenate two ArrayBuffers or Uint8Arrays
 
 | Name | Type |
 | :------ | :------ |
-| `buf1` | Uint8Array \| ArrayBuffer |
-| `buf2` | Uint8Array \| ArrayBuffer |
+| `buf1` | `Uint8Array` \| `ArrayBuffer` |
+| `buf2` | `Uint8Array` \| `ArrayBuffer` |
 
-**Returns:** Uint8Array
+#### Returns
 
-Defined in: [base64.ts:189](https://github.com/very-amused/cs-crypto/blob/d91115d/src/base64.ts#L189)
+`Uint8Array`
+
+#### Defined in
+
+[base64.ts:189](https://github.com/very-amused/cs-crypto/blob/4379417/src/base64.ts#L189)
 
 ___
 
 ### decode
 
-▸ **decode**(`encoded`: *string*): Uint8Array
+▸ **decode**(`encoded`): `Uint8Array`
 
 Decode standard encoded Base64 to a Uint8Array.
 
@@ -51,17 +55,21 @@ Decode standard encoded Base64 to a Uint8Array.
 
 | Name | Type |
 | :------ | :------ |
-| `encoded` | *string* |
+| `encoded` | `string` |
 
-**Returns:** Uint8Array
+#### Returns
 
-Defined in: [base64.ts:143](https://github.com/very-amused/cs-crypto/blob/d91115d/src/base64.ts#L143)
+`Uint8Array`
+
+#### Defined in
+
+[base64.ts:143](https://github.com/very-amused/cs-crypto/blob/4379417/src/base64.ts#L143)
 
 ___
 
 ### encode
 
-▸ **encode**(`data`: Uint8Array): *string*
+▸ **encode**(`data`): `string`
 
 Encode a Uint8Array using Base64 standard encoding
 
@@ -69,17 +77,21 @@ Encode a Uint8Array using Base64 standard encoding
 
 | Name | Type |
 | :------ | :------ |
-| `data` | Uint8Array |
+| `data` | `Uint8Array` |
 
-**Returns:** *string*
+#### Returns
 
-Defined in: [base64.ts:99](https://github.com/very-amused/cs-crypto/blob/d91115d/src/base64.ts#L99)
+`string`
+
+#### Defined in
+
+[base64.ts:99](https://github.com/very-amused/cs-crypto/blob/4379417/src/base64.ts#L99)
 
 ___
 
 ### makeSalt
 
-▸ **makeSalt**(`byteLength`: *number*): Uint8Array
+▸ **makeSalt**(`byteLength`): `Uint8Array`
 
 Make a salt of a specified byte length
 
@@ -87,8 +99,12 @@ Make a salt of a specified byte length
 
 | Name | Type |
 | :------ | :------ |
-| `byteLength` | *number* |
+| `byteLength` | `number` |
 
-**Returns:** Uint8Array
+#### Returns
 
-Defined in: [random.ts:6](https://github.com/very-amused/cs-crypto/blob/d91115d/src/random.ts#L6)
+`Uint8Array`
+
+#### Defined in
+
+[random.ts:6](https://github.com/very-amused/cs-crypto/blob/4379417/src/random.ts#L6)
