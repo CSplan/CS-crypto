@@ -19,7 +19,7 @@ function showDevelopmentWarning(): void {
  */
 export async function loadPolyfill(): Promise<void> {
   showDevelopmentWarning()
-  const { Crypto } = await import('node-webcrypto-ossl')
+  const { Crypto } = await import('@peculiar/webcrypto')
   crypto = new Crypto()
 }
 

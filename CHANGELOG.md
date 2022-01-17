@@ -12,6 +12,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 - Simplified and shortened test names
 
+### Removed
+- Dependency on `node-webcrypto-ossl` (deprecated) for testing, `@peculiar/webcrypto` is used instead
+
 ## [0.7.3] - 2021-10-04
 ### Added
 - `aes.deepDecrypt` and `aes.deepEncrypt` now use generics for better return typing
