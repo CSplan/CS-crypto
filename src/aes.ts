@@ -1,7 +1,7 @@
-import { crypto } from './internal/globals'
-import { AES_KEY_LENGTH, Formats, Algorithms } from './constants'
-import { ABconcat, encode, decode } from './base64'
-import { makeSalt } from './random'
+import { crypto } from './internal/globals.js'
+import { AES_KEY_LENGTH, Formats, Algorithms } from './constants.js'
+import { ABconcat, encode, decode } from './base64.js'
+import { makeSalt } from './random.js'
 
 const dev = process.env.NODE_ENV === 'development'
 const messages = {

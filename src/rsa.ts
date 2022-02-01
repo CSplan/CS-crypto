@@ -1,7 +1,7 @@
-import { Algorithms, Hashes, Formats, RSA_PUBLIC_EXPONENT } from './constants'
-import { crypto } from './internal/globals'
-import { encode, ABconcat, decode } from './base64'
-import { makeSalt } from './random'
+import { Algorithms, Hashes, Formats, RSA_PUBLIC_EXPONENT } from './constants.js'
+import { crypto } from './internal/globals.js'
+import { encode, ABconcat, decode } from './base64.js'
+import { makeSalt } from './random.js'
 
 /**
  * Generate an RSA keypair of a specified keysize
