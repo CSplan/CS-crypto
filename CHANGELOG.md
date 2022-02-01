@@ -4,6 +4,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.8.0-rc1] - 2022-01-31
+### Changed
+- This package is now exclusively an ES module with `type: module` declared in package.json
+- Imports are now linted to require file extensions, this is necessary for node to run tests (node requires file extensions for all relative ESM imports)
+
+### Removed
+- All commonjs builds
+
 ## [0.7.4] - 2022-01-31
 ### Added
 - `aes.deepEncrypt` and `aes.deepDecrypt` now pass through empty strings, preventing extraneous IV generation
