@@ -13,7 +13,8 @@ module.exports = {
     sourceType: 'module'
   },
   plugins: [
-    '@typescript-eslint'
+    '@typescript-eslint',
+    'import'
   ],
   rules: {
     'space-before-function-paren': ['error', {
@@ -26,6 +27,7 @@ module.exports = {
     'no-unused-vars': 'off',
     '@typescript-eslint/no-unused-vars': 'error',
     // JSON_RPC identifiers should be in snake_case
-    camelcase: 'off'
+    camelcase: 'off',
+    'import/extensions': ['error', 'ignorePackages']
   }
 }

@@ -2,7 +2,7 @@
   "composite": true,
   "extends": "./tsconfig.json",
   "compilerOptions": {
-    "module": "CommonJS",
+    "module": "ES2020",
     "outDir": "../test",
     "declaration": false
   },

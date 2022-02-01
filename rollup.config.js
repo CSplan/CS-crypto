@@ -2,7 +2,6 @@ import typescript from '@rollup/plugin-typescript'
 import { terser } from 'rollup-plugin-terser'
 
 const tsconfig = 'src/tsconfig.json'
-const external = ['node-webcrypto-ossl']
 
 export default [
   {
