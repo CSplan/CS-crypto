@@ -2,6 +2,7 @@ import typescript from '@rollup/plugin-typescript'
 import { terser } from 'rollup-plugin-terser'
 
 const tsconfig = 'src/tsconfig.json'
+const external = ['@peculiar/webcrypto']
 
 export default [
   {
@@ -15,20 +16,6 @@ export default [
         tsconfig,
         declaration: true,
         outDir: 'lib'
-      })
-    ],
-    external
-  },
-  {
-    input: 'src/index.ts',
-    output: {
-      file: 'lib/index.cjs',
-      format: 'cjs'
-    },
-    plugins: [
-      typescript({
-        tsconfig,
-        declaration: false
       })
     ],
     external
