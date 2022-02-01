@@ -1,16 +1,6 @@
 name: Tests
 
-on: 
-  push:
-    branches:
-      - master
-    paths:
-      - 'src/**'
-  pull_request:
-    branches:
-      - master
-    paths:
-      - 'src/**'
+on: [push, pull_request]
 
 jobs:
   build:
@@ -20,4 +10,4 @@ jobs:
       - name: Install
         run: yarn install
       - name: Build & Run Tests
-        run: yarn build:test && yarn test
+        run: yarn test
