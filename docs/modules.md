@@ -41,7 +41,7 @@ Concatenate two ArrayBuffers or Uint8Arrays
 
 #### Defined in
 
-[base64.ts:189](https://github.com/very-amused/cs-crypto/blob/a3e327c/src/base64.ts#L189)
+[base64.ts:189](https://github.com/very-amused/cs-crypto/blob/4e0103d/src/base64.ts#L189)
 
 ___
 
@@ -63,7 +63,7 @@ Decode standard encoded Base64 to a Uint8Array.
 
 #### Defined in
 
-[base64.ts:143](https://github.com/very-amused/cs-crypto/blob/a3e327c/src/base64.ts#L143)
+[base64.ts:143](https://github.com/very-amused/cs-crypto/blob/4e0103d/src/base64.ts#L143)
 
 ___
 
@@ -85,7 +85,7 @@ Encode a Uint8Array using Base64 standard encoding
 
 #### Defined in
 
-[base64.ts:99](https://github.com/very-amused/cs-crypto/blob/a3e327c/src/base64.ts#L99)
+[base64.ts:99](https://github.com/very-amused/cs-crypto/blob/4e0103d/src/base64.ts#L99)
 
 ___
 
@@ -107,4 +107,4 @@ Make a salt of a specified byte length
 
 #### Defined in
 
-[random.ts:6](https://github.com/very-amused/cs-crypto/blob/a3e327c/src/random.ts#L6)
+[random.ts:6](https://github.com/very-amused/cs-crypto/blob/4e0103d/src/random.ts#L6)

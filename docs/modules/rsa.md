@@ -34,7 +34,7 @@ Export an RSA public key as base64 encoded text
 
 #### Defined in
 
-[rsa.ts:84](https://github.com/very-amused/cs-crypto/blob/a3e327c/src/rsa.ts#L84)
+[rsa.ts:84](https://github.com/very-amused/cs-crypto/blob/4e0103d/src/rsa.ts#L84)
 
 ___
 
@@ -56,7 +56,7 @@ Generate an RSA keypair of a specified keysize
 
 #### Defined in
 
-[rsa.ts:9](https://github.com/very-amused/cs-crypto/blob/a3e327c/src/rsa.ts#L9)
+[rsa.ts:9](https://github.com/very-amused/cs-crypto/blob/4e0103d/src/rsa.ts#L9)
 
 ___
 
@@ -78,7 +78,7 @@ Import an RSA public key from base64 encoded text
 
 #### Defined in
 
-[rsa.ts:95](https://github.com/very-amused/cs-crypto/blob/a3e327c/src/rsa.ts#L95)
+[rsa.ts:95](https://github.com/very-amused/cs-crypto/blob/4e0103d/src/rsa.ts#L95)
 
 ___
 
@@ -102,7 +102,7 @@ Unwrap (decrypt) a CryptoKey using an RSA private key
 
 #### Defined in
 
-[rsa.ts:130](https://github.com/very-amused/cs-crypto/blob/a3e327c/src/rsa.ts#L130)
+[rsa.ts:130](https://github.com/very-amused/cs-crypto/blob/4e0103d/src/rsa.ts#L130)
 
 ___
 
@@ -126,7 +126,7 @@ Decrypt an RSA key using unwrappingKey (AES-GCM)
 
 #### Defined in
 
-[rsa.ts:52](https://github.com/very-amused/cs-crypto/blob/a3e327c/src/rsa.ts#L52)
+[rsa.ts:52](https://github.com/very-amused/cs-crypto/blob/4e0103d/src/rsa.ts#L52)
 
 ___
 
@@ -149,7 +149,7 @@ Wrap (encrypt) a CryptoKey using an RSA public key
 
 #### Defined in
 
-[rsa.ts:111](https://github.com/very-amused/cs-crypto/blob/a3e327c/src/rsa.ts#L111)
+[rsa.ts:111](https://github.com/very-amused/cs-crypto/blob/4e0103d/src/rsa.ts#L111)
 
 ___
 
@@ -172,4 +172,4 @@ Encrypt an RSA private key using an AES private key generated using a passphrase
 
 #### Defined in
 
-[rsa.ts:25](https://github.com/very-amused/cs-crypto/blob/a3e327c/src/rsa.ts#L25)
+[rsa.ts:25](https://github.com/very-amused/cs-crypto/blob/4e0103d/src/rsa.ts#L25)
