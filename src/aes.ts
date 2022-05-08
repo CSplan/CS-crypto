@@ -169,28 +169,27 @@ export async function blobDecrypt(cipherbuf: Uint8Array, key: CryptoKey, encodin
 /**
  * Recursively encrypt an object or array while preserving its original structure
  */
-export async function deepEncrypt<T extends unknown>(data: T, cryptoKey: CryptoKey): Promise<T> {
+export async function deepEncrypt<T>(data: T, cryptoKey: CryptoKey): Promise<T>
+export async function deepEncrypt(data: unknown, cryptoKey: CryptoKey): Promise<unknown> {
   // Encrypt arrays while preserving their structure
   if (Array.isArray(data)) {
     const encrypted: unknown[] = []
     for (let i = 0; i < data.length; i++) {
       encrypted[i] = await deepEncrypt(data[i], cryptoKey)
     }
-    return encrypted as T
+    return encrypted
 
   // Encrypt objects while preserving their structure
   } else if (typeof data === 'object') {
-    const encrypted: {
-      [key: string]: unknown
-    } = {}
+    const encrypted: Record<string, unknown> = {}
     for (const key in data) {
-      encrypted[key] = await deepEncrypt(data[key], cryptoKey)
+      encrypted[key] = await deepEncrypt((data as Record<string, unknown>)[key], cryptoKey)
     }
-    return encrypted as T
+    return encrypted
 
   // Encrypt strings/data which can be coerced to a string using the AES key provided
-  } else if (typeof (data as StringLike).toString === 'function') {
-    return encrypt((data as StringLike).toString(), cryptoKey) as Promise<T>
+  } else if (typeof (<StringLike>data).toString === 'function') {
+    return encrypt((<StringLike>data).toString(), cryptoKey)
 
   // Any data that doesn't implement any of the above is not supported
   } else {
@@ -201,28 +200,27 @@ export async function deepEncrypt<T extends unknown>(data: T, cryptoKey: CryptoK
 /**
  * Recursively decrypt an object or array while preserving its original structure
  */
-export async function deepDecrypt<T extends unknown>(data: T, cryptoKey: CryptoKey): Promise<T> {
+export async function deepDecrypt<T>(data: T, cryptoKey: CryptoKey): Promise<T>
+export async function deepDecrypt(data: unknown, cryptoKey: CryptoKey): Promise<unknown> {
   // Decrypt arrays while preserving their structure
   if (Array.isArray(data)) {
     const decrypted: unknown[] = []
     for (let i = 0; i < data.length; i++) {
       decrypted[i] = await deepDecrypt(data[i], cryptoKey)
     }
-    return decrypted as T
+    return decrypted
 
   // Decrypt objects while preserving their structures
   } else if (typeof data === 'object') {
-    const decrypted: {
-      [key: string]: unknown
-    } = {}
+    const decrypted: Record<string, unknown> = {}
     for (const key in data) {
-      decrypted[key] = await deepDecrypt(data[key], cryptoKey)
+      decrypted[key] = await deepDecrypt((data as Record<string, unknown>)[key], cryptoKey)
     }
-    return decrypted as T
+    return decrypted
 
   // Decrypt strings
   } else if (typeof data === 'string') {
-    return decrypt(data, cryptoKey) as T
+    return decrypt(data, cryptoKey)
   // Any data that doesn't implement any of the above is not supported
   } else {
     throw new TypeError(dev ? messages.badData : undefined)
