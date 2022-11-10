@@ -1,5 +1,5 @@
 import { loadPolyfill, crypto } from './internal/globals.js'
-import { encode, decode } from './base64.js'
+import { encode, decode, binaryConcat } from './base64.js'
 import { makeSalt } from './random.js'
 import { generateKeypair, wrapPrivateKey, unwrapPrivateKey, wrapKey, unwrapKey, exportPublicKey, importPublicKey } from './rsa.js'
 import { Algorithms } from './constants.js'
@@ -33,6 +33,22 @@ test('Base64 decoding ignores carriage returns', (t) => {
   }
   const decoded = decode(encoded)
   t.deepEqual(decoded, buf, 'Decoded buffer is not equal to original')
+})
+
+test('Concatenate multiple Uint8Arrays', (t) => {
+  // Generate 5 Uint8Arrays filled with random content
+  const bufSize = 32
+  const nBuf = 5
+  const bufs: Uint8Array[] = []
+  for (let i = 0; i < nBuf; i++) {
+    bufs.push(crypto.getRandomValues(new Uint8Array(bufSize)))
+  }
+
+  const concatenated = binaryConcat.apply(this, bufs)
+  for (let i = 0; i < nBuf; i++) {
+    const subarr = new Uint8Array(concatenated.buffer, i * bufSize, bufSize)
+    t.deepEqual(subarr, bufs[i])
+  }
 })
 
 let salt: Uint8Array

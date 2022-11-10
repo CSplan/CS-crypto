@@ -1,6 +1,6 @@
 import { crypto } from './internal/globals.js'
 import { AES_KEY_LENGTH, Formats, Algorithms } from './constants.js'
-import { ABconcat, encode, decode } from './base64.js'
+import { ABconcat, encode, decode, binaryConcat } from './base64.js'
 import { makeSalt } from './random.js'
 
 const dev = process.env.NODE_ENV === 'development'
@@ -53,18 +53,17 @@ export async function encrypt(text: string, key: CryptoKey): Promise<string> {
 
   // Encrypt the text
   const plainbuf = new TextEncoder().encode(text)
-  const encrypted = await crypto.subtle.encrypt(
+  const encrypted = new Uint8Array(await crypto.subtle.encrypt(
     {
       name: key.algorithm.name,
       iv
     },
     key,
     plainbuf
-  )
+  ))
 
-  // Concatenate the iv to the encrypted data
-  const concatenated = ABconcat(iv, encrypted)
-  return encode(concatenated)
+  // Concatenate the iv to the encrypted data and encode to base64
+  return encode(binaryConcat(iv, encrypted))
 }
 
 /**
