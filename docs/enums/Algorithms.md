@@ -19,7 +19,7 @@
 
 #### Defined in
 
-[constants.ts:6](https://github.com/very-amused/cs-crypto/blob/f39485e/src/constants.ts#L6)
+[constants.ts:6](https://github.com/very-amused/cs-crypto/blob/60be916/src/constants.ts#L6)
 
 ___
 
@@ -29,7 +29,7 @@ ___
 
 #### Defined in
 
-[constants.ts:5](https://github.com/very-amused/cs-crypto/blob/f39485e/src/constants.ts#L5)
+[constants.ts:5](https://github.com/very-amused/cs-crypto/blob/60be916/src/constants.ts#L5)
 
 ___
 
@@ -39,7 +39,7 @@ ___
 
 #### Defined in
 
-[constants.ts:7](https://github.com/very-amused/cs-crypto/blob/f39485e/src/constants.ts#L7)
+[constants.ts:7](https://github.com/very-amused/cs-crypto/blob/60be916/src/constants.ts#L7)
 
 ___
 
@@ -49,4 +49,4 @@ ___
 
 #### Defined in
 
-[constants.ts:4](https://github.com/very-amused/cs-crypto/blob/f39485e/src/constants.ts#L4)
+[constants.ts:4](https://github.com/very-amused/cs-crypto/blob/60be916/src/constants.ts#L4)
