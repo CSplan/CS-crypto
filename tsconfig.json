@@ -9,8 +9,5 @@
     "skipLibCheck": true,
     "stripInternal": true
   },
-  "references": [
-    { "path": "src/tsconfig.json" },
-  ],
   "files": []
 }
