@@ -5,6 +5,5 @@
     "module": "ES2020",
     "outDir": "../test",
     "declaration": false
-  },
-  "exclude": ["workers"]
+  }
 }
