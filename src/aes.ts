@@ -1,6 +1,7 @@
 import { crypto } from './internal/globals.js'
 import { AES_KEY_LENGTH, Formats, Algorithms } from './constants.js'
-import { encode, decode, binaryConcat } from './base64.js'
+import { encode, decode } from './base64.js'
+import { binaryConcat } from './binary.js'
 import { makeSalt } from './random.js'
 
 const dev = process.env.NODE_ENV === 'development'

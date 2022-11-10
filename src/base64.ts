@@ -1,3 +1,5 @@
+import { binaryConcat } from './binary.js'
+
 const dev = process.env.NODE_ENV === 'development'
 const messages = {
   badInput: 'invalid input, only standard base64 encoding is currently supported'
@@ -191,34 +193,5 @@ export function ABconcat(
   buf1: Uint8Array|ArrayBuffer,
   buf2: Uint8Array|ArrayBuffer
 ): Uint8Array {
-  // Coerce buf1 and buf2 into uint8 arrays
-  const bytes1 = new Uint8Array(buf1)
-  const bytes2 = new Uint8Array(buf2)
-
-  // Concatenate the bytes
-  const both = new Uint8Array(buf1.byteLength + buf2.byteLength)
-  for (let i = 0; i < bytes1.byteLength; i++) {
-    both[i] = bytes1[i]
-  }
-  for (let i = 0; i < bytes2.byteLength; i++) {
-    both[bytes1.byteLength + i] = bytes2[i]
-  }
-  return both
-}
-
-/** Concatenate multiple Uint8Arrays into a result buffer */
-export function binaryConcat(...data: Uint8Array[]): Uint8Array {
-  // Get the total size of the combined buffers
-  const size = data.reduce((total, current) => {
-    return total + current.byteLength
-  }, 0)
-  // Allocate a result array
-  const result = new Uint8Array(size)
-  // Append each buffer to the result
-  let offset = 0 // Keep track of position within the result buffer
-  for (const buf of data) {
-    result.set(buf, offset)
-    offset += buf.byteLength
-  }
-  return result
+  return binaryConcat(new Uint8Array(buf1), new Uint8Array(buf2))
 }

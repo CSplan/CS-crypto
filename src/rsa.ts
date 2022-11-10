@@ -1,6 +1,7 @@
 import { Algorithms, Hashes, Formats, RSA_PUBLIC_EXPONENT } from './constants.js'
 import { crypto } from './internal/globals.js'
-import { encode, decode, binaryConcat } from './base64.js'
+import { encode, decode } from './base64.js'
+import { binaryConcat } from './binary.js'
 import { makeSalt } from './random.js'
 
 /**

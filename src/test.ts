@@ -1,5 +1,6 @@
 import { loadPolyfill, crypto } from './internal/globals.js'
-import { encode, decode, binaryConcat } from './base64.js'
+import { encode, decode } from './base64.js'
+import { binaryConcat } from './binary.js'
 import { makeSalt } from './random.js'
 import { generateKeypair, wrapPrivateKey, unwrapPrivateKey, wrapKey, unwrapKey, exportPublicKey, importPublicKey } from './rsa.js'
 import { Algorithms } from './constants.js'

@@ -8,6 +8,5 @@
     "resolveJsonModule": true,
     "skipLibCheck": true,
     "stripInternal": true
-  },
-  "files": []
+  }
 }

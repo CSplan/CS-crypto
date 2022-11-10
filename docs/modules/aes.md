@@ -12,6 +12,8 @@
 
 - [ABdecrypt](aes.md#abdecrypt)
 - [ABencrypt](aes.md#abencrypt)
+- [binaryDecrypt](aes.md#binarydecrypt)
+- [binaryEncrypt](aes.md#binaryencrypt)
 - [blobDecrypt](aes.md#blobdecrypt)
 - [decrypt](aes.md#decrypt)
 - [deepDecrypt](aes.md#deepdecrypt)
@@ -37,7 +39,7 @@ Any data that is valid for encryption
 
 #### Defined in
 
-[aes.ts:115](https://github.com/very-amused/cs-crypto/blob/4e0103d/src/aes.ts#L115)
+[aes.ts:115](https://github.com/very-amused/cs-crypto/blob/f39485e/src/aes.ts#L115)
 
 ## Functions
 
@@ -45,6 +47,7 @@ Any data that is valid for encryption
 
 ▸ **ABdecrypt**(`cipherbuf`, `key`): `Promise`<`Uint8Array`\>
 
+**`deprecated`** - Use binaryDecrypt
 Decrypt an ArrayBuffer
 
 #### Parameters
@@ -60,7 +63,7 @@ Decrypt an ArrayBuffer
 
 #### Defined in
 
-[aes.ts:140](https://github.com/very-amused/cs-crypto/blob/4e0103d/src/aes.ts#L140)
+[aes.ts:167](https://github.com/very-amused/cs-crypto/blob/f39485e/src/aes.ts#L167)
 
 ___
 
@@ -68,6 +71,7 @@ ___
 
 ▸ **ABencrypt**(`plainbuf`, `key`): `Promise`<`Uint8Array`\>
 
+**`deprecated`** - Use aes.binaryEncrypt
 Encrypt an ArrayBuffer, used for encrypting non-text data such as images
 
 #### Parameters
@@ -83,13 +87,59 @@ Encrypt an ArrayBuffer, used for encrypting non-text data such as images
 
 #### Defined in
 
-[aes.ts:122](https://github.com/very-amused/cs-crypto/blob/4e0103d/src/aes.ts#L122)
+[aes.ts:159](https://github.com/very-amused/cs-crypto/blob/f39485e/src/aes.ts#L159)
+
+___
+
+### binaryDecrypt
+
+▸ **binaryDecrypt**(`ciphertext`, `key`): `Promise`<`Uint8Array`\>
+
+Decrypt a Uint8Array
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `ciphertext` | `Uint8Array` |
+| `key` | `CryptoKey` |
+
+#### Returns
+
+`Promise`<`Uint8Array`\>
+
+#### Defined in
+
+[aes.ts:139](https://github.com/very-amused/cs-crypto/blob/f39485e/src/aes.ts#L139)
+
+___
+
+### binaryEncrypt
+
+▸ **binaryEncrypt**(`plaintext`, `key`): `Promise`<`Uint8Array`\>
+
+Encrypt a Uint8Array
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `plaintext` | `Uint8Array` |
+| `key` | `CryptoKey` |
+
+#### Returns
+
+`Promise`<`Uint8Array`\>
+
+#### Defined in
+
+[aes.ts:122](https://github.com/very-amused/cs-crypto/blob/f39485e/src/aes.ts#L122)
 
 ___
 
 ### blobDecrypt
 
-▸ **blobDecrypt**(`cipherbuf`, `key`, `encoding`): `Promise`<`Blob`\>
+▸ **blobDecrypt**(`ciphertext`, `key`, `encoding`): `Promise`<`Blob`\>
 
 Decrypt an ArrayBuffer as a blob with a specified encoding
 
@@ -97,7 +147,7 @@ Decrypt an ArrayBuffer as a blob with a specified encoding
 
 | Name | Type |
 | :------ | :------ |
-| `cipherbuf` | `Uint8Array` |
+| `ciphertext` | `Uint8Array` |
 | `key` | `CryptoKey` |
 | `encoding` | `string` |
 
@@ -107,7 +157,7 @@ Decrypt an ArrayBuffer as a blob with a specified encoding
 
 #### Defined in
 
-[aes.ts:162](https://github.com/very-amused/cs-crypto/blob/4e0103d/src/aes.ts#L162)
+[aes.ts:175](https://github.com/very-amused/cs-crypto/blob/f39485e/src/aes.ts#L175)
 
 ___
 
@@ -130,7 +180,7 @@ Decrypt text that was previously encrypted using the same AES key
 
 #### Defined in
 
-[aes.ts:88](https://github.com/very-amused/cs-crypto/blob/4e0103d/src/aes.ts#L88)
+[aes.ts:88](https://github.com/very-amused/cs-crypto/blob/f39485e/src/aes.ts#L88)
 
 ___
 
@@ -159,7 +209,7 @@ Recursively decrypt an object or array while preserving its original structure
 
 #### Defined in
 
-[aes.ts:203](https://github.com/very-amused/cs-crypto/blob/4e0103d/src/aes.ts#L203)
+[aes.ts:216](https://github.com/very-amused/cs-crypto/blob/f39485e/src/aes.ts#L216)
 
 ___
 
@@ -188,7 +238,7 @@ Recursively encrypt an object or array while preserving its original structure
 
 #### Defined in
 
-[aes.ts:172](https://github.com/very-amused/cs-crypto/blob/4e0103d/src/aes.ts#L172)
+[aes.ts:185](https://github.com/very-amused/cs-crypto/blob/f39485e/src/aes.ts#L185)
 
 ___
 
@@ -211,13 +261,15 @@ Encrypt text using AES-GCM or AES-CBC
 
 #### Defined in
 
-[aes.ts:47](https://github.com/very-amused/cs-crypto/blob/4e0103d/src/aes.ts#L47)
+[aes.ts:48](https://github.com/very-amused/cs-crypto/blob/f39485e/src/aes.ts#L48)
 
 ___
 
 ### exportKey
 
 ▸ **exportKey**(`key`): `Promise`<`string`\>
+
+Export an AES key using base64 encoding
 
 #### Parameters
 
@@ -231,7 +283,7 @@ ___
 
 #### Defined in
 
-[aes.ts:230](https://github.com/very-amused/cs-crypto/blob/4e0103d/src/aes.ts#L230)
+[aes.ts:246](https://github.com/very-amused/cs-crypto/blob/f39485e/src/aes.ts#L246)
 
 ___
 
@@ -253,7 +305,7 @@ Generate a new 256 bit AES-GCM or AES-CBC key
 
 #### Defined in
 
-[aes.ts:28](https://github.com/very-amused/cs-crypto/blob/4e0103d/src/aes.ts#L28)
+[aes.ts:29](https://github.com/very-amused/cs-crypto/blob/f39485e/src/aes.ts#L29)
 
 ___
 
@@ -276,4 +328,4 @@ Import an AES key from raw key material
 
 #### Defined in
 
-[aes.ts:15](https://github.com/very-amused/cs-crypto/blob/4e0103d/src/aes.ts#L15)
+[aes.ts:16](https://github.com/very-amused/cs-crypto/blob/f39485e/src/aes.ts#L16)

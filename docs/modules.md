@@ -4,9 +4,16 @@
 
 ## Table of contents
 
+### References
+
+- [ABconcat](modules.md#abconcat)
+- [decode](modules.md#decode)
+- [encode](modules.md#encode)
+
 ### Namespaces
 
 - [aes](modules/aes.md)
+- [base64](modules/base64.md)
 - [rsa](modules/rsa.md)
 
 ### Enumerations
@@ -15,47 +22,40 @@
 
 ### Functions
 
-- [ABconcat](modules.md#abconcat)
-- [decode](modules.md#decode)
-- [encode](modules.md#encode)
+- [binaryConcat](modules.md#binaryconcat)
 - [makeSalt](modules.md#makesalt)
 
-## Functions
+## References
 
 ### ABconcat
 
-▸ **ABconcat**(`buf1`, `buf2`): `Uint8Array`
-
-Concatenate two ArrayBuffers or Uint8Arrays
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `buf1` | `Uint8Array` \| `ArrayBuffer` |
-| `buf2` | `Uint8Array` \| `ArrayBuffer` |
-
-#### Returns
-
-`Uint8Array`
-
-#### Defined in
-
-[base64.ts:189](https://github.com/very-amused/cs-crypto/blob/4e0103d/src/base64.ts#L189)
+Re-exports [ABconcat](modules/base64.md#abconcat)
 
 ___
 
 ### decode
 
-▸ **decode**(`encoded`): `Uint8Array`
+Re-exports [decode](modules/base64.md#decode)
 
-Decode standard encoded Base64 to a Uint8Array.
+___
+
+### encode
+
+Re-exports [encode](modules/base64.md#encode)
+
+## Functions
+
+### binaryConcat
+
+▸ **binaryConcat**(...`data`): `Uint8Array`
+
+Concatenate multiple Uint8Arrays into a result buffer
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `encoded` | `string` |
+| `...data` | `Uint8Array`[] |
 
 #### Returns
 
@@ -63,29 +63,7 @@ Decode standard encoded Base64 to a Uint8Array.
 
 #### Defined in
 
-[base64.ts:143](https://github.com/very-amused/cs-crypto/blob/4e0103d/src/base64.ts#L143)
-
-___
-
-### encode
-
-▸ **encode**(`data`): `string`
-
-Encode a Uint8Array using Base64 standard encoding
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `data` | `Uint8Array` |
-
-#### Returns
-
-`string`
-
-#### Defined in
-
-[base64.ts:99](https://github.com/very-amused/cs-crypto/blob/4e0103d/src/base64.ts#L99)
+binary.ts:2
 
 ___
 
@@ -107,4 +85,4 @@ Make a salt of a specified byte length
 
 #### Defined in
 
-[random.ts:6](https://github.com/very-amused/cs-crypto/blob/4e0103d/src/random.ts#L6)
+[random.ts:6](https://github.com/very-amused/cs-crypto/blob/f39485e/src/random.ts#L6)
