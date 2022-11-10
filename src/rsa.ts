@@ -1,6 +1,6 @@
 import { Algorithms, Hashes, Formats, RSA_PUBLIC_EXPONENT } from './constants.js'
 import { crypto } from './internal/globals.js'
-import { encode, ABconcat, decode } from './base64.js'
+import { encode, decode, binaryConcat } from './base64.js'
 import { makeSalt } from './random.js'
 
 /**
@@ -30,7 +30,7 @@ export async function wrapPrivateKey(
   const iv = makeSalt(12)
 
   // Encrypt the private key using the derived key
-  const encrypted = await crypto.subtle.wrapKey(
+  const encrypted = new Uint8Array(await crypto.subtle.wrapKey(
     Formats.PKCS8,
     privateKey,
     wrappingKey,
@@ -38,12 +38,10 @@ export async function wrapPrivateKey(
       name: Algorithms.AES_GCM,
       iv
     }
-  )
-  // Concatenate the iv with the encrypted key
-  const concatenated = ABconcat(iv, encrypted)
+  ))
 
-  // Encode to base64 and prepend the encryption algorithm
-  return encode(concatenated)
+  // Prepend the iv and encode to base64
+  return encode(binaryConcat(iv, encrypted))
 }
 
 /**

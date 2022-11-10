@@ -1,6 +1,6 @@
 import { crypto } from './internal/globals.js'
 import { AES_KEY_LENGTH, Formats, Algorithms } from './constants.js'
-import { ABconcat, encode, decode, binaryConcat } from './base64.js'
+import { encode, decode, binaryConcat } from './base64.js'
 import { makeSalt } from './random.js'
 
 const dev = process.env.NODE_ENV === 'development'
@@ -116,50 +116,63 @@ export type StringLike = {
 }
 
 /**
- * Encrypt an ArrayBuffer, used for encrypting non-text data such as images
+ * Encrypt a Uint8Array
  */
-export async function ABencrypt(plainbuf: ArrayBuffer|Uint8Array, key: CryptoKey): Promise<Uint8Array> {
+export async function binaryEncrypt(plaintext: Uint8Array, key: CryptoKey): Promise<Uint8Array> {
   const iv = genIV(key)
-  const encrypted = await crypto.subtle.encrypt(
+  const encrypted = new Uint8Array(await crypto.subtle.encrypt(
     {
       name: key.algorithm.name,
       iv
     },
     key,
-    plainbuf
-  )
+    plaintext
+  ))
 
-  const concatenated = ABconcat(iv, encrypted)
-  return concatenated
+  return binaryConcat(iv, encrypted)
 }
 
 /**
- * Decrypt an ArrayBuffer
+ * Decrypt a Uint8Array
  */
-export async function ABdecrypt(cipherbuf: Uint8Array, key: CryptoKey): Promise<Uint8Array> {
+export async function binaryDecrypt(ciphertext: Uint8Array, key: CryptoKey): Promise<Uint8Array> {
   // Separate iv and ciphertext
   const ivLength = getIVlength(key)
-  const iv = cipherbuf.slice(0, ivLength)
-  const encrypted = cipherbuf.slice(ivLength)
+  const iv = ciphertext.slice(0, ivLength)
+  const encrypted = ciphertext.slice(ivLength)
 
-  const decrypted = await crypto.subtle.decrypt(
+  return new Uint8Array(await crypto.subtle.decrypt(
     {
       name: key.algorithm.name,
       iv
     },
     key,
     encrypted
-  )
+  ))
+}
 
-  return new Uint8Array(decrypted)
+/**
+ * @deprecated - Use aes.binaryEncrypt
+ * Encrypt an ArrayBuffer, used for encrypting non-text data such as images
+ */
+export async function ABencrypt(plainbuf: ArrayBuffer|Uint8Array, key: CryptoKey): Promise<Uint8Array> {
+  return binaryEncrypt(new Uint8Array(plainbuf), key)
+}
+
+/**
+ * @deprecated - Use binaryDecrypt
+ * Decrypt an ArrayBuffer
+ */
+export async function ABdecrypt(cipherbuf: Uint8Array, key: CryptoKey): Promise<Uint8Array> {
+  return binaryDecrypt(cipherbuf, key)
 }
 
 // TODO: Write Blob -> Buffer polyfill to allow testing blobDecrypt
 /**
  * Decrypt an ArrayBuffer as a blob with a specified encoding
  */
-export async function blobDecrypt(cipherbuf: Uint8Array, key: CryptoKey, encoding: string): Promise<Blob> {
-  const raw = await ABdecrypt(cipherbuf, key)
+export async function blobDecrypt(ciphertext: Uint8Array, key: CryptoKey, encoding: string): Promise<Blob> {
+  const raw = await binaryDecrypt(ciphertext, key)
   return new Blob([raw], {
     type: encoding
   })
@@ -226,6 +239,9 @@ export async function deepDecrypt(data: unknown, cryptoKey: CryptoKey): Promise<
   }
 }
 
+/**
+ * Export an AES key using base64 encoding
+ */
 export async function exportKey(
   key: CryptoKey
 ): Promise<string> {
