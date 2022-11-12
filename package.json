@@ -10,13 +10,11 @@
     "postbuild": "tsc -b src/tsconfig-d.json && rm -rf lib/internal",
     "build:docs": "typedoc src/index.ts --out docs",
     "postbuild:docs": "sed 's/\\[docs\\](docs\\/modules.md)/\\[modules\\](modules.md)/' -i docs/README.md",
-    "build:docs-html": "typedoc src/index.ts --out docs_html --plugin none",
-    "view-docs": "xdg-open docs_html/index.html &>/dev/null",
     "lint": "eslint src/",
     "pretest": "tsc -b src/tsconfig-test.json",
     "test": "ava src/test.ts",
-    "clean": "rm -rf test lib dist",
-    "prepack": "yarn clean && yarn build"
+    "clean": "rm -rf test lib",
+    "prepack": "yarn clean && yarn test && yarn build && yarn build:docs"
   },
   "repository": "git+https://github.com/very-amused/cs-crypto",
   "author": "very-amused <very-amused@pm.me>",
