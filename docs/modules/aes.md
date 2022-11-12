@@ -39,7 +39,7 @@ Any data that is valid for encryption
 
 #### Defined in
 
-[aes.ts:115](https://github.com/very-amused/cs-crypto/blob/995e074/src/aes.ts#L115)
+[aes.ts:114](https://github.com/very-amused/cs-crypto/blob/4e95e0e/src/aes.ts#L114)
 
 ## Functions
 
@@ -63,7 +63,7 @@ Decrypt an ArrayBuffer
 
 #### Defined in
 
-[aes.ts:167](https://github.com/very-amused/cs-crypto/blob/995e074/src/aes.ts#L167)
+[aes.ts:166](https://github.com/very-amused/cs-crypto/blob/4e95e0e/src/aes.ts#L166)
 
 ___
 
@@ -87,7 +87,7 @@ Encrypt an ArrayBuffer, used for encrypting non-text data such as images
 
 #### Defined in
 
-[aes.ts:159](https://github.com/very-amused/cs-crypto/blob/995e074/src/aes.ts#L159)
+[aes.ts:158](https://github.com/very-amused/cs-crypto/blob/4e95e0e/src/aes.ts#L158)
 
 ___
 
@@ -110,7 +110,7 @@ Decrypt a Uint8Array
 
 #### Defined in
 
-[aes.ts:139](https://github.com/very-amused/cs-crypto/blob/995e074/src/aes.ts#L139)
+[aes.ts:138](https://github.com/very-amused/cs-crypto/blob/4e95e0e/src/aes.ts#L138)
 
 ___
 
@@ -133,7 +133,7 @@ Encrypt a Uint8Array
 
 #### Defined in
 
-[aes.ts:122](https://github.com/very-amused/cs-crypto/blob/995e074/src/aes.ts#L122)
+[aes.ts:121](https://github.com/very-amused/cs-crypto/blob/4e95e0e/src/aes.ts#L121)
 
 ___
 
@@ -157,7 +157,7 @@ Decrypt an ArrayBuffer as a blob with a specified encoding
 
 #### Defined in
 
-[aes.ts:175](https://github.com/very-amused/cs-crypto/blob/995e074/src/aes.ts#L175)
+[aes.ts:174](https://github.com/very-amused/cs-crypto/blob/4e95e0e/src/aes.ts#L174)
 
 ___
 
@@ -180,7 +180,7 @@ Decrypt text that was previously encrypted using the same AES key
 
 #### Defined in
 
-[aes.ts:88](https://github.com/very-amused/cs-crypto/blob/995e074/src/aes.ts#L88)
+[aes.ts:87](https://github.com/very-amused/cs-crypto/blob/4e95e0e/src/aes.ts#L87)
 
 ___
 
@@ -209,7 +209,7 @@ Recursively decrypt an object or array while preserving its original structure
 
 #### Defined in
 
-[aes.ts:216](https://github.com/very-amused/cs-crypto/blob/995e074/src/aes.ts#L216)
+[aes.ts:215](https://github.com/very-amused/cs-crypto/blob/4e95e0e/src/aes.ts#L215)
 
 ___
 
@@ -238,7 +238,7 @@ Recursively encrypt an object or array while preserving its original structure
 
 #### Defined in
 
-[aes.ts:185](https://github.com/very-amused/cs-crypto/blob/995e074/src/aes.ts#L185)
+[aes.ts:184](https://github.com/very-amused/cs-crypto/blob/4e95e0e/src/aes.ts#L184)
 
 ___
 
@@ -261,7 +261,7 @@ Encrypt text using AES-GCM or AES-CBC
 
 #### Defined in
 
-[aes.ts:48](https://github.com/very-amused/cs-crypto/blob/995e074/src/aes.ts#L48)
+[aes.ts:47](https://github.com/very-amused/cs-crypto/blob/4e95e0e/src/aes.ts#L47)
 
 ___
 
@@ -283,7 +283,7 @@ Export an AES key using base64 encoding
 
 #### Defined in
 
-[aes.ts:246](https://github.com/very-amused/cs-crypto/blob/995e074/src/aes.ts#L246)
+[aes.ts:245](https://github.com/very-amused/cs-crypto/blob/4e95e0e/src/aes.ts#L245)
 
 ___
 
@@ -305,7 +305,7 @@ Generate a new 256 bit AES-GCM or AES-CBC key
 
 #### Defined in
 
-[aes.ts:29](https://github.com/very-amused/cs-crypto/blob/995e074/src/aes.ts#L29)
+[aes.ts:28](https://github.com/very-amused/cs-crypto/blob/4e95e0e/src/aes.ts#L28)
 
 ___
 
@@ -328,4 +328,4 @@ Import an AES key from raw key material
 
 #### Defined in
 
-[aes.ts:16](https://github.com/very-amused/cs-crypto/blob/995e074/src/aes.ts#L16)
+[aes.ts:15](https://github.com/very-amused/cs-crypto/blob/4e95e0e/src/aes.ts#L15)

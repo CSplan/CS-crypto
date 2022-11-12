@@ -32,7 +32,7 @@ Concatenate two ArrayBuffers or Uint8Arrays
 
 #### Defined in
 
-[base64.ts:192](https://github.com/very-amused/cs-crypto/blob/995e074/src/base64.ts#L192)
+[base64.ts:187](https://github.com/very-amused/cs-crypto/blob/4e95e0e/src/base64.ts#L187)
 
 ___
 
@@ -54,7 +54,7 @@ Decode standard encoded Base64 to a Uint8Array.
 
 #### Defined in
 
-[base64.ts:145](https://github.com/very-amused/cs-crypto/blob/995e074/src/base64.ts#L145)
+[base64.ts:140](https://github.com/very-amused/cs-crypto/blob/4e95e0e/src/base64.ts#L140)
 
 ___
 
@@ -76,4 +76,4 @@ Encode a Uint8Array using Base64 standard encoding
 
 #### Defined in
 
-[base64.ts:101](https://github.com/very-amused/cs-crypto/blob/995e074/src/base64.ts#L101)
+[base64.ts:96](https://github.com/very-amused/cs-crypto/blob/4e95e0e/src/base64.ts#L96)
