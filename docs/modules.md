@@ -63,7 +63,7 @@ Concatenate multiple Uint8Arrays into a result buffer
 
 #### Defined in
 
-[binary.ts:2](https://github.com/very-amused/cs-crypto/blob/b2c9997/src/binary.ts#L2)
+[binary.ts:2](https://github.com/very-amused/cs-crypto/blob/995e074/src/binary.ts#L2)
 
 ___
 
@@ -85,4 +85,4 @@ Make a salt of a specified byte length
 
 #### Defined in
 
-[random.ts:6](https://github.com/very-amused/cs-crypto/blob/b2c9997/src/random.ts#L6)
+[random.ts:6](https://github.com/very-amused/cs-crypto/blob/995e074/src/random.ts#L6)
