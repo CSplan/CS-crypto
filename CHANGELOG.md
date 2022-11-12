@@ -4,6 +4,19 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.8.1] 2022-11-12
+### Added
+- `aes.binaryEncrypt` and `aes.binaryDecrypt` functions, superseding `aes.ABencrypt` and `aes.ABdecrypt`
+- `binaryConcat` function, superseding `ABconcat` and accepting a variable amount of `Uint8Arrays` instead of only 2
+
+### Changed
+- Deprecated `aes.ABencrypt`, `aes.ABdecrypt`, and `ABconcat`, use `aes.binaryEncrypt`, `aes.binaryDecrypt`, and `binaryConcat` instead
+- Deprecated exports of `encode` and `decode` from the root module, import these functions as `base64.encode` and `base64.decode`
+
+### Removed
+- Minified builds in `dist`, minification is now left up to library users. This change is made with the intent of simplifying the build process
+- Comments from js build output, only declaration file and license comments are preserved in builds
+
 ## [0.8.0] 2022-05-08
 ### Changed
 - This package is now exclusively an ES module with `type: module` declared in package.json
