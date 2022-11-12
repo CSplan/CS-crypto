@@ -4,11 +4,10 @@ import { encode, decode } from './base64.js'
 import { binaryConcat } from './binary.js'
 import { makeSalt } from './random.js'
 
-const dev = process.env.NODE_ENV === 'development'
 const messages = {
-  unsupportedAlgorithm: 'an unsupported AES algorithm was requested, only AES-GCM and AES-CBC encryption are supported in this library',
+  badCipher: 'an unsupported AES cipher was requested, only AES-GCM and AES-CBC are supported',
   badData: 'data provided is not of type object, array, or stringlike'
-}
+} as const
 
 /**
  * Import an AES key from raw key material
@@ -78,7 +77,7 @@ function getIVlength(key: CryptoKey): number {
     case 'AES-CBC':
       return 16
     default:
-      throw new Error(dev ? messages.unsupportedAlgorithm : undefined)
+      throw new Error(messages.badCipher)
   }
 }
 
@@ -206,7 +205,7 @@ export async function deepEncrypt(data: unknown, cryptoKey: CryptoKey): Promise<
 
   // Any data that doesn't implement any of the above is not supported
   } else {
-    throw new TypeError(dev ? messages.badData : undefined)
+    throw new TypeError(messages.badData)
   }
 }
 
@@ -236,7 +235,7 @@ export async function deepDecrypt(data: unknown, cryptoKey: CryptoKey): Promise<
     return decrypt(data, cryptoKey)
   // Any data that doesn't implement any of the above is not supported
   } else {
-    throw new TypeError(dev ? messages.badData : undefined)
+    throw new TypeError(messages.badData)
   }
 }
 
