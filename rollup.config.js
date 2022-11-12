@@ -1,8 +1,5 @@
 import typescript from '@rollup/plugin-typescript'
 
-const tsconfig = 'src/tsconfig.json'
-const external = ['@peculiar/webcrypto']
-
 export default {
   input: 'src/index.ts',
   output: {
@@ -11,10 +8,10 @@ export default {
   },
   plugins: [
     typescript({
-      tsconfig,
+      tsconfig: 'src/tsconfig.json',
       outDir: 'lib',
       removeComments: true
     })
   ],
-  external
+  external: ['@peculiar/webcrypto']
 }
