@@ -140,7 +140,7 @@ export function encode(data: Uint8Array): string {
 export function decode(encoded: string): Uint8Array {
 	// Convert from ASCII encoding to indexes 0-63
 	const indexes = atoi(new TextEncoder().encode(
-		encoded.replace(/\n/g, '') // Standard base64 behavior requires ignoring newlines
+		encoded.replaceAll(/[\r\n]/g, '') // Standard base64 behavior requires ignoring newlines
 	))
 
 	// Calculate result length

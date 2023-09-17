@@ -15,6 +15,12 @@ declarations: $(src)
 	rm -rf build/internal
 .PHONY: declarations
 
+test: tests
+	$(node-bin)/jasmine test/test/index.js
+tests:
+	$(node-bin)/tsc -b src/tsconfig-test.json
+.PHONY: test tests
+
 clean:
 	rm -f $(d-ts) $(cs-crypto)
 .PHONY: clean
