@@ -4,7 +4,7 @@ import { binaryConcat } from './binary.js'
 import { makeSalt } from './random.js'
 import { generateKeypair, wrapPrivateKey, unwrapPrivateKey, wrapKey, unwrapKey, exportPublicKey, importPublicKey } from './rsa.js'
 import { Algorithms } from './constants.js'
-import { generateKey, encrypt, decrypt, deepEncrypt, deepDecrypt, importKeyMaterial, ABencrypt, ABdecrypt } from './aes.js'
+import { generateKey, encrypt, decrypt, deepEncrypt, deepDecrypt, importKeyMaterial, binaryEncrypt, binaryDecrypt } from './aes.js'
 import t from 'ava'
 const test = t.serial // Tests are serial by default
 const sampleText = 'klasdmlkasdaslkdalkdasl'
@@ -214,13 +214,13 @@ test('Unwrap (decrypt) AES-GCM key with RSA private key', async (t) => {
 		await t.notThrowsAsync(async () => {
 			buf = crypto.getRandomValues(new Uint8Array(32))
 			key = await generateKey('AES-GCM')
-			encrypted = await ABencrypt(buf, key)
+			encrypted = await binaryEncrypt(buf, key)
 		})
 	})
 
 	test('Decrypt ArrayBuffer with AES-GCM', async (t) => {
 		await t.notThrowsAsync(async () => {
-			const decrypted = await ABdecrypt(encrypted, key)
+			const decrypted = await binaryDecrypt(encrypted, key)
 			t.deepEqual(decrypted, buf)
 		})
 	})

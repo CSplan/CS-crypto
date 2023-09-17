@@ -11,14 +11,14 @@ const banner = `/**
 export default {
   input: 'src/index.ts',
   output: {
-    dir: 'lib',
+    dir: 'build',
     format: 'es',
     banner
   },
   plugins: [
     typescript({
       tsconfig: 'src/tsconfig.json',
-      outDir: 'lib',
+      outDir: 'build',
       removeComments: true
     })
   ],
