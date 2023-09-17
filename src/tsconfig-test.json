@@ -6,5 +6,5 @@
     "outDir": "../test",
     "declaration": false
   },
-  "exclude": []
+  "exclude": ["test-old.ts"]
 }
