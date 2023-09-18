@@ -91,7 +91,7 @@ export async function exportPublicKey(publicKey: CryptoKey): Promise<string> {
 /**
  * Import an RSA public key from base64 encoded text
  */
-export function importPublicKey(encoded: string): PromiseLike<CryptoKey> {
+export function importPublicKey(encoded: string): Promise<CryptoKey> {
 	return crypto.subtle.importKey(
 		Formats.SPKI,
 		decode(encoded),

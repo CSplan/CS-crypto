@@ -44,7 +44,7 @@ module.exports = {
 		'@typescript-eslint/explicit-function-return-type': ['error', {
 			allowExpressions: true
 		}],
-		'@typescript-eslint/consistent-type-definitions': ['error', 'type'],
+		'@typescript-eslint/consistent-type-definitions': ['warn', 'type'],
 		'@typescript-eslint/member-delimiter-style': ['error', {
 			multiline: {
 				delimiter: 'none'
@@ -62,6 +62,11 @@ module.exports = {
 			case: 'kebabCase'
 		}],
 		// File imports must include extensions for "type": "module" compatibility
-		'import/extensions': ['error', 'ignorePackages']
+		'import/extensions': ['error', 'ignorePackages'],
+		// Blacklisted syntax
+		'no-restricted-syntax': ['error', {
+			selector: 'ExpressionStatement > CallExpression[callee.name="spyOn"]',
+			message: 'spyOn must be chained to .and.callThrough()'
+		}]
 	}
 }

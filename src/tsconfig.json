@@ -7,5 +7,5 @@
     "stripInternal": true
   },
   "include": ["*.ts", "internal/*"],
-  "exclude": ["test/*"]
+  "exclude": ["test-old.ts"]
 }

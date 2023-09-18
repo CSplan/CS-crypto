@@ -5,6 +5,8 @@ cs-crypto=build/index.js
 d-ts-tmp:=$(src:.ts=.d.ts)
 d-ts:=$(d-ts-tmp:src/%=build/%)
 
+JASMINE-FLAGS=--random=false
+
 all: $(cs-crypto) declarations
 
 $(cs-crypto): $(src)
@@ -16,7 +18,7 @@ declarations: $(src)
 .PHONY: declarations
 
 test: tests
-	$(node-bin)/jasmine test/test/index.js
+	$(node-bin)/jasmine $(JASMINE-FLAGS) test/test/index.js
 tests:
 	$(node-bin)/tsc -b src/tsconfig-test.json
 .PHONY: test tests

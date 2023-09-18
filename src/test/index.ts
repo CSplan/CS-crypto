@@ -5,6 +5,10 @@ import { loadPolyfill, crypto } from '../internal/globals.js'
 import * as base64 from '../base64.js'
 import * as binary from '../binary.js'
 import * as random from '../random.js'
+import * as rsa from '../rsa.js'
+import * as constants from '../constants.js'
+import * as aes from '../aes.js'
+
 
 jasmine.getEnv().addReporter(reporter)
 
@@ -18,7 +22,7 @@ describe('Base64', () => {
 	const bufSize = 255
 	const nBuf = 10
 	const buf = new Uint8Array(bufSize)
-	it(`Encodes and Decodes ${nBuf} Random Byte Strings`, () => {
+	it(`Encodes and decodes ${nBuf} random byte strings`, () => {
 		const view = new Uint8Array(buf.buffer, 0, Math.floor((Math.random() * bufSize)) + 1)
 		crypto.getRandomValues(view)
 		const encoded = base64.encode(view)
@@ -89,3 +93,69 @@ describe('Random', () => {
 		expect(Math.random).not.toHaveBeenCalled()
 	})
 })
+
+describe('RSA', () => {
+	const keySize = 3072
+
+	let publicKey: CryptoKey|null
+	let privateKey: CryptoKey|null
+	it('Generates keypair', async () => {
+		spyOn(crypto.subtle, 'generateKey').and.callThrough()
+		;({ publicKey, privateKey } = await rsa.generateKeypair(keySize))
+		expect(crypto.subtle.generateKey).toHaveBeenCalled()
+		for (const key of [publicKey, privateKey]) {
+			expect(key).not.toBeNull()
+			expect(key.constructor.name).toBe('CryptoKey')
+			expect(key.algorithm.name).toBe(constants.Algorithms.RSA)
+			const algorithm = key.algorithm as RsaKeyAlgorithm
+			expect(algorithm.modulusLength).toBe(3072)
+			expect(algorithm.publicExponent).toEqual(constants.RSA_PUBLIC_EXPONENT)
+		}
+		expect(publicKey.usages).toEqual(['wrapKey'])
+		expect(privateKey.usages).toEqual(['unwrapKey'])
+	})
+
+	let exportedPublicKey: string|null = null
+	it('Exports public key', async () => {
+		expect(publicKey).not.toBeNull(); publicKey = publicKey!
+
+		spyOn(crypto.subtle, 'exportKey').and.callThrough()
+		exportedPublicKey = await rsa.exportPublicKey(publicKey)
+		expect(crypto.subtle.exportKey).toHaveBeenCalled()
+		expect(exportedPublicKey).not.toBeNull()
+	})
+	it('Imports public key', async () => {
+		expect(publicKey).not.toBeNull(); publicKey = publicKey!
+		expect(exportedPublicKey).not.toBeNull(); exportedPublicKey = exportedPublicKey!
+
+		spyOn(crypto.subtle, 'importKey').and.callThrough()
+		const imported = await rsa.importPublicKey(exportedPublicKey)
+		expect(crypto.subtle.importKey).toHaveBeenCalled()
+		expect(imported).toEqual(publicKey)
+	})
+
+	let AESkey: CryptoKey|null = null
+	let encryptedAESkey: string|null = null
+	it('Wraps AES keys', async () => {
+		expect(publicKey).not.toBeNull(); publicKey = publicKey!
+
+		// Keep in mind that we aren't testing key generation here
+		AESkey = await aes.generateKey('AES-GCM')
+		expect(AESkey.constructor.name).toBe('CryptoKey')
+		spyOn(crypto.subtle, 'wrapKey').and.callThrough()
+		encryptedAESkey = await rsa.wrapKey(AESkey, publicKey)
+		expect(crypto.subtle.wrapKey).toHaveBeenCalled()
+		expect(encryptedAESkey).not.toBeNull()
+	})
+	it('Unwraps AES keys', async () => {
+		expect(AESkey).not.toBeNull(); AESkey = AESkey!
+		expect(encryptedAESkey).not.toBeNull(); encryptedAESkey = encryptedAESkey!
+		expect(privateKey).not.toBeNull(); privateKey = privateKey!
+
+		spyOn(crypto.subtle, 'unwrapKey').and.callThrough()
+		const decryptedAESkey = await rsa.unwrapKey(encryptedAESkey, privateKey)
+		expect(crypto.subtle.unwrapKey).toHaveBeenCalled()
+		expect(decryptedAESkey).toEqual(AESkey)
+	})
+})
+
