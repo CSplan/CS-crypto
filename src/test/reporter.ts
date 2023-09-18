@@ -18,7 +18,7 @@ const reporter: jasmine.CustomReporter = {
 			return
 		}
 		for (const expectation of result.failedExpectations) {
-			process.stdout.write(`\nFAIL: ${expectation.message}`)
+			process.stdout.write(`\n\t \x1b[31mFAIL\x1b[0m: ${expectation.message}`)
 		}
 		process.stdout.write('\n')
 	}

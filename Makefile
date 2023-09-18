@@ -23,4 +23,5 @@ tests:
 
 clean:
 	rm -f $(d-ts) $(cs-crypto)
+	rm -rf test/*
 .PHONY: clean
