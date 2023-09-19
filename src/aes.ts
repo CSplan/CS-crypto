@@ -3,6 +3,8 @@ import { AES_KEY_LENGTH, Formats, Algorithms } from './constants.js'
 import { encode, decode } from './base64.js'
 import { binaryConcat } from './binary.js'
 import { makeSalt } from './random.js'
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import type * as rsa from './rsa.js'
 
 const messages = {
 	badCipher: 'an unsupported AES cipher was requested, only AES-GCM and AES-CBC are supported',
@@ -10,22 +12,32 @@ const messages = {
 } as const
 
 /**
+ * Advanced options for {@link importKeyMaterial}
+ */ 
+export type ImportKeyMaterialOpts = {
+	/** Supported key usages {@defaultValue ['encrypt', 'decrypt', 'wrapKey', 'unwrapKey']}*/
+	keyUsages?: KeyUsage[]
+	/** Whether the key can be exported via {@link rsa.wrapKey} {@defaultValue false}*/
+	extractable?: boolean
+}
+
+/**
  * Import an AES key from raw key material
  */
-export function importKeyMaterial(keyMaterial: Uint8Array, type: Algorithms.AES_GCM|Algorithms.AES_CBC): PromiseLike<CryptoKey> {
+export function importKeyMaterial(keyMaterial: Uint8Array, type: Algorithms.AES_GCM|Algorithms.AES_CBC, opts?: ImportKeyMaterialOpts): PromiseLike<CryptoKey> {
 	return crypto.subtle.importKey(
 		Formats.Raw,
 		keyMaterial,
 		type,
-		false,
-		['encrypt', 'decrypt', 'wrapKey', 'unwrapKey']
+		opts?.extractable !== undefined ? opts.extractable : false,
+		opts?.keyUsages !== undefined ? opts.keyUsages : ['encrypt', 'decrypt', 'wrapKey', 'unwrapKey']
 	)
 }
 
 /**
  * Generate a new 256 bit AES-GCM or AES-CBC key
  */
-export function generateKey(type: 'AES-GCM'|'AES-CBC'): PromiseLike<CryptoKey> {
+export function generateKey(type: 'AES-GCM'|'AES-CBC'): Promise<CryptoKey> {
 	return crypto.subtle.generateKey(
 		{
 			name: type,

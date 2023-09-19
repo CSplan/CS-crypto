@@ -159,3 +159,41 @@ describe('RSA', () => {
 	})
 })
 
+describe('AES', () => {
+	const cipherMode = constants.Algorithms.AES_GCM
+
+	let key: CryptoKey|null = null
+	it('Generates key', async () => {
+		spyOn(crypto.subtle, 'generateKey').and.callThrough()
+		key = await aes.generateKey(cipherMode)
+		expect(crypto.subtle.generateKey).toHaveBeenCalled()
+		expect(key).not.toBeNull()
+		expect(key.constructor.name).toBe('CryptoKey')
+		expect(key.algorithm.name).toBe(cipherMode)
+		const algorithm = key.algorithm as AesKeyAlgorithm
+		expect(algorithm.length).toBe(constants.AES_KEY_LENGTH)
+		expect(key.usages).toEqual(['encrypt', 'decrypt'])
+	})
+	let exportedKey: string|null = null
+	it('Exports key', async () => {
+		expect(key).not.toBeNull(); key = key!
+
+		spyOn(crypto.subtle, 'exportKey').and.callThrough()
+		exportedKey = await aes.exportKey(key)
+		expect(crypto.subtle.exportKey).toHaveBeenCalled()
+		expect(exportedKey).not.toBeNull()
+	})
+	it('Imports key material', async () => {
+		expect(key).not.toBeNull(); key = key!
+		expect(exportedKey).not.toBeNull(); exportedKey = exportedKey!
+
+		spyOn(crypto.subtle, 'importKey').and.callThrough()
+		const exportedKeyMaterial = base64.decode(exportedKey)
+		const imported = await aes.importKeyMaterial(exportedKeyMaterial, cipherMode, {
+			keyUsages: key.usages,
+			extractable: key.extractable
+		})
+		expect(crypto.subtle.importKey).toHaveBeenCalled()
+		expect(imported).toEqual(key)
+	})
+})
