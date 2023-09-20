@@ -1,7 +1,6 @@
 import 'jasmine'
 import 'process'
 
-
 const reporter: jasmine.CustomReporter = {
 	jasmineStarted() {
 		console.log('Running tests:\n')

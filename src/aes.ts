@@ -1,5 +1,5 @@
 import { crypto } from './internal/globals.js'
-import { AES_KEY_LENGTH, Formats, Algorithms } from './constants.js'
+import { AES_KEY_LENGTH, Formats, Algorithms, Hashes } from './constants.js'
 import { encode, decode } from './base64.js'
 import { binaryConcat } from './binary.js'
 import { makeSalt } from './random.js'
@@ -12,7 +12,7 @@ const messages = {
 } as const
 
 /**
- * Advanced options for {@link importKeyMaterial}
+ * Advanced options for {@link importKeyMaterial} and {@link unwrapKey}
  */ 
 export type ImportKeyMaterialOpts = {
 	/** Supported key usages {@defaultValue ['encrypt', 'decrypt', 'wrapKey', 'unwrapKey']}*/
@@ -262,4 +262,68 @@ export async function exportKey(
 		key
 	)
 	return encode(new Uint8Array(exported))
+}
+
+/**
+ * Wrap (encrypt) an asymmetric key using an AES key. Currently only RSA private keys are supported to be wrapped.
+ *
+ * @param key - Key to be encrypted
+ * @param wrappingKey - AES key used to wrap {@link key}
+ */
+export async function wrapKey(
+	key: CryptoKey,
+	wrappingKey: CryptoKey
+): Promise<string> {
+	// Derive a secure key of the specified algorithm using the passphrase and salt
+	const iv = makeSalt(12)
+
+	// Encrypt the private key using the derived key
+	const encrypted = new Uint8Array(await crypto.subtle.wrapKey(
+		Formats.PKCS8,
+		key,
+		wrappingKey,
+		{
+			name: Algorithms.AES_GCM,
+			iv
+		}
+	))
+
+	// Prepend the iv and encode to base64
+	return encode(binaryConcat(iv, encrypted))
+}
+
+/**
+ * Unwrap (decrypt) an asymmetric key using an AES key. Currently only RSA private keys are supposed to be unwrapped.
+ *
+ * @param keyCiphertext - Ciphertext of key to be decrypted
+ * @param unwrappingKey - AES key used to unwrap {@link keyCiphertext}
+ * @param opts - Optional key import options
+ * (note for transitioning from the deprecated `rsa.unwrapPrivateKey`: the `exportable` arg is superseded by `opts.extractable`)
+ */
+export async function unwrapKey(
+	keyCiphertext: string,
+	unwrappingKey: CryptoKey,
+	opts?: ImportKeyMaterialOpts
+): Promise<CryptoKey> {
+
+	// Decode the provided information and split into iv and encrypted private key
+	const decoded = decode(keyCiphertext)
+	const iv = decoded.slice(0, 12)
+	const encrypted = decoded.slice(12)
+
+	return crypto.subtle.unwrapKey(
+		Formats.PKCS8,
+		encrypted,
+		unwrappingKey,
+		{
+			name: Algorithms.AES_GCM,
+			iv
+		},
+		{
+			name: Algorithms.RSA,
+			hash: Hashes.SHA_512
+		},
+		opts?.extractable !== undefined ? opts.extractable : false,
+		opts?.keyUsages !== undefined ? opts.keyUsages : ['unwrapKey']
+	)
 }

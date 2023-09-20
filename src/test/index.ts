@@ -286,4 +286,31 @@ describe('AES', () => {
 		const decrypted = await aes.deepDecrypt(encryptedArr, key)
 		expect(decrypted).toEqual(encryptableArr)
 	})
+
+	let privateKey: CryptoKey|null = null
+	let encryptedPrivateKey: string|null = null
+	it('Wraps RSA private keys', async () => {
+		expect(key).not.toBeNull(); key = key!
+		// We don't need to store the public key for this test
+		;({ privateKey } = await rsa.generateKeypair(3072))
+		expect(privateKey).not.toBeNull(); privateKey = privateKey!
+
+		spyOn(crypto.subtle, 'wrapKey').and.callThrough()
+		encryptedPrivateKey = await aes.wrapKey(privateKey, key)
+		expect(crypto.subtle.wrapKey).toHaveBeenCalled()
+		expect(encryptedPrivateKey).not.toBeNull()
+	})
+	it('Unwraps RSA private keys', async () => {
+		expect(key).not.toBeNull(); key = key!
+		expect(privateKey).not.toBeNull(); privateKey = privateKey!
+		expect(encryptedPrivateKey).not.toBeNull(); encryptedPrivateKey = encryptedPrivateKey!
+
+		spyOn(crypto.subtle, 'unwrapKey').and.callThrough()
+		const decrypted = await aes.unwrapKey(encryptedPrivateKey, key, {
+			keyUsages: privateKey.usages,
+			extractable: privateKey.extractable
+		})
+		expect(crypto.subtle.unwrapKey).toHaveBeenCalled()
+		expect(decrypted).toEqual(privateKey)
+	})
 })

@@ -12,6 +12,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Migrated all tests from Ava to Jasmine
 - Switched to GNU Make as build system
 
+### Deprecated
+- WARNING: Release 0.8.3 will be a **total purge for all functions marked as @deprecated**. Any code depending on functions deprecated as of 0.8.2 (including functions deprecated *only* as of 0.8.2) will break with 0.8.3 when these functions are **removed**.
+- `rsa.wrapPrivateKey` and `rsa.unwrapPrivateKey`, these functions are now provided as `aes.wrapKey` and `aes.unwrapKey` to improve organization and consistency. *With consideration to the upcoming deprecation purge in 0.8.3, these functions are noteworthy as a rapid breaking change turnaround, migration should be prioritized.*
+
 ## [0.8.1] 2022-11-12
 ### Added
 - `aes.binaryEncrypt` and `aes.binaryDecrypt` functions, superseding `aes.ABencrypt` and `aes.ABdecrypt`

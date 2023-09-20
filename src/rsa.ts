@@ -3,6 +3,8 @@ import { crypto } from './internal/globals.js'
 import { encode, decode } from './base64.js'
 import { binaryConcat } from './binary.js'
 import { makeSalt } from './random.js'
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import type { wrapKey as aesWrapKey } from './aes.js'
 
 /**
  * Generate an RSA keypair of a specified keysize
@@ -22,6 +24,9 @@ export function generateKeypair(keySize: number): Promise<Required<CryptoKeyPair
 
 /**
  * Encrypt an RSA private key using an AES private key generated using a passphrase and salt
+ *
+ * @deprecated This function is being moved to the `aes` module for more consistent organization.
+ * Use {@link aesWrapKey | aes.wrapKey} instead.
  */
 export async function wrapPrivateKey(
 	privateKey: CryptoKey,

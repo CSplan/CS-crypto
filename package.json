@@ -12,7 +12,7 @@
     "postbuild:docs": "sed 's/\\[docs\\](docs\\/modules.md)/\\[modules\\](modules.md)/' -i docs/README.md",
     "lint": "eslint src/",
     "pretest": "tsc -b src/tsconfig-test.json",
-    "test": "ava src/test.ts",
+    "test": "ava src/test/test-old.ts",
     "clean": "rm -rf test lib",
     "prepack": "yarn clean && yarn test && yarn build && yarn build:docs"
   },
