@@ -1,6 +1,7 @@
 import 'jasmine'
 import reporter from './reporter.js'
 import { loadPolyfill, crypto } from '../internal/globals.js'
+import { genString, makeEncryptableObj, makeEncryptableArray } from './helpers.js'
 
 import * as base64 from '../base64.js'
 import * as binary from '../binary.js'
@@ -16,10 +17,12 @@ beforeAll(async () => {
 	await loadPolyfill()
 })
 
+/** Buffer/message size used for both binary (measured in bytes) and text (measured in chars) strings */
+const bufSize = 255
+
 describe('Base64', () => {
 	// Encode and decode count random sequences of bytes,
 	// each with a random length [1, 255]
-	const bufSize = 255
 	const nBuf = 10
 	const buf = new Uint8Array(bufSize)
 	it(`Encodes and decodes ${nBuf} random byte strings`, () => {
@@ -195,5 +198,92 @@ describe('AES', () => {
 		})
 		expect(crypto.subtle.importKey).toHaveBeenCalled()
 		expect(imported).toEqual(key)
+	})
+
+	const text = genString(bufSize)
+	let encryptedText: string|null = null
+	it('Encrypts strings', async () => {
+		expect(key).not.toBeNull(); key = key!
+
+		spyOn(crypto, 'getRandomValues').and.callThrough()
+		spyOn(crypto.subtle, 'encrypt').and.callThrough()
+		encryptedText = await aes.encrypt(text, key)
+		expect(crypto.getRandomValues).toHaveBeenCalled()
+		expect(crypto.subtle.encrypt).toHaveBeenCalled()
+		expect(encryptedText).not.toBeNull()
+	})
+	it('Decrypts strings', async () => {
+		expect(key).not.toBeNull(); key = key!
+		expect(encryptedText).not.toBeNull(); encryptedText = encryptedText!
+
+		spyOn(crypto.subtle, 'decrypt').and.callThrough()
+		const decrypted = await aes.decrypt(encryptedText, key)
+		expect(crypto.subtle.decrypt).toHaveBeenCalled()
+		expect(decrypted).toBe(text)
+	})
+
+	const data = new Uint8Array(bufSize)
+	let encryptedData: Uint8Array|null = null
+	it('Encrypts binary', async () => {
+		expect(key).not.toBeNull(); key = key!
+
+		crypto.getRandomValues(data)
+
+		spyOn(crypto, 'getRandomValues').and.callThrough()
+		spyOn(crypto.subtle, 'encrypt').and.callThrough()
+		encryptedData = await aes.binaryEncrypt(data, key)
+		expect(crypto.getRandomValues).toHaveBeenCalled()
+		expect(crypto.subtle.encrypt).toHaveBeenCalled()
+		expect(encryptedData).not.toBeNull()
+	})
+	it('Decrypts binary', async () => {
+		expect(key).not.toBeNull(); key = key!
+		expect(encryptedData).not.toBeNull(); encryptedData = encryptedData!
+
+		spyOn(crypto.subtle, 'decrypt').and.callThrough()
+		const decrypted = await aes.binaryDecrypt(encryptedData, key)
+		expect(crypto.subtle.decrypt).toHaveBeenCalled()
+		expect(decrypted).toEqual(data)
+	})
+	
+
+	const
+		encryptableFieldCount = 10,
+		encryptableFieldSize = Math.floor(bufSize/encryptableFieldCount),
+		encryptableDepth = 3
+	const encryptableObj = makeEncryptableObj(encryptableFieldCount, encryptableFieldSize, encryptableDepth)
+	const encryptableArr = makeEncryptableArray(encryptableFieldCount, encryptableFieldSize, encryptableDepth)
+	let encryptedObj: Record<string, unknown>|null = null
+	let encryptedArr: unknown[]|null = null
+
+	// Complex here refers to multiple levels of depth and multiple types of field values (Record, array, or string)
+	it('Deep encrypts complex objects', async () => {
+		expect(key).not.toBeNull(); key = key!
+		
+		// We're done spying on crypto.getRandomValues and crypto.subtle.encrypt
+		// because deepEncrypt and deepDecrypt use encrypt/binaryEncrypt and decrypt/binaryDecrypt under the hood,
+		// which have both already been tested for correct wrapping
+		encryptedObj = await aes.deepEncrypt(encryptableObj, key)
+		expect(encryptedObj).not.toBeNull()
+	})
+	it('Deep decrypts complex objects', async () => {
+		expect(key).not.toBeNull(); key = key!
+		expect(encryptedObj).not.toBeNull(); encryptedObj = encryptedObj!
+		
+		const decrypted = await aes.deepDecrypt(encryptedObj, key)
+		expect(decrypted).toEqual(encryptableObj)
+	})
+	it('Deep encrypts complex arrays', async () => {
+		expect(key).not.toBeNull(); key = key!
+
+		encryptedArr = await aes.deepEncrypt(encryptableArr, key)
+		expect(encryptedArr).not.toBeNull()
+	})
+	it('Deep decrypts complex arrays', async () => {
+		expect(key).not.toBeNull(); key = key!
+		expect(encryptedArr).not.toBeNull(); encryptedArr = encryptedArr!
+
+		const decrypted = await aes.deepDecrypt(encryptedArr, key)
+		expect(decrypted).toEqual(encryptableArr)
 	})
 })
