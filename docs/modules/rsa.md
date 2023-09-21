@@ -34,7 +34,7 @@ Export an RSA public key as base64 encoded text
 
 #### Defined in
 
-[rsa.ts:83](https://github.com/very-amused/cs-crypto/blob/4e95e0e/src/rsa.ts#L83)
+[rsa.ts:88](https://github.com/CSplan/CS-crypto/blob/87cde4c/src/rsa.ts#L88)
 
 ___
 
@@ -56,13 +56,13 @@ Generate an RSA keypair of a specified keysize
 
 #### Defined in
 
-[rsa.ts:10](https://github.com/very-amused/cs-crypto/blob/4e95e0e/src/rsa.ts#L10)
+[rsa.ts:12](https://github.com/CSplan/CS-crypto/blob/87cde4c/src/rsa.ts#L12)
 
 ___
 
 ### importPublicKey
 
-▸ **importPublicKey**(`encoded`): `PromiseLike`<`CryptoKey`\>
+▸ **importPublicKey**(`encoded`): `Promise`<`CryptoKey`\>
 
 Import an RSA public key from base64 encoded text
 
@@ -74,11 +74,11 @@ Import an RSA public key from base64 encoded text
 
 #### Returns
 
-`PromiseLike`<`CryptoKey`\>
+`Promise`<`CryptoKey`\>
 
 #### Defined in
 
-[rsa.ts:94](https://github.com/very-amused/cs-crypto/blob/4e95e0e/src/rsa.ts#L94)
+[rsa.ts:99](https://github.com/CSplan/CS-crypto/blob/87cde4c/src/rsa.ts#L99)
 
 ___
 
@@ -102,7 +102,7 @@ Unwrap (decrypt) a CryptoKey using an RSA private key
 
 #### Defined in
 
-[rsa.ts:129](https://github.com/very-amused/cs-crypto/blob/4e95e0e/src/rsa.ts#L129)
+[rsa.ts:134](https://github.com/CSplan/CS-crypto/blob/87cde4c/src/rsa.ts#L134)
 
 ___
 
@@ -126,7 +126,7 @@ Decrypt an RSA key using unwrappingKey (AES-GCM)
 
 #### Defined in
 
-[rsa.ts:51](https://github.com/very-amused/cs-crypto/blob/4e95e0e/src/rsa.ts#L51)
+[rsa.ts:56](https://github.com/CSplan/CS-crypto/blob/87cde4c/src/rsa.ts#L56)
 
 ___
 
@@ -149,7 +149,7 @@ Wrap (encrypt) a CryptoKey using an RSA public key
 
 #### Defined in
 
-[rsa.ts:110](https://github.com/very-amused/cs-crypto/blob/4e95e0e/src/rsa.ts#L110)
+[rsa.ts:115](https://github.com/CSplan/CS-crypto/blob/87cde4c/src/rsa.ts#L115)
 
 ___
 
@@ -170,6 +170,11 @@ Encrypt an RSA private key using an AES private key generated using a passphrase
 
 `Promise`<`string`\>
 
+**`Deprecated`**
+
+This function is being moved to the `aes` module for more consistent organization.
+Use [aes.wrapKey](aes.md#wrapkey) instead.
+
 #### Defined in
 
-[rsa.ts:26](https://github.com/very-amused/cs-crypto/blob/4e95e0e/src/rsa.ts#L26)
+[rsa.ts:31](https://github.com/CSplan/CS-crypto/blob/87cde4c/src/rsa.ts#L31)

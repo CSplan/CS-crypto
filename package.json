@@ -6,13 +6,7 @@
   "main": "build/index.js",
   "types": "build/index.d.ts",
   "scripts": {
-    "build": "rollup -c",
-    "postbuild": "tsc -b src/tsconfig-d.json && rm -rf build/internal",
-    "build:docs": "typedoc src/index.ts --out docs",
-    "postbuild:docs": "sed 's/\\[docs\\](docs\\/modules.md)/\\[modules\\](modules.md)/' -i docs/README.md",
-    "lint": "eslint src/",
-    "clean": "rm -rf test lib",
-    "prepack": "yarn clean && yarn test && yarn build && yarn build:docs"
+    "prepack": "make release"
   },
   "repository": "git+https://github.com/very-amused/cs-crypto",
   "author": "very-amused <very-amused@pm.me>",

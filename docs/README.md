@@ -3,7 +3,7 @@ cs-crypto / [Exports](modules.md)
 # CS-crypto
 A comprehensive, simple, and secure wrapper around the native WebCrypto API. The core of CSplan's client-side cryptography.
 
-[![Tests](https://img.shields.io/github/workflow/status/very-amused/cs-crypto/Tests?label=Tests&logo=github&style=flat-square)](https://github.com/very-amused/CS-crypto/actions?query=workflow%3ATests)
+[![Tests](https://img.shields.io/github/actions/workflow/status/very-amused/cs-crypto/.github/workflows/tests.yml?label=Tests&logo=github&style=flat-square)](https://github.com/very-amused/CS-crypto/actions?query=workflow%3ATests)
 [![NPM](https://img.shields.io/npm/v/cs-crypto?color=darkred&logo=npm&style=flat-square)](https://www.npmjs.com/package/cs-crypto)
 
 ## Documentation
