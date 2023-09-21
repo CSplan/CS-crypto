@@ -11,8 +11,6 @@
     "build:docs": "typedoc src/index.ts --out docs",
     "postbuild:docs": "sed 's/\\[docs\\](docs\\/modules.md)/\\[modules\\](modules.md)/' -i docs/README.md",
     "lint": "eslint src/",
-    "pretest": "tsc -b src/tsconfig-test.json",
-    "test": "ava src/test/test-old.ts",
     "clean": "rm -rf test lib",
     "prepack": "yarn clean && yarn test && yarn build && yarn build:docs"
   },
@@ -21,7 +19,6 @@
   "license": "MIT",
   "private": false,
   "devDependencies": {
-    "@ava/typescript": "^3.0.1",
     "@peculiar/webcrypto": "^1.2.3",
     "@rollup/plugin-terser": "^0.4.3",
     "@rollup/plugin-typescript": "^8.2.1",
@@ -29,7 +26,6 @@
     "@types/node": "^20.6.2",
     "@typescript-eslint/eslint-plugin": "^5.10.2",
     "@typescript-eslint/parser": "^5.10.2",
-    "ava": "^4.0.1",
     "eslint": "^8.8.0",
     "eslint-plugin-import": "^2.25.4",
     "eslint-plugin-promise": "^6.0.0",
@@ -44,15 +40,5 @@
   },
   "overrides": {
     "terser": "^5.15.0"
-  },
-  "ava": {
-    "typescript": {
-      "rewritePaths": {
-        "src/": "test/"
-      },
-      "compile": false
-    },
-    "failFast": true,
-    "verbose": true
   }
 }
