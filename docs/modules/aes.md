@@ -43,7 +43,7 @@ Advanced options for [importKeyMaterial](aes.md#importkeymaterial) and [unwrapKe
 
 #### Defined in
 
-[aes.ts:17](https://github.com/CSplan/CS-crypto/blob/097988c/src/aes.ts#L17)
+[aes.ts:17](https://github.com/CSplan/CS-crypto/blob/2045f57/src/aes.ts#L17)
 
 ___
 
@@ -61,7 +61,7 @@ Any data that is valid for encryption
 
 #### Defined in
 
-[aes.ts:128](https://github.com/CSplan/CS-crypto/blob/097988c/src/aes.ts#L128)
+[aes.ts:128](https://github.com/CSplan/CS-crypto/blob/2045f57/src/aes.ts#L128)
 
 ## Functions
 
@@ -87,7 +87,7 @@ Decrypt an ArrayBuffer
 
 #### Defined in
 
-[aes.ts:180](https://github.com/CSplan/CS-crypto/blob/097988c/src/aes.ts#L180)
+[aes.ts:180](https://github.com/CSplan/CS-crypto/blob/2045f57/src/aes.ts#L180)
 
 ___
 
@@ -113,7 +113,7 @@ Encrypt an ArrayBuffer, used for encrypting non-text data such as images
 
 #### Defined in
 
-[aes.ts:172](https://github.com/CSplan/CS-crypto/blob/097988c/src/aes.ts#L172)
+[aes.ts:172](https://github.com/CSplan/CS-crypto/blob/2045f57/src/aes.ts#L172)
 
 ___
 
@@ -136,7 +136,7 @@ Decrypt a Uint8Array
 
 #### Defined in
 
-[aes.ts:152](https://github.com/CSplan/CS-crypto/blob/097988c/src/aes.ts#L152)
+[aes.ts:152](https://github.com/CSplan/CS-crypto/blob/2045f57/src/aes.ts#L152)
 
 ___
 
@@ -159,7 +159,7 @@ Encrypt a Uint8Array
 
 #### Defined in
 
-[aes.ts:135](https://github.com/CSplan/CS-crypto/blob/097988c/src/aes.ts#L135)
+[aes.ts:135](https://github.com/CSplan/CS-crypto/blob/2045f57/src/aes.ts#L135)
 
 ___
 
@@ -183,7 +183,7 @@ Decrypt an ArrayBuffer as a blob with a specified encoding
 
 #### Defined in
 
-[aes.ts:188](https://github.com/CSplan/CS-crypto/blob/097988c/src/aes.ts#L188)
+[aes.ts:188](https://github.com/CSplan/CS-crypto/blob/2045f57/src/aes.ts#L188)
 
 ___
 
@@ -206,7 +206,7 @@ Decrypt text that was previously encrypted using the same AES key
 
 #### Defined in
 
-[aes.ts:101](https://github.com/CSplan/CS-crypto/blob/097988c/src/aes.ts#L101)
+[aes.ts:101](https://github.com/CSplan/CS-crypto/blob/2045f57/src/aes.ts#L101)
 
 ___
 
@@ -235,7 +235,7 @@ Recursively decrypt an object or array while preserving its original structure
 
 #### Defined in
 
-[aes.ts:229](https://github.com/CSplan/CS-crypto/blob/097988c/src/aes.ts#L229)
+[aes.ts:229](https://github.com/CSplan/CS-crypto/blob/2045f57/src/aes.ts#L229)
 
 ___
 
@@ -264,7 +264,7 @@ Recursively encrypt an object or array while preserving its original structure
 
 #### Defined in
 
-[aes.ts:198](https://github.com/CSplan/CS-crypto/blob/097988c/src/aes.ts#L198)
+[aes.ts:198](https://github.com/CSplan/CS-crypto/blob/2045f57/src/aes.ts#L198)
 
 ___
 
@@ -287,7 +287,7 @@ Encrypt text using AES-GCM or AES-CBC
 
 #### Defined in
 
-[aes.ts:61](https://github.com/CSplan/CS-crypto/blob/097988c/src/aes.ts#L61)
+[aes.ts:61](https://github.com/CSplan/CS-crypto/blob/2045f57/src/aes.ts#L61)
 
 ___
 
@@ -309,7 +309,7 @@ Export an AES key using base64 encoding
 
 #### Defined in
 
-[aes.ts:259](https://github.com/CSplan/CS-crypto/blob/097988c/src/aes.ts#L259)
+[aes.ts:259](https://github.com/CSplan/CS-crypto/blob/2045f57/src/aes.ts#L259)
 
 ___
 
@@ -331,7 +331,7 @@ Generate a new 256 bit AES-GCM or AES-CBC key
 
 #### Defined in
 
-[aes.ts:42](https://github.com/CSplan/CS-crypto/blob/097988c/src/aes.ts#L42)
+[aes.ts:42](https://github.com/CSplan/CS-crypto/blob/2045f57/src/aes.ts#L42)
 
 ___
 
@@ -355,7 +355,7 @@ Import an AES key from raw key material
 
 #### Defined in
 
-[aes.ts:29](https://github.com/CSplan/CS-crypto/blob/097988c/src/aes.ts#L29)
+[aes.ts:29](https://github.com/CSplan/CS-crypto/blob/2045f57/src/aes.ts#L29)
 
 ___
 
@@ -379,7 +379,7 @@ Unwrap (decrypt) an asymmetric key using an AES key. Currently only RSA private 
 
 #### Defined in
 
-[aes.ts:305](https://github.com/CSplan/CS-crypto/blob/097988c/src/aes.ts#L305)
+[aes.ts:305](https://github.com/CSplan/CS-crypto/blob/2045f57/src/aes.ts#L305)
 
 ___
 
@@ -402,4 +402,4 @@ Wrap (encrypt) an asymmetric key using an AES key. Currently only RSA private ke
 
 #### Defined in
 
-[aes.ts:275](https://github.com/CSplan/CS-crypto/blob/097988c/src/aes.ts#L275)
+[aes.ts:275](https://github.com/CSplan/CS-crypto/blob/2045f57/src/aes.ts#L275)
