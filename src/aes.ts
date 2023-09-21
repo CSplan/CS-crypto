@@ -15,9 +15,11 @@ const messages = {
  * Advanced options for {@link importKeyMaterial} and {@link unwrapKey}
  */ 
 export type ImportKeyMaterialOpts = {
-	/** Supported key usages {@defaultValue ['encrypt', 'decrypt', 'wrapKey', 'unwrapKey']}*/
+	/** Supported key usages
+	* @default ['encrypt', 'decrypt', 'wrapKey', 'unwrapKey']*/
 	keyUsages?: KeyUsage[]
-	/** Whether the key can be exported via {@link rsa.wrapKey} {@defaultValue false}*/
+	/** Whether the key can be exported via {@link rsa.wrapKey}
+	* @default false*/
 	extractable?: boolean
 }
 

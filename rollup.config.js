@@ -1,5 +1,7 @@
 import typescript from '@rollup/plugin-typescript'
-import pkg from './package.json'
+import {readFileSync} from 'fs'
+/** @property {string} version */
+const pkg = JSON.parse(readFileSync('package.json'))
 
 const banner = `/**
  * @license
