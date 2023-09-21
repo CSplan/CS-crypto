@@ -34,7 +34,7 @@ Export an RSA public key as base64 encoded text
 
 #### Defined in
 
-[rsa.ts:88](https://github.com/CSplan/CS-crypto/blob/2d4ed3a/src/rsa.ts#L88)
+[rsa.ts:88](https://github.com/CSplan/CS-crypto/blob/eadf5b6/src/rsa.ts#L88)
 
 ___
 
@@ -56,7 +56,7 @@ Generate an RSA keypair of a specified keysize
 
 #### Defined in
 
-[rsa.ts:12](https://github.com/CSplan/CS-crypto/blob/2d4ed3a/src/rsa.ts#L12)
+[rsa.ts:12](https://github.com/CSplan/CS-crypto/blob/eadf5b6/src/rsa.ts#L12)
 
 ___
 
@@ -78,7 +78,7 @@ Import an RSA public key from base64 encoded text
 
 #### Defined in
 
-[rsa.ts:99](https://github.com/CSplan/CS-crypto/blob/2d4ed3a/src/rsa.ts#L99)
+[rsa.ts:99](https://github.com/CSplan/CS-crypto/blob/eadf5b6/src/rsa.ts#L99)
 
 ___
 
@@ -102,7 +102,7 @@ Unwrap (decrypt) a CryptoKey using an RSA private key
 
 #### Defined in
 
-[rsa.ts:134](https://github.com/CSplan/CS-crypto/blob/2d4ed3a/src/rsa.ts#L134)
+[rsa.ts:134](https://github.com/CSplan/CS-crypto/blob/eadf5b6/src/rsa.ts#L134)
 
 ___
 
@@ -126,7 +126,7 @@ Decrypt an RSA key using unwrappingKey (AES-GCM)
 
 #### Defined in
 
-[rsa.ts:56](https://github.com/CSplan/CS-crypto/blob/2d4ed3a/src/rsa.ts#L56)
+[rsa.ts:56](https://github.com/CSplan/CS-crypto/blob/eadf5b6/src/rsa.ts#L56)
 
 ___
 
@@ -149,7 +149,7 @@ Wrap (encrypt) a CryptoKey using an RSA public key
 
 #### Defined in
 
-[rsa.ts:115](https://github.com/CSplan/CS-crypto/blob/2d4ed3a/src/rsa.ts#L115)
+[rsa.ts:115](https://github.com/CSplan/CS-crypto/blob/eadf5b6/src/rsa.ts#L115)
 
 ___
 
@@ -177,4 +177,4 @@ Use [aes.wrapKey](aes.md#wrapkey) instead.
 
 #### Defined in
 
-[rsa.ts:31](https://github.com/CSplan/CS-crypto/blob/2d4ed3a/src/rsa.ts#L31)
+[rsa.ts:31](https://github.com/CSplan/CS-crypto/blob/eadf5b6/src/rsa.ts#L31)

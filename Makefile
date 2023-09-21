@@ -34,5 +34,8 @@ lint:
 clean:
 	rm -rf build
 	rm -rf test
-	rm -rf docs
 .PHONY: clean
+
+clean-all: clean
+	rm -rf docs
+.PHONY: clean-all
