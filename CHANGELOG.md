@@ -4,6 +4,17 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.8.3] 2024-02-10
+### Fixed
+- Inclusion of `.d.ts` files in builds
+
+### Changed
+- Deprecation purge completion release to 0.9.0
+
+### Removed
+ - `base64.ABconcat`
+ - `aes.ABencrypt`, `aes.ABdecrypt`
+
 ## [0.8.2] 2023-09-20
 ### Added
 - Optional options parameter for `aes.importKeyMaterial` of type `aes.ImportKeyMaterialOpts`
@@ -13,7 +24,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Switched to GNU Make as build system
 
 ### Deprecated
-- WARNING: Release 0.8.3 will be a **total purge for all functions marked as @deprecated**. Any code depending on functions deprecated as of 0.8.2 (including functions deprecated *only* as of 0.8.2) will break with 0.8.3 when these functions are **removed**.
+- WARNING: Release 0.8.3 will start a **total purge for all functions marked as @deprecated**. Any code depending on functions deprecated as of 0.8.2 (including functions deprecated *only* as of 0.8.2) will break with 0.8.3 when these functions are **removed**.
 - `rsa.wrapPrivateKey` and `rsa.unwrapPrivateKey`, these functions are now provided as `aes.wrapKey` and `aes.unwrapKey` to improve organization and consistency. *With consideration to the upcoming deprecation purge in 0.8.3, these functions are noteworthy as a rapid breaking change turnaround, migration should be prioritized.*
 
 ## [0.8.1] 2022-11-12

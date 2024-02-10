@@ -165,22 +165,6 @@ export async function binaryDecrypt(ciphertext: Uint8Array, key: CryptoKey): Pro
 	))
 }
 
-/**
- * @deprecated - Use aes.binaryEncrypt
- * Encrypt an ArrayBuffer, used for encrypting non-text data such as images
- */
-export async function ABencrypt(plainbuf: ArrayBuffer|Uint8Array, key: CryptoKey): Promise<Uint8Array> {
-	return binaryEncrypt(new Uint8Array(plainbuf), key)
-}
-
-/**
- * @deprecated - Use binaryDecrypt
- * Decrypt an ArrayBuffer
- */
-export async function ABdecrypt(cipherbuf: Uint8Array, key: CryptoKey): Promise<Uint8Array> {
-	return binaryDecrypt(cipherbuf, key)
-}
-
 // TODO: Write Blob -> Buffer polyfill to allow testing blobDecrypt
 /**
  * Decrypt an ArrayBuffer as a blob with a specified encoding

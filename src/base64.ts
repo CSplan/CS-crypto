@@ -1,5 +1,3 @@
-import { binaryConcat } from './binary.js'
-
 // Only standard encoding is supported as of now
 const StdEncoding = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/'
 
@@ -178,15 +176,4 @@ export function decode(encoded: string): Uint8Array {
 	}
 
 	return result
-}
-
-/**
- * @deprecated - Use binaryConcat instead
- * Concatenate two ArrayBuffers or Uint8Arrays
- */
-export function ABconcat(
-	buf1: Uint8Array|ArrayBuffer,
-	buf2: Uint8Array|ArrayBuffer
-): Uint8Array {
-	return binaryConcat(new Uint8Array(buf1), new Uint8Array(buf2))
 }
