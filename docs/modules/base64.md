@@ -6,37 +6,10 @@
 
 ### Functions
 
-- [ABconcat](base64.md#abconcat)
 - [decode](base64.md#decode)
 - [encode](base64.md#encode)
 
 ## Functions
-
-### ABconcat
-
-▸ **ABconcat**(`buf1`, `buf2`): `Uint8Array`
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `buf1` | `Uint8Array` \| `ArrayBuffer` |
-| `buf2` | `Uint8Array` \| `ArrayBuffer` |
-
-#### Returns
-
-`Uint8Array`
-
-**`Deprecated`**
-
-- Use binaryConcat instead
-Concatenate two ArrayBuffers or Uint8Arrays
-
-#### Defined in
-
-[base64.ts:187](https://github.com/CSplan/CS-crypto/blob/eadf5b6/src/base64.ts#L187)
-
-___
 
 ### decode
 
@@ -56,7 +29,7 @@ Decode standard encoded Base64 to a Uint8Array.
 
 #### Defined in
 
-[base64.ts:140](https://github.com/CSplan/CS-crypto/blob/eadf5b6/src/base64.ts#L140)
+[base64.ts:138](https://github.com/CSplan/CS-crypto/blob/3ee5073/src/base64.ts#L138)
 
 ___
 
@@ -78,4 +51,4 @@ Encode a Uint8Array using Base64 standard encoding
 
 #### Defined in
 
-[base64.ts:96](https://github.com/CSplan/CS-crypto/blob/eadf5b6/src/base64.ts#L96)
+[base64.ts:94](https://github.com/CSplan/CS-crypto/blob/3ee5073/src/base64.ts#L94)

@@ -279,7 +279,7 @@ export async function wrapKey(
 }
 
 /**
- * Unwrap (decrypt) an asymmetric key using an AES key. Currently only RSA private keys are supposed to be unwrapped.
+ * Unwrap (decrypt) an asymmetric key using an AES key. Currently only RSA private keys are supported to be unwrapped.
  *
  * @param keyCiphertext - Ciphertext of key to be decrypted
  * @param unwrappingKey - AES key used to unwrap {@link keyCiphertext}

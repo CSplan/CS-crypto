@@ -6,7 +6,6 @@
 
 ### References
 
-- [ABconcat](modules.md#abconcat)
 - [decode](modules.md#decode)
 - [encode](modules.md#encode)
 
@@ -26,12 +25,6 @@
 - [makeSalt](modules.md#makesalt)
 
 ## References
-
-### ABconcat
-
-Re-exports [ABconcat](modules/base64.md#abconcat)
-
-___
 
 ### decode
 
@@ -63,7 +56,7 @@ Concatenate multiple Uint8Arrays into a result buffer
 
 #### Defined in
 
-[binary.ts:2](https://github.com/CSplan/CS-crypto/blob/eadf5b6/src/binary.ts#L2)
+[binary.ts:2](https://github.com/CSplan/CS-crypto/blob/3ee5073/src/binary.ts#L2)
 
 ___
 
@@ -85,4 +78,4 @@ Make a salt of a specified byte length
 
 #### Defined in
 
-[random.ts:6](https://github.com/CSplan/CS-crypto/blob/eadf5b6/src/random.ts#L6)
+[random.ts:6](https://github.com/CSplan/CS-crypto/blob/3ee5073/src/random.ts#L6)

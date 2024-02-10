@@ -4,7 +4,7 @@ import { encode, decode } from './base64.js'
 import { binaryConcat } from './binary.js'
 import { makeSalt } from './random.js'
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import type { wrapKey as aesWrapKey } from './aes.js'
+import type { wrapKey as aesWrapKey, unwrapKey as aesUnwrapKey } from './aes.js'
 
 /**
  * Generate an RSA keypair of a specified keysize
@@ -52,6 +52,9 @@ export async function wrapPrivateKey(
 
 /**
  * Decrypt an RSA key using unwrappingKey (AES-GCM)
+ * 
+ * @deprecated This function is being moved to the `aes` module for more consistent organization.
+ * Use {@link aesUnwrapKey | aes.unwrapKey} instead.
  */
 export async function unwrapPrivateKey(
 	encodedPrivateKey: string,
