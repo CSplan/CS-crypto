@@ -4,14 +4,13 @@
 
 ## Table of contents
 
-### Type aliases
+### Type Aliases
 
+- [ImportKeyMaterialOpts](aes.md#importkeymaterialopts)
 - [StringLike](aes.md#stringlike)
 
 ### Functions
 
-- [ABdecrypt](aes.md#abdecrypt)
-- [ABencrypt](aes.md#abencrypt)
 - [binaryDecrypt](aes.md#binarydecrypt)
 - [binaryEncrypt](aes.md#binaryencrypt)
 - [blobDecrypt](aes.md#blobdecrypt)
@@ -22,8 +21,29 @@
 - [exportKey](aes.md#exportkey)
 - [generateKey](aes.md#generatekey)
 - [importKeyMaterial](aes.md#importkeymaterial)
+- [unwrapKey](aes.md#unwrapkey)
+- [wrapKey](aes.md#wrapkey)
 
-## Type aliases
+## Type Aliases
+
+### ImportKeyMaterialOpts
+
+Ƭ **ImportKeyMaterialOpts**: `Object`
+
+Advanced options for [importKeyMaterial](aes.md#importkeymaterial) and [unwrapKey](aes.md#unwrapkey)
+
+#### Type declaration
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `extractable?` | `boolean` | Whether the key can be exported via [rsa.wrapKey](rsa.md#wrapkey) **`Default`** ```ts false ``` |
+| `keyUsages?` | `KeyUsage`[] | Supported key usages **`Default`** ```ts ['encrypt', 'decrypt', 'wrapKey', 'unwrapKey'] ``` |
+
+#### Defined in
+
+[aes.ts:17](https://github.com/CSplan/CS-crypto/blob/07a90ef/src/aes.ts#L17)
+
+___
 
 ### StringLike
 
@@ -39,57 +59,9 @@ Any data that is valid for encryption
 
 #### Defined in
 
-[aes.ts:114](https://github.com/very-amused/cs-crypto/blob/4e95e0e/src/aes.ts#L114)
+[aes.ts:128](https://github.com/CSplan/CS-crypto/blob/07a90ef/src/aes.ts#L128)
 
 ## Functions
-
-### ABdecrypt
-
-▸ **ABdecrypt**(`cipherbuf`, `key`): `Promise`<`Uint8Array`\>
-
-**`deprecated`** - Use binaryDecrypt
-Decrypt an ArrayBuffer
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `cipherbuf` | `Uint8Array` |
-| `key` | `CryptoKey` |
-
-#### Returns
-
-`Promise`<`Uint8Array`\>
-
-#### Defined in
-
-[aes.ts:166](https://github.com/very-amused/cs-crypto/blob/4e95e0e/src/aes.ts#L166)
-
-___
-
-### ABencrypt
-
-▸ **ABencrypt**(`plainbuf`, `key`): `Promise`<`Uint8Array`\>
-
-**`deprecated`** - Use aes.binaryEncrypt
-Encrypt an ArrayBuffer, used for encrypting non-text data such as images
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `plainbuf` | `Uint8Array` \| `ArrayBuffer` |
-| `key` | `CryptoKey` |
-
-#### Returns
-
-`Promise`<`Uint8Array`\>
-
-#### Defined in
-
-[aes.ts:158](https://github.com/very-amused/cs-crypto/blob/4e95e0e/src/aes.ts#L158)
-
-___
 
 ### binaryDecrypt
 
@@ -110,7 +82,7 @@ Decrypt a Uint8Array
 
 #### Defined in
 
-[aes.ts:138](https://github.com/very-amused/cs-crypto/blob/4e95e0e/src/aes.ts#L138)
+[aes.ts:152](https://github.com/CSplan/CS-crypto/blob/07a90ef/src/aes.ts#L152)
 
 ___
 
@@ -133,7 +105,7 @@ Encrypt a Uint8Array
 
 #### Defined in
 
-[aes.ts:121](https://github.com/very-amused/cs-crypto/blob/4e95e0e/src/aes.ts#L121)
+[aes.ts:135](https://github.com/CSplan/CS-crypto/blob/07a90ef/src/aes.ts#L135)
 
 ___
 
@@ -157,7 +129,7 @@ Decrypt an ArrayBuffer as a blob with a specified encoding
 
 #### Defined in
 
-[aes.ts:174](https://github.com/very-amused/cs-crypto/blob/4e95e0e/src/aes.ts#L174)
+[aes.ts:172](https://github.com/CSplan/CS-crypto/blob/07a90ef/src/aes.ts#L172)
 
 ___
 
@@ -180,7 +152,7 @@ Decrypt text that was previously encrypted using the same AES key
 
 #### Defined in
 
-[aes.ts:87](https://github.com/very-amused/cs-crypto/blob/4e95e0e/src/aes.ts#L87)
+[aes.ts:101](https://github.com/CSplan/CS-crypto/blob/07a90ef/src/aes.ts#L101)
 
 ___
 
@@ -209,7 +181,7 @@ Recursively decrypt an object or array while preserving its original structure
 
 #### Defined in
 
-[aes.ts:215](https://github.com/very-amused/cs-crypto/blob/4e95e0e/src/aes.ts#L215)
+[aes.ts:213](https://github.com/CSplan/CS-crypto/blob/07a90ef/src/aes.ts#L213)
 
 ___
 
@@ -238,7 +210,7 @@ Recursively encrypt an object or array while preserving its original structure
 
 #### Defined in
 
-[aes.ts:184](https://github.com/very-amused/cs-crypto/blob/4e95e0e/src/aes.ts#L184)
+[aes.ts:182](https://github.com/CSplan/CS-crypto/blob/07a90ef/src/aes.ts#L182)
 
 ___
 
@@ -261,7 +233,7 @@ Encrypt text using AES-GCM or AES-CBC
 
 #### Defined in
 
-[aes.ts:47](https://github.com/very-amused/cs-crypto/blob/4e95e0e/src/aes.ts#L47)
+[aes.ts:61](https://github.com/CSplan/CS-crypto/blob/07a90ef/src/aes.ts#L61)
 
 ___
 
@@ -283,13 +255,13 @@ Export an AES key using base64 encoding
 
 #### Defined in
 
-[aes.ts:245](https://github.com/very-amused/cs-crypto/blob/4e95e0e/src/aes.ts#L245)
+[aes.ts:243](https://github.com/CSplan/CS-crypto/blob/07a90ef/src/aes.ts#L243)
 
 ___
 
 ### generateKey
 
-▸ **generateKey**(`type`): `PromiseLike`<`CryptoKey`\>
+▸ **generateKey**(`type`): `Promise`<`CryptoKey`\>
 
 Generate a new 256 bit AES-GCM or AES-CBC key
 
@@ -301,17 +273,17 @@ Generate a new 256 bit AES-GCM or AES-CBC key
 
 #### Returns
 
-`PromiseLike`<`CryptoKey`\>
+`Promise`<`CryptoKey`\>
 
 #### Defined in
 
-[aes.ts:28](https://github.com/very-amused/cs-crypto/blob/4e95e0e/src/aes.ts#L28)
+[aes.ts:42](https://github.com/CSplan/CS-crypto/blob/07a90ef/src/aes.ts#L42)
 
 ___
 
 ### importKeyMaterial
 
-▸ **importKeyMaterial**(`keyMaterial`, `type`): `PromiseLike`<`CryptoKey`\>
+▸ **importKeyMaterial**(`keyMaterial`, `type`, `opts?`): `PromiseLike`<`CryptoKey`\>
 
 Import an AES key from raw key material
 
@@ -321,6 +293,7 @@ Import an AES key from raw key material
 | :------ | :------ |
 | `keyMaterial` | `Uint8Array` |
 | `type` | [`AES_GCM`](../enums/Algorithms.md#aes_gcm) \| [`AES_CBC`](../enums/Algorithms.md#aes_cbc) |
+| `opts?` | [`ImportKeyMaterialOpts`](aes.md#importkeymaterialopts) |
 
 #### Returns
 
@@ -328,4 +301,51 @@ Import an AES key from raw key material
 
 #### Defined in
 
-[aes.ts:15](https://github.com/very-amused/cs-crypto/blob/4e95e0e/src/aes.ts#L15)
+[aes.ts:29](https://github.com/CSplan/CS-crypto/blob/07a90ef/src/aes.ts#L29)
+
+___
+
+### unwrapKey
+
+▸ **unwrapKey**(`keyCiphertext`, `unwrappingKey`, `opts?`): `Promise`<`CryptoKey`\>
+
+Unwrap (decrypt) an asymmetric key using an AES key. Currently only RSA private keys are supported to be unwrapped.
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `keyCiphertext` | `string` | Ciphertext of key to be decrypted |
+| `unwrappingKey` | `CryptoKey` | AES key used to unwrap keyCiphertext |
+| `opts?` | [`ImportKeyMaterialOpts`](aes.md#importkeymaterialopts) | Optional key import options (note for transitioning from the deprecated `rsa.unwrapPrivateKey`: the `exportable` arg is superseded by `opts.extractable`) |
+
+#### Returns
+
+`Promise`<`CryptoKey`\>
+
+#### Defined in
+
+[aes.ts:289](https://github.com/CSplan/CS-crypto/blob/07a90ef/src/aes.ts#L289)
+
+___
+
+### wrapKey
+
+▸ **wrapKey**(`key`, `wrappingKey`): `Promise`<`string`\>
+
+Wrap (encrypt) an asymmetric key using an AES key. Currently only RSA private keys are supported to be wrapped.
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `key` | `CryptoKey` | Key to be encrypted |
+| `wrappingKey` | `CryptoKey` | AES key used to wrap key |
+
+#### Returns
+
+`Promise`<`string`\>
+
+#### Defined in
+
+[aes.ts:259](https://github.com/CSplan/CS-crypto/blob/07a90ef/src/aes.ts#L259)

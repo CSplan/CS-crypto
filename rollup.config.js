@@ -1,5 +1,7 @@
 import typescript from '@rollup/plugin-typescript'
-import pkg from './package.json'
+import {readFileSync} from 'fs'
+/** @property {string} version */
+const pkg = JSON.parse(readFileSync('package.json'))
 
 const banner = `/**
  * @license
@@ -11,14 +13,14 @@ const banner = `/**
 export default {
   input: 'src/index.ts',
   output: {
-    dir: 'lib',
+    dir: 'build',
     format: 'es',
     banner
   },
   plugins: [
     typescript({
       tsconfig: 'src/tsconfig.json',
-      outDir: 'lib',
+      outDir: 'build',
       removeComments: true
     })
   ],

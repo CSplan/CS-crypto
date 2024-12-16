@@ -2,10 +2,10 @@
   "extends": "../tsconfig.json",
   "composite": true,
   "compilerOptions": {
-    "lib": ["DOM", "ES2020"],
+    "lib": ["DOM", "ES2022"],
     "module": "ESNext",
     "stripInternal": true
   },
   "include": ["*.ts", "internal/*"],
-  "exclude": ["test.ts"]
+  "exclude": ["test-old.ts"]
 }

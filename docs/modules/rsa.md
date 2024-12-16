@@ -34,7 +34,7 @@ Export an RSA public key as base64 encoded text
 
 #### Defined in
 
-[rsa.ts:83](https://github.com/very-amused/cs-crypto/blob/4e95e0e/src/rsa.ts#L83)
+[rsa.ts:91](https://github.com/CSplan/CS-crypto/blob/07a90ef/src/rsa.ts#L91)
 
 ___
 
@@ -56,13 +56,13 @@ Generate an RSA keypair of a specified keysize
 
 #### Defined in
 
-[rsa.ts:10](https://github.com/very-amused/cs-crypto/blob/4e95e0e/src/rsa.ts#L10)
+[rsa.ts:12](https://github.com/CSplan/CS-crypto/blob/07a90ef/src/rsa.ts#L12)
 
 ___
 
 ### importPublicKey
 
-▸ **importPublicKey**(`encoded`): `PromiseLike`<`CryptoKey`\>
+▸ **importPublicKey**(`encoded`): `Promise`<`CryptoKey`\>
 
 Import an RSA public key from base64 encoded text
 
@@ -74,11 +74,11 @@ Import an RSA public key from base64 encoded text
 
 #### Returns
 
-`PromiseLike`<`CryptoKey`\>
+`Promise`<`CryptoKey`\>
 
 #### Defined in
 
-[rsa.ts:94](https://github.com/very-amused/cs-crypto/blob/4e95e0e/src/rsa.ts#L94)
+[rsa.ts:102](https://github.com/CSplan/CS-crypto/blob/07a90ef/src/rsa.ts#L102)
 
 ___
 
@@ -102,7 +102,7 @@ Unwrap (decrypt) a CryptoKey using an RSA private key
 
 #### Defined in
 
-[rsa.ts:129](https://github.com/very-amused/cs-crypto/blob/4e95e0e/src/rsa.ts#L129)
+[rsa.ts:137](https://github.com/CSplan/CS-crypto/blob/07a90ef/src/rsa.ts#L137)
 
 ___
 
@@ -124,9 +124,14 @@ Decrypt an RSA key using unwrappingKey (AES-GCM)
 
 `Promise`<`CryptoKey`\>
 
+**`Deprecated`**
+
+This function is being moved to the `aes` module for more consistent organization.
+Use [aes.unwrapKey](aes.md#unwrapkey) instead.
+
 #### Defined in
 
-[rsa.ts:51](https://github.com/very-amused/cs-crypto/blob/4e95e0e/src/rsa.ts#L51)
+[rsa.ts:59](https://github.com/CSplan/CS-crypto/blob/07a90ef/src/rsa.ts#L59)
 
 ___
 
@@ -149,7 +154,7 @@ Wrap (encrypt) a CryptoKey using an RSA public key
 
 #### Defined in
 
-[rsa.ts:110](https://github.com/very-amused/cs-crypto/blob/4e95e0e/src/rsa.ts#L110)
+[rsa.ts:118](https://github.com/CSplan/CS-crypto/blob/07a90ef/src/rsa.ts#L118)
 
 ___
 
@@ -170,6 +175,11 @@ Encrypt an RSA private key using an AES private key generated using a passphrase
 
 `Promise`<`string`\>
 
+**`Deprecated`**
+
+This function is being moved to the `aes` module for more consistent organization.
+Use [aes.wrapKey](aes.md#wrapkey) instead.
+
 #### Defined in
 
-[rsa.ts:26](https://github.com/very-amused/cs-crypto/blob/4e95e0e/src/rsa.ts#L26)
+[rsa.ts:31](https://github.com/CSplan/CS-crypto/blob/07a90ef/src/rsa.ts#L31)

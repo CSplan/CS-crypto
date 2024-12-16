@@ -2,4 +2,5 @@ dist
 module
 workers
 *.js
+*.cjs
 *.d.ts

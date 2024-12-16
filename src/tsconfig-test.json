@@ -6,5 +6,6 @@
     "outDir": "../test",
     "declaration": false
   },
+  "include": ["*.ts", "internal/*", "test/*"],
   "exclude": []
 }
