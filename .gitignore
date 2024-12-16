@@ -9,4 +9,5 @@ yarn-error.log
 workers
 lib
 test
+!src/test
 *.tgz
