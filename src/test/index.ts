@@ -31,6 +31,12 @@ describe('Base64', () => {
     const encoded = b64.encode(view)
     expect(b64.decode(encoded)).toEqual(view)
   })
+  it(`Encodes and decodes ${nBuf} random byte strings (no padding)`, () => {
+    const view = new Uint8Array(buf.buffer, 0, Math.floor((Math.random() * bufSize)) + 1)
+    crypto.getRandomValues(view)
+    const encoded = b64.encode(view, false)
+    expect(b64.decode(encoded)).toEqual(view)
+  })
 
   // Ignore both \r and \n characters in input to base64.decode()
   it('Ignores line breaks.', () => {

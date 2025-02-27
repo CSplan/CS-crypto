@@ -4,11 +4,6 @@
 
 ## Table of contents
 
-### References
-
-- [decode](modules.md#decode)
-- [encode](modules.md#encode)
-
 ### Namespaces
 
 - [aes](modules/aes.md)
@@ -23,18 +18,6 @@
 
 - [binaryConcat](modules.md#binaryconcat)
 - [makeSalt](modules.md#makesalt)
-
-## References
-
-### decode
-
-Re-exports [decode](modules/base64.md#decode)
-
-___
-
-### encode
-
-Re-exports [encode](modules/base64.md#encode)
 
 ## Functions
 
@@ -56,7 +39,7 @@ Concatenate multiple Uint8Arrays into a result buffer
 
 #### Defined in
 
-[binary.ts:2](https://github.com/CSplan/CS-crypto/blob/07a90ef/src/binary.ts#L2)
+[binary.ts:2](https://github.com/very-amused/cs-crypto/blob/3fa857f/src/binary.ts#L2)
 
 ___
 
@@ -78,4 +61,4 @@ Make a salt of a specified byte length
 
 #### Defined in
 
-[random.ts:6](https://github.com/CSplan/CS-crypto/blob/07a90ef/src/random.ts#L6)
+[random.ts:6](https://github.com/very-amused/cs-crypto/blob/3fa857f/src/random.ts#L6)
