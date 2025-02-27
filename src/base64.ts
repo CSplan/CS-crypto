@@ -101,7 +101,26 @@ export namespace Base64 {
   /**
    * Encode a Uint8Array using Base64.
    */
-  export function encode(data: Uint8Array, encoding: Encoding = StdEncoding, padding = true): string {
+  export function encode(data: Uint8Array): string
+  export function encode(data: Uint8Array, encoding: Encoding): string
+  export function encode(data: Uint8Array, padding: boolean): string
+  export function encode(data: Uint8Array, encoding: Encoding, padding: boolean): string
+  export function encode(data: Uint8Array, ...args: unknown[]): string {
+    let encoding: Encoding = StdEncoding, padding = true
+    switch (args.length) {
+    case 1:
+      switch (typeof args[0]) {
+      case 'string':
+        encoding = args[0] as Encoding
+        break
+      case 'boolean':
+        padding = args[0] as boolean
+      }
+      break
+    case 2:
+      encoding = args[0] as Encoding
+      padding = args[1] as boolean
+    }
     // Calculate encoded size and rem (trailing bytes) size
     const dataRem = data.byteLength % 3
     let encRem = 0
