@@ -34,7 +34,7 @@ describe('Base64', () => {
   it(`Encodes and decodes ${nBuf} random byte strings (no padding)`, () => {
     const view = new Uint8Array(buf.buffer, 0, Math.floor((Math.random() * bufSize)) + 1)
     crypto.getRandomValues(view)
-    const encoded = b64.encode(view, false)
+    const encoded = b64.encode(view, b64.StdEncoding, false)
     expect(b64.decode(encoded)).toEqual(view)
   })
 
