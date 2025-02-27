@@ -18,7 +18,7 @@ module.exports = {
 	],
 	rules: {
 		// General
-		indent: ['error', 'tab'],
+		indent: ['error', 2],
 		quotes: ['error', 'single'],
 		semi: ['error', 'never'],
 		'brace-style': ['error', '1tbs'],
@@ -57,6 +57,7 @@ module.exports = {
 		'@typescript-eslint/explicit-member-accessibility': ['error', {
 			accessibility: 'no-public'
 		}],
+		'@typescript-eslint/no-namespace': 'off',
 		// Unicorn rules
 		'unicorn/filename-case': ['error', {
 			case: 'kebabCase'
