@@ -57,7 +57,7 @@ function decodeGroup(data: Uint8Array, result: Uint8Array): void {
  * @internal
  * ASCII to indexes, convert each ASCII character code in encoded to a usable index for decoding
  */
-function atoi(encoded: Uint8Array): Uint8Array {
+function atoi(encoded: Uint8Array, encoding: Base64.Encoding): Uint8Array {
   let unpaddedLength = encoded.byteLength
   // Strip up to 2 padding characters off the end
   for (let i = encoded.byteLength - 2; i < encoded.byteLength; i++) {
@@ -65,6 +65,10 @@ function atoi(encoded: Uint8Array): Uint8Array {
       unpaddedLength--
     }
   }
+
+  // Select encoding-dependent symbols for indexes 62 and 63
+  const sym1 = (encoding === Base64.UrlEncoding ? '-' : '+').charCodeAt(0)
+  const sym2 = (encoding === Base64.UrlEncoding ? '_' : '/').charCodeAt(0)
 
   const indexes = new Uint8Array(unpaddedLength)
   // Convert from ASCII character codes to 0-63
@@ -80,17 +84,26 @@ function atoi(encoded: Uint8Array): Uint8Array {
       indexes[i] = encoded[i] - 71
     } else {
       // Handle symbols
-      if (encoded[i] === 43 || encoded[i] === 45) { // '+', '-' -> 62
+      if (encoded[i] === sym1) { // '+' | '-' -> 62
         indexes[i] = 62
         // /
-      } else if (encoded[i] === 47 || encoded[i] === 137) { // '/', '_' -> 63
+      } else if (encoded[i] === sym2) { // '/' | '_' -> 63
         indexes[i] = 63
       } else {
-        throw new Error('invalid base64 input (StdEncoding)')
+        throw new Error(`invalid base64 input (${encodingName(encoding)})`)
       }
     }
   }
   return indexes
+}
+
+function encodingName(encoding: Base64.Encoding): string {
+  switch (encoding) {
+  case Base64.StdEncoding:
+    return 'StdEncoding'
+  case Base64.UrlEncoding:
+    return 'UrlEncoding'
+  }
 }
 
 export namespace Base64 {
@@ -164,13 +177,13 @@ export namespace Base64 {
   }
 
   /**
-   * Decode Base64 to a Uint8Array. Padding and different encodings are handled automatically at no performance cost.
+   * Decode Base64 to a Uint8Array.
    */
-  export function decode(encoded: string): Uint8Array {
+  export function decode(encoded: string, encoding: Encoding = StdEncoding): Uint8Array {
     // Convert from ASCII encoding to indexes 0-63 and strip padding
     const indexes = atoi(new TextEncoder().encode(
       encoded.replaceAll(/[\r\n]/g, '') // Standard base64 behavior requires ignoring newlines
-    ))
+    ), encoding)
 
     // Calculate decoded size and rem
     const idRem = indexes.byteLength % 4 // Trailing bytes without padding

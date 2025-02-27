@@ -25,17 +25,23 @@ describe('Base64', () => {
   // each with a random length [1, 255]
   const nBuf = 10
   const buf = new Uint8Array(bufSize)
-  it(`Encodes and decodes ${nBuf} random byte strings`, () => {
+  const doit = (encoding: b64.Encoding, padding: boolean) => {
     const view = new Uint8Array(buf.buffer, 0, Math.floor((Math.random() * bufSize)) + 1)
     crypto.getRandomValues(view)
-    const encoded = b64.encode(view)
-    expect(b64.decode(encoded)).toEqual(view)
+    const encoded = b64.encode(view, encoding, padding)
+    expect(b64.decode(encoded, encoding)).toEqual(view)
+  }
+  it(`Encodes/decodes ${nBuf} random byte strings`, () => {
+    doit(b64.StdEncoding, true)
   })
-  it(`Encodes and decodes ${nBuf} random byte strings (no padding)`, () => {
-    const view = new Uint8Array(buf.buffer, 0, Math.floor((Math.random() * bufSize)) + 1)
-    crypto.getRandomValues(view)
-    const encoded = b64.encode(view, false)
-    expect(b64.decode(encoded)).toEqual(view)
+  it(`Encodes/decodes ${nBuf} random byte strings (no padding)`, () => {
+    doit(b64.StdEncoding, false)
+  })
+  it(`Encodes/decodes ${nBuf} random byte strings (UrlEncoding)`, () => {
+    doit(b64.StdEncoding, true)
+  })
+  it(`Encodes/decodes ${nBuf} random byte strings (UrlEncoding + no padding)`, () => {
+    doit(b64.UrlEncoding, false)
   })
 
   // Ignore both \r and \n characters in input to base64.decode()
